@@ -1,0 +1,112 @@
+<header id="header">
+  <div class="desktop-header">
+    <div class="desktop-header-top">
+      <div class="inner">
+        <div class="inner-left">
+          <i class="fa-solid fa-house-chimney"></i>
+          <p>Hệ thống showroom</p>
+        </div>
+        <div class="inner-right">
+          <i class="fa-solid fa-phone-flip"></i>
+          <p>Mua hàng online: 0865806009</p>
+        </div>
+      </div>
+    </div>
+    <div class="desktop-header-center">
+      <div class="wrapper">
+        <div class="inner">
+          <div class="grid grid_flex">
+            <div class="grid__item size-one">
+              <h1>
+                <a href="">
+                  <img src="./assets/img/logo-2T.png" alt="logo" width="102px">
+                </a>
+              </h1>
+            </div>
+            <div class="grid__item size-two">
+              <div class="desktop-header-navbar">
+                <div class="inner">
+                  <ul class="ul-navbar">
+                    <li class="dropdown">
+                      <a [routerLink]="['/product']">
+                        Sản phẩm
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </a>
+                      <ul style="max-height: 320px;">
+                        <li><a href="">Đầm</a></li>
+                        <li><a href="">Áo sơ mi</a></li>
+                        <li><a href="">Áo phông</a></li>
+                        <li><a href="">Quần</a></li>
+                        <li><a href="">Chân váy</a></li>
+                        <li><a href="">Set bộ</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="">Sản phẩm mới</a>
+                    </li>
+                    <li>
+                      <a href="/">Xu hướng</a>
+                    </li>
+                    <li>
+                      <a href="/">Về chúng tôi</a>
+                    </li>
+                    <li>
+                      <a href="/">Liên hệ</a>
+                    </li>
+                    <li class="dropdown icon-item search-li float-pc">
+                      <a href="/">
+                        <img src="./assets/img/search.png" alt="search">
+                      </a>
+                      <ul class="no-bullets">
+                        <form action="" method="get" class="search-bar">
+                          <input id="inputSearch" type="search" name="search" value="" placeholder="Tìm kiếm..."
+                                 class="input-group-filed">
+                          <button id="btnSearch" type="submit" class="btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                        </form>
+                      </ul>
+                    </li>
+                    <li class="float-pc">
+                      <div class="desktop-cart-wrapper">
+                        <a href="" style="padding: 0;">
+                          <img src="./assets/img/cart.png" alt="cart">
+                          Giỏ hàng
+                          <span id="quantityCartItem" class="hd-cart-count">0</span>
+                        </a>
+                        <div class="quickview-cart">
+                          <ul class="no-bullets">
+                            <li>Bạn chưa có sản phẩm nào trong giỏ hàng!</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li id="account" class="dropdown icon-item search-li float-pc">
+                      <a href="#">
+                        <img src="./assets/img/account.png" alt="account">
+                        Tài khoản
+                      </a>
+                      <ul class="no-bullets" style="max-height: 106px;">
+                        <li><a href="">Đăng nhập</a></li>
+                        <li><a href="">Đăng ký</a></li>
+                      </ul>
+                    </li>
+
+                    <li id="user-info" class="dropdown float-pc" style="display: none;">
+                      Xin chào, <span id="user-name"></span>
+                      <ul class="no-bullets" style="max-height: 161px;">
+                        <li><a href="/assets/HTML/account.html">Thông tin tài khoản</a></li>
+                        <li><a href="/assets/HTML/order.html">Lịch sử đơn hàng</a></li>
+                        <li><a href="#" id="logout">Đăng xuất</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
