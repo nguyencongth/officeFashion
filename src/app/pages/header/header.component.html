@@ -32,13 +32,10 @@
                         Sản phẩm
                         <i class="fa-solid fa-chevron-down"></i>
                       </a>
-                      <ul style="max-height: 320px;">
-                        <li><a href="">Đầm</a></li>
-                        <li><a href="">Áo sơ mi</a></li>
-                        <li><a href="">Áo phông</a></li>
-                        <li><a href="">Quần</a></li>
-                        <li><a href="">Chân váy</a></li>
-                        <li><a href="">Set bộ</a></li>
+                      <ul style="max-height: 374px;">
+                        <li *ngFor="let category of categories">
+                          <a>{{category.tenloaisp}}</a>
+                        </li>
                       </ul>
                     </li>
                     <li>

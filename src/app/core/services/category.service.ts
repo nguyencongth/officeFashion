@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor() { }
+  private urlApi = 'https://localhost:7249/api/ProductType';
+  constructor(private http: HttpClient) { }
+
+  getCategory():Observable<any> {
+    const url = `${this.urlApi}/getProductType`;
+    return this.http.get(url);
+  }
 }

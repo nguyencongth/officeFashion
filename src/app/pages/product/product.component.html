@@ -86,46 +86,46 @@
                       <div class="sidebar-uniform-flex">
                         <div class="sidebar-item" style="margin-right: 15px;">
                           <div class="collection-filter-price">
-                            <button id="btn-filter-price" class="accordion active">
+                            <button id="btn-filter-price" class="accordion active" (click)="togglePanel()">
                               <span>Giá</span>
-                              <i class="btn-down fa-solid fa-sort-down"></i>
-                              <i class="btn-up fa-solid fa-sort-up"></i>
+                              <i *ngIf="!panelVisible" class="btn-down fa-solid fa-sort-down"></i>
+                              <i *ngIf="panelVisible" class="btn-up fa-solid fa-sort-up"></i>
                             </button>
-                            <div id="model" class="panel sidebar-sort">
+                            <div id="model" class="panel sidebar-sort" *ngIf="panelVisible">
                               <ul class="no-bullets filter-price">
                                 <li>
                                   <label for="radio1">
-                                    <input value="1" type="radio" id="radio1" name="price-filter" checked>
+                                    <input value="1" type="radio" id="radio1" name="price-filter" checked (click)="filterProductsByPrice(1)">
                                     <span>Tất cả</span>
                                   </label>
                                 </li>
                                 <li>
                                   <label for="radio2">
-                                    <input value="2" type="radio" id="radio2" name="price-filter">
+                                    <input value="2" type="radio" id="radio2" name="price-filter" (click)="filterProductsByPrice(2)">
                                     <span>Nhỏ hơn 500,000₫</span>
                                   </label>
                                 </li>
                                 <li>
                                   <label for="radio3">
-                                    <input value="3" type="radio" id="radio3" name="price-filter">
+                                    <input value="3" type="radio" id="radio3" name="price-filter" (click)="filterProductsByPrice(3)">
                                     <span>Từ 500,000₫ - 1,000,000₫</span>
                                   </label>
                                 </li>
                                 <li>
                                   <label for="radio4">
-                                    <input value="4" type="radio" id="radio4" name="price-filter">
+                                    <input value="4" type="radio" id="radio4" name="price-filter" (click)="filterProductsByPrice(4)">
                                     <span>Từ 1,000,000₫ - 1,500,000₫</span>
                                   </label>
                                 </li>
                                 <li>
                                   <label for="radio5">
-                                    <input value="5" type="radio" id="radio5" name="price-filter">
+                                    <input value="5" type="radio" id="radio5" name="price-filter" (click)="filterProductsByPrice(5)">
                                     <span>Từ 1,500,000₫ - 2,000,000₫</span>
                                   </label>
                                 </li>
                                 <li>
                                   <label for="radio6">
-                                    <input value="6" type="radio" id="radio6" name="price-filter">
+                                    <input value="6" type="radio" id="radio6" name="price-filter" (click)="filterProductsByPrice(6)">
                                     <span>Từ 2,000,000₫ - 3,000,000₫</span>
                                   </label>
                                 </li>
@@ -159,7 +159,7 @@
                 </div>
               </div>
               <ul class="pagination">
-                <!-- Phân trang sẽ được hiển thị ở đây -->
+                <!-- Phân trang -->
                 <button class="page-link" (click)="onPageChange(page - 1)" [disabled]="page === 1">Previous</button>
                 <button *ngFor="let pageNumber of getPageNumbers()" class="page-link" (click)="onPageChange(pageNumber)" [ngClass]=" {'active-pagination': pageNumber === page} ">{{pageNumber}}</button>
                 <button class="page-link" (click)="onPageChange(page + 1)" [disabled]="page === getTotalPages()">Next</button>
