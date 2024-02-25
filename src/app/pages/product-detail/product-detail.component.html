@@ -1,0 +1,124 @@
+<div id="breadcrumb-wrapper">
+  <div class="breadcrumb-content">
+    <div class="wrapper">
+      <div class="inner text-left">
+        <div class="breadcrumb-small" *ngFor="let p of product">
+          <a [routerLink]="['/']">Trang chủ</a>
+          <span>/</span>
+          <span class="nameProduct_Bar">{{p.tensp}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="product-wrapper">
+  <div class="wrapper">
+    <div class="inner">
+      <div class="product-single" *ngFor="let p of product">
+        <div class="product-item large--left">
+          <div class="product_image">
+            <img class="img" src="{{p.anhsp}}" alt="">
+          </div>
+        </div>
+        <div class="product-item large--right">
+          <div class="product-content">
+            <div class="product-content-head">
+              <div class="name-title">
+                <h1 class="namePro">{{p.tensp}}</h1>
+              </div>
+              <div class="product-brand">
+                <span class="title">Thương hiệu:</span>
+                <a href="#">2T-STORE</a>
+              </div>
+            </div>
+            <div class="product-price">
+              <span class="current-price">{{p.giaban}}</span>
+            </div>
+            <form action="" method="post" id="AddToCartForm" enctype="multipart/form-data"
+                  class="form-vertical">
+              <div class="product-variants-wrapper">
+                <div id="product-select-swatch" class="select-swatch">
+                  <div id="variant-swatch" class="swatch swatch-product-single">
+                    <div class="header">
+                      Kích thước
+                    </div>
+                    <div class="select-swap">
+                      <div class="swatch-element size-4">
+                        <input class="variant-0 input-product" id="swatch-0--size-4"
+                               type="radio" name="option1" value="Size 4" [checked]="selectedSize === 'Size 4'" (change)="onSizeChange('Size 4')">
+                        <label for="swatch-0--size-4">
+                          Size 4
+                          <img class="img-check"
+                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 4' ? 'inline-block' : 'none'">
+                        </label>
+                      </div>
+                      <div class="swatch-element size-6">
+                        <input class="variant-0 input-product" id="swatch-0--size-6"
+                               type="radio" name="option1" value="Size 6" [checked]="selectedSize === 'Size 6'" (change)="onSizeChange('Size 6')">
+                        <label for="swatch-0--size-6">
+                          Size 6
+                          <img class="img-check"
+                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 6' ? 'inline-block' : 'none'">
+                        </label>
+                      </div>
+                      <div class="swatch-element size-8">
+                        <input class="variant-0 input-product" id="swatch-0--size-8"
+                               type="radio" name="option1" value="Size 8" [checked]="selectedSize === 'Size 8'" (change)="onSizeChange('Size 8')">
+                        <label for="swatch-0--size-8">
+                          Size 8
+                          <img class="img-check"
+                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 8' ? 'inline-block' : 'none'">
+                        </label>
+                      </div>
+                      <div class="swatch-element size-10">
+                        <input class="variant-0 input-product" id="swatch-0--size-10"
+                               type="radio" name="option1" value="Size 10" [checked]="selectedSize === 'Size 10'" (change)="onSizeChange('Size 10')">
+                        <label for="swatch-0--size-10">
+                          Size 10
+                          <img class="img-check"
+                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 10' ? 'inline-block' : 'none'">
+                        </label>
+                      </div>
+                      <div class="swatch-element size-12">
+                        <input class="variant-0 input-product" id="swatch-0--size-12"
+                               type="radio" name="option1" value="Size 12" [checked]="selectedSize === 'Size 12'" (change)="onSizeChange('Size 12')">
+                        <label for="swatch-0--size-12">
+                          Size 12
+                          <img class="img-check"
+                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 12' ? 'inline-block' : 'none'">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="size-chart">
+                  <span>Hướng dẫn chọn size</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="product-quantity">
+                  <div class="qty-addcart">
+                    <span>Số lượng</span>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1"
+                           class="quantity-selector">
+                  </div>
+                </div>
+                <div class="product-actions">
+                  <button type="submit" name="add" id="AddToCart" class="btnAddToCart">Thêm vào
+                    giỏ hàng</button>
+                  <button type="button" name="buy" id="buy-now" class="btnBuyNow">Mua
+                    ngay</button>
+                </div>
+              </div>
+
+            </form>
+            <div class="product-short-detail">
+              {{p.thongtinsp}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

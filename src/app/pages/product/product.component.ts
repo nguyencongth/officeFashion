@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
+import { RouterModule, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [NgFor, NgClass, NgIf],
+  imports: [
+    NgFor,
+    NgClass,
+    NgIf,
+    RouterModule
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
