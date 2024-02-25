@@ -216,14 +216,14 @@
   list-style: none;
   margin: 0;
 }
-.pagination li {
+.pagination .page-link {
   padding: 8px 16px;
-  margin: 6px;
+  margin: 0 1px;
   cursor: pointer;
-  background-color: #f8f8f9;
+  background-color: #eeeeee;
   color: #000;
 }
-.pagination li:hover {
+.pagination .page-link:hover {
   background-color: #000;
   color: #fff;
 }
@@ -231,3 +231,4 @@
   background-color: #000 !important;
   color: #fff !important;
 }
+

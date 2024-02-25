@@ -144,7 +144,7 @@
                 <div *ngFor="let product of products" class="gird-uniform__item large--one--third pd-left5">
                   <div class="product-item">
                     <div class="product-image">
-                      <img src="{{product.imageProduct}}" alt="imageProduct">
+                      <img src="{{product.anhsp}}" alt="imageProduct">
                       <div class="product-action">
                         <div>
                           <a href="/" class="btn-tv">XEM THÊM</a>
@@ -152,14 +152,17 @@
                       </div>
                     </div>
                     <div class="product-item-info">
-                      <h4 class="image-title">{{product.productName}}</h4>
-                      <span class="current-price">{{product.price}}</span>
+                      <h4 class="image-title">{{product.tensp}}</h4>
+                      <span class="current-price">{{product.giaban}}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <ul class="pagination" id="pagination">
+              <ul class="pagination">
                 <!-- Phân trang sẽ được hiển thị ở đây -->
+                <button class="page-link" (click)="onPageChange(page - 1)" [disabled]="page === 1">Previous</button>
+                <button *ngFor="let pageNumber of getPageNumbers()" class="page-link" (click)="onPageChange(pageNumber)" [ngClass]=" {'active-pagination': pageNumber === page} ">{{pageNumber}}</button>
+                <button class="page-link" (click)="onPageChange(page + 1)" [disabled]="page === getTotalPages()">Next</button>
               </ul>
             </div>
           </div>
