@@ -20,4 +20,12 @@ export class ProductService {
     const url = `${this.apiUrl}/getProductId?idsp=${id}`;
     return this.http.get(url);
   }
+
+  getProductsByCategoryId(categoryId: number, priceRange: number | null, page: number, pageSize: number):Observable<any> {
+    let url = `${this.apiUrl}/getProductByCategoryId?categoryId=${categoryId}&page=${page}&pageSize=${pageSize}`;
+    if (priceRange !== null) {
+      url += `&priceRange=${priceRange}`;
+    }
+    return this.http.get(url);
+  }
 }

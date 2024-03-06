@@ -34,7 +34,7 @@
                       </a>
                       <ul style="max-height: 374px;">
                         <li *ngFor="let category of categories">
-                          <a>{{category.tenloaisp}}</a>
+                          <a [routerLink]="['product']" [queryParams]="{ categoryId: category.idloaisp }">{{category.tenloaisp}}</a>
                         </li>
                       </ul>
                     </li>

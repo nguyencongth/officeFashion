@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
-import { RouterModule, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, RouterModule, RouterOutlet} from "@angular/router";
+import {CategoryService} from "../../core/services/category.service";
 
 @Component({
   selector: 'app-product',
@@ -22,15 +23,34 @@ export class ProductComponent implements OnInit {
   page = 1;
   pageSize = 6;
   totalItem = 0;
-  // priceRange?: number;
-  constructor(private productService: ProductService) { }
+  categoryName: any;
+  constructor(private productService: ProductService, private route: ActivatedRoute, private categoryService: CategoryService) { }
   ngOnInit() {
-    this.getProducts();
+    this.route.queryParams.subscribe(params => {
+      const categoryId = params['categoryId'];
+      if (categoryId) {
+        this.categoryService.getCategoryById(categoryId).subscribe((data:any)=>{
+          console.log(data);
+          this.categoryName = data.arrayProductType[0].tenloaisp;
+          console.log(this.categoryName)
+        });
+        this.getProductsByCategory(categoryId);
+      } else {
+        this.getProducts();
+      }
+    });
   }
   getProducts() {
     this.productService.getProducts(this.selectedPriceRange, this.page, this.pageSize)
       .subscribe((data: any) => {
-        console.log('---------------data=======',data);
+        this.products = data.arrayProduct;
+        this.totalItem = data.pagination.totalItems;
+      })
+  }
+
+  getProductsByCategory(categoryId: number) {
+    this.productService.getProductsByCategoryId(categoryId, this.selectedPriceRange, this.page, this.pageSize)
+      .subscribe((data: any) => {
         this.products = data.arrayProduct;
         this.totalItem = data.pagination.totalItems;
       })

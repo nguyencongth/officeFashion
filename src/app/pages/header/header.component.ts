@@ -23,9 +23,7 @@ export class HeaderComponent implements OnInit{
 
   getCategory() {
     this.category.getCategory().subscribe((data: any) => {
-        console.log(data);
         this.categories = data.arrayProductType;
-        console.log(this.categories);
     })
   }
 }
