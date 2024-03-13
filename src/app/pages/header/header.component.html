@@ -78,23 +78,23 @@
                         </div>
                       </div>
                     </li>
-                    <li id="account" class="dropdown icon-item search-li float-pc">
+                    <li id="account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
                       <a href="#">
                         <img src="./assets/img/account.png" alt="account">
                         Tài khoản
                       </a>
                       <ul class="no-bullets" style="max-height: 106px;">
-                        <li><a href="">Đăng nhập</a></li>
+                        <li><a [routerLink]="['/login']">Đăng nhập</a></li>
                         <li><a href="">Đăng ký</a></li>
                       </ul>
                     </li>
 
-                    <li id="user-info" class="dropdown float-pc" style="display: none;">
-                      Xin chào, <span id="user-name"></span>
+                    <li id="user-info" class="dropdown float-pc" *ngIf="isLoggedIn()">
+                      Xin chào, <span id="user-name">{{authService.getInfo()}}</span>
                       <ul class="no-bullets" style="max-height: 161px;">
-                        <li><a href="/assets/HTML/account.html">Thông tin tài khoản</a></li>
-                        <li><a href="/assets/HTML/order.html">Lịch sử đơn hàng</a></li>
-                        <li><a href="#" id="logout">Đăng xuất</a></li>
+                        <li><a>Thông tin tài khoản</a></li>
+                        <li><a>Lịch sử đơn hàng</a></li>
+                        <li><a id="logout" (click)="logout()">Đăng xuất</a></li>
                       </ul>
                     </li>
                   </ul>

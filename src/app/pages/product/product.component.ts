@@ -24,17 +24,18 @@ export class ProductComponent implements OnInit {
   pageSize = 6;
   totalItem = 0;
   categoryName: any;
+  categoryId: any;
   constructor(private productService: ProductService, private route: ActivatedRoute, private categoryService: CategoryService) { }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const categoryId = params['categoryId'];
-      if (categoryId) {
-        this.categoryService.getCategoryById(categoryId).subscribe((data:any)=>{
+      this.categoryId = params['categoryId'];
+      if (this.categoryId) {
+        this.categoryService.getCategoryById(this.categoryId).subscribe((data:any)=>{
           console.log(data);
           this.categoryName = data.arrayProductType[0].tenloaisp;
           console.log(this.categoryName)
         });
-        this.getProductsByCategory(categoryId);
+        this.getProductsByCategory(this.categoryId);
       } else {
         this.getProducts();
       }

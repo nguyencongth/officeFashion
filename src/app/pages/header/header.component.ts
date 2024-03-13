@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterModule, RouterOutlet} from "@angular/router";
+import { RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
-import { NgFor} from "@angular/common";
+import { NgFor, NgIf } from "@angular/common";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -9,21 +10,34 @@ import { NgFor} from "@angular/common";
   imports: [
     RouterModule,
     RouterOutlet,
-    NgFor
+    NgFor,
+    NgIf
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
   categories: any[] = [];
-  constructor(private category: CategoryService) {}
+  constructor(private category: CategoryService, public authService: AuthService) {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn === 'true') {
+      this.authService.setLoggedIn(true);
+    }
+  }
   ngOnInit() {
     this.getCategory();
+  }
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   getCategory() {
     this.category.getCategory().subscribe((data: any) => {
         this.categories = data.arrayProductType;
     })
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

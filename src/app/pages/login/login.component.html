@@ -1,0 +1,49 @@
+<div id="breadcrumb-wrapper">
+  <div class="breadcrumb-content">
+    <div class="wrapper">
+      <div class="inner text-left">
+        <div class="breadcrumb-small">
+          <a [routerLink]="['/home']">Trang chủ</a>
+          <span>/</span>
+          <span>Tài Khoản</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <form [formGroup]="loginForm" action="" method="POST" class="form1" id="form-login" (ngSubmit)="login()">
+    <h3 class="heading">Đăng nhập</h3>
+
+    <div class="spacer"></div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control" formControlName="email">
+      <span class="form-message" *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
+        <span *ngIf="loginForm.controls.email.hasError('required')">Vui lòng nhập email</span>
+        <span *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">Email không hợp lệ</span>
+      </span>
+      <span class="form-message invalid" *ngIf="errorMessage">{{ errorMessage }}</span>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Mật khẩu</label>
+      <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control" formControlName="password">
+      <span class="form-message" *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+        <span *ngIf="loginForm.controls.password.hasError('required')">Vui lòng nhập mật khẩu</span>
+      </span>
+      <span class="form-message invalid" *ngIf="errorMessage">{{ errorMessage }}</span>
+    </div>
+    <div class="forgot-password">
+      <a href="/">
+        <span>Quên mật khẩu</span>
+      </a>
+
+    </div>
+    <button type="submit" class="form-submit">Đăng Nhập</button>
+  </form>
+
+</div>

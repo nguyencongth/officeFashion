@@ -5,7 +5,7 @@
         <div class="breadcrumb-small">
           <a href="/">Trang chủ</a>
           <span>/</span>
-          <span *ngIf="categoryName; else allProducts">{{categoryName}}</span>
+          <span *ngIf="categoryId; else allProducts">{{categoryName}}</span>
           <ng-template #allProducts>TẤT CẢ SẢN PHẨM</ng-template>
         </div>
       </div>
@@ -78,7 +78,7 @@
               <div class="block-gird">
                 <div class="block-gird-item large--one">
                   <div class="collection-title">
-                    <h1 *ngIf="categoryName; else allProducts">{{categoryName}}</h1>
+                    <h1 *ngIf="categoryId; else allProducts">{{categoryName}}</h1>
                   </div>
                 </div>
                 <div class="block-gird-item large--two">

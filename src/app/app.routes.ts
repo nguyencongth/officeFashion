@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
-import {ProductComponent} from "./pages/product/product.component";
+import {LoginComponent} from "./pages/login/login.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Trang chủ' },
@@ -10,4 +10,5 @@ export const routes: Routes = [
     loadChildren: () => import('./core/router/product-router.routes')
       .then(mod => mod.PRODUCT_ROUTER)
   },
+  { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
 ];
