@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, map, of} from "rxjs";
+import {Observable, map } from "rxjs";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -20,7 +20,6 @@ export class AuthService {
     }
     return this.http.post(this.apiUrl, loginData).pipe(
       map((data: any) => {
-        console.log(data.statusCode)
         if(data.statusCode === 200) {
           this.loggedIn = true;
           localStorage.setItem('loggedIn', 'true');

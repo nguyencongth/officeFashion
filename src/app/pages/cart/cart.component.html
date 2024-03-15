@@ -1,1 +1,77 @@
-<p>cart works!</p>
+<div id="breadcrumb-wrapper">
+  <div class="breadcrumb-content">
+    <div class="wrapper">
+      <div class="inner text-left">
+        <div class="breadcrumb-small">
+          <a [routerLink]="['/home']">Trang chủ</a>
+          <span>/</span>
+          <span>GIỎ Hàng của bạn - 2T Fashion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pageContainer">
+  <div id="page-wrapper">
+    <div class="wrapper">
+      <div class="inner">
+        <h1>Giỏ Hàng</h1>
+        <form id="form-cart" action="" method="post" class="cart table-wrap">
+          <table class="cart-table full">
+            <thead class="cart_row">
+            <tr>
+              <th colspan="2" class="text-center">Sản phẩm</th>
+              <th class="text-center">Giá</th>
+              <th class="text-center">Số lượng</th>
+              <th class="text-right">Tổng tiền</th>
+            </tr>
+            </thead>
+            <tbody id="table_cartItems">
+            <tr class="cart_row">
+              <td>
+                <a href="" class="cart_image">
+                  <img src="" alt="">
+                </a>
+              </td>
+              <td class="cart-product-title">
+                <a href="" class="h4"></a>
+                <p></p>
+                <p></p>
+                <a href="" class="cart_remove">
+                  <small></small>
+                </a>
+              </td>
+              <td class="cart-product-price">
+                <span class="h3"></span>
+              </td>
+              <td>
+                <!-- <input type="number" name="quantity" id="quantity" value="" min="0"> -->
+              </td>
+              <td class="cart-product-price text-right">
+                <span class="h3"></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="flex-box cart_row">
+            <div class="flex-box-item two-thirds">
+              <label for="cart-note">Chú thích</label>
+              <textarea name="note" id="cart-note" class="input-full"></textarea>
+            </div>
+            <div class="flex-box-item text-right one-third">
+              <p>
+                <span class="cart_subtotal-title">Tổng tiền:</span>
+                <span id="totalAmount" class="h3 cart-subtotal"></span>
+              </p>
+              <button type="submit" id="btnUpdateCartItem" name="update"
+                      class="btnCart update-cart">Cập nhật</button>
+              <button type="submit" id="btnPayment" name="checkout" class="btnCart">Thanh
+                toán</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from "@angular/common";
 import { AuthService } from "../../core/services/auth.service";
@@ -42,6 +42,5 @@ export class LoginComponent {
           }
         })
     }
-
   }
 }

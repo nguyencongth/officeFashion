@@ -1,0 +1,160 @@
+#breadcrumb-wrapper {
+  padding: 15px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #EFEFF4;
+  border-bottom: 1px solid #EFEFF4;
+}
+
+#breadcrumb-wrapper a,
+#breadcrumb-wrapper span {
+  text-transform: uppercase;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+
+#page-wrapper {
+  padding: 50px 0;
+}
+
+#page-wrapper h1 {
+  font-size: 32px;
+  line-height: 54px;
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.table-wrap {
+  max-width: 100%;
+  overflow: auto;
+}
+
+table.full {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.cart_row:first-child {
+  padding-top: 0;
+}
+
+.cart_row:first-child {
+  margin-top: 0;
+}
+
+.cart_row {
+  position: relative;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #e7e7e7;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.cart-table th {
+  font-weight: normal;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 30px 15px;
+  border: none;
+}
+
+.cart_image {
+  display: block;
+}
+
+.cart_image img {
+  display: block;
+  max-width: 160px;
+}
+
+#page-wrapper .cart-product-title>.h4 {
+  font-size: 24px;
+  color: #070707;
+  text-transform: uppercase;
+}
+
+#page-wrapper .cart-product-title>p {
+  margin: 0;
+}
+
+.cart__remove {
+  display: block;
+}
+
+small {
+  font-size: 0.9em;
+}
+
+#page-wrapper .cart-product-price {
+  color: #070707;
+}
+
+.h3 {
+  font-size: 24px;
+}
+
+.h3,
+.h4 {
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-box-item p {
+  margin-bottom: 15px;
+}
+
+.two-thirds {
+  width: 66.666%;
+}
+
+.one-third {
+  width: 33.333%;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+textarea.input-full {
+  width: 100%;
+}
+
+#page-wrapper .btnCart {
+  color: #fff;
+  background: #070707;
+  padding: 10px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
