@@ -34,7 +34,7 @@
             <div class="product-price">
               <span class="current-price">{{p.giaban}}</span>
             </div>
-            <form action="" method="post" id="AddToCartForm" enctype="multipart/form-data"
+            <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" enctype="multipart/form-data" (ngSubmit)="addToCart(p.idsp, Number(selectedQuantity))">
                   class="form-vertical">
               <div class="product-variants-wrapper">
                 <div id="product-select-swatch" class="select-swatch">
@@ -101,7 +101,7 @@
                   <div class="qty-addcart">
                     <span>Số lượng</span>
                     <input type="number" name="quantity" id="quantity" value="1" min="1"
-                           class="quantity-selector">
+                           class="quantity-selector" formControlName="quantity">
                   </div>
                 </div>
                 <div class="product-actions">
