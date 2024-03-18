@@ -27,29 +27,29 @@
               <th class="text-right">Tổng tiền</th>
             </tr>
             </thead>
-            <tbody id="table_cartItems">
+            <tbody id="table_cartItems" *ngFor="let item of cartItems">
             <tr class="cart_row">
               <td>
                 <a href="" class="cart_image">
-                  <img src="" alt="">
+                  <img src="{{item.anhsp}}}" alt="">
                 </a>
               </td>
               <td class="cart-product-title">
-                <a href="" class="h4"></a>
-                <p></p>
-                <p></p>
+                <a href="" class="h4">{{item.tensp}}</a>
+                <p>Phiên bản: Size 4</p>
+                <p>Thương hiệu: 2T</p>
                 <a href="" class="cart_remove">
-                  <small></small>
+                  <small>Xóa</small>
                 </a>
               </td>
               <td class="cart-product-price">
-                <span class="h3"></span>
+                <span class="h3">{{item.giaban}}</span>
               </td>
               <td>
-                <!-- <input type="number" name="quantity" id="quantity" value="" min="0"> -->
+                <input type="number" name="quantity" id="quantity" class="quantity-input" value="{{item.quantity}}" min="0">
               </td>
               <td class="cart-product-price text-right">
-                <span class="h3"></span>
+                <span class="h3">{{item.giaban * item.quantity}}</span>
               </td>
             </tr>
             </tbody>
@@ -62,12 +62,14 @@
             <div class="flex-box-item text-right one-third">
               <p>
                 <span class="cart_subtotal-title">Tổng tiền:</span>
-                <span id="totalAmount" class="h3 cart-subtotal"></span>
+                <span id="totalAmount" class="h3 cart-subtotal">{{totalAmount}}</span>
               </p>
               <button type="submit" id="btnUpdateCartItem" name="update"
-                      class="btnCart update-cart">Cập nhật</button>
+                      class="btnCart update-cart">Cập nhật
+              </button>
               <button type="submit" id="btnPayment" name="checkout" class="btnCart">Thanh
-                toán</button>
+                toán
+              </button>
             </div>
           </div>
         </form>

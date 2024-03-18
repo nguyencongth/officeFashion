@@ -27,4 +27,12 @@ export class CartService {
       })
     );
   }
+  getCartItems(customerId: number):Observable<any> {
+    const url = `${this.apiUrl}/showCartItem?customerID=${customerId}`;
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        return data;
+      })
+    );
+  }
 }

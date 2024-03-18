@@ -18,6 +18,10 @@ input,
   border: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 a[href] {
   text-decoration: none;
   color: var(--black);
