@@ -31,9 +31,7 @@ export class ProductComponent implements OnInit {
       this.categoryId = params['categoryId'];
       if (this.categoryId) {
         this.categoryService.getCategoryById(this.categoryId).subscribe((data:any)=>{
-          console.log(data);
           this.categoryName = data.arrayProductType[0].tenloaisp;
-          console.log(this.categoryName)
         });
         this.getProductsByCategory(this.categoryId);
       } else {

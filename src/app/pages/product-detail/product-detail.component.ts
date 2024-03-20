@@ -46,7 +46,6 @@ export class ProductDetailComponent implements OnInit {
 
   getProductDetail() {
     this.route.params.subscribe(params => {
-      console.log(params)
       const productId = params['id'];
       this.productService.getProductById(productId).subscribe((data:any)=>{
         this.product = data.arrayProduct;

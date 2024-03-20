@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.totalItems = count;
     });
     this.cartService.cartItemsSubject.subscribe((cartItems: any[]) => {
-      console.log('cartItems', cartItems);
       this.cartItems = cartItems;
     });
     this.getCartItems();
