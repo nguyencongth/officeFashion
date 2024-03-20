@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from "@angular/common/http";
-import {Observable, map } from "rxjs";
+import {Observable, map, BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private apiUrl = 'https://localhost:7249/api/Cart';
+  cartItemCount = new BehaviorSubject<number>(0);
+  cartItemsSubject = new BehaviorSubject<any[]>([]);
   constructor(private http: HttpClient) { }
 
   addCartItem(customerId: number, productId: number, quantity: number):Observable<any> {
@@ -23,16 +25,44 @@ export class CartService {
     }
     return this.http.post(url, data).pipe(
       map((data: any) => {
+        if(data.statusCode === 200) {
+          this.updateCart();
+        }
         return data.statusCode === 200;
       })
     );
   }
   getCartItems(customerId: number):Observable<any> {
     const url = `${this.apiUrl}/showCartItem?customerID=${customerId}`;
-    return this.http.get(url).pipe(
+    return this.http.get(url);
+  }
+  removeCartItem(customerId: number, productId: number):Observable<any> {
+    const url = `${this.apiUrl}/deleteCartItem?customerID=${customerId}&productID=${productId}`;
+    return this.http.delete(url).pipe(
       map((data: any) => {
-        return data;
+        if(data.statusCode === 200) {
+          this.updateCart();
+        }
+        return data.statusCode === 200;
       })
     );
+  }
+  updateCartItemCount() {
+    const customerId = Number(localStorage.getItem('user_id'));
+    this.getCartItems(customerId).subscribe((data:any)=>{
+      const cartItems = data.arrayCart;
+      const totalItems = cartItems.reduce((acc:any, item:any) => {
+        return acc + item.quantity;
+      }, 0)
+      this.cartItemCount.next(totalItems);
+    })
+  }
+  private updateCart() {
+    const customerId = Number(localStorage.getItem('user_id'));
+    this.getCartItems(customerId).subscribe((data: any) => {
+      const cartItems = data.arrayCart;
+      this.cartItemsSubject.next(cartItems);
+      this.updateCartItemCount();
+    });
   }
 }

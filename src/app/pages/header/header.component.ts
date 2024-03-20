@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import { NgFor, NgIf } from "@angular/common";
 import {AuthService} from "../../core/services/auth.service";
 import {CartService} from "../../core/services/cart.service";
+import {CartComponent} from "../cart/cart.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -12,15 +14,17 @@ import {CartService} from "../../core/services/cart.service";
     RouterModule,
     RouterOutlet,
     NgFor,
-    NgIf
+    NgIf,
+    CartComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy {
   categories: any[] = [];
   cartItems: any[] = [];
   totalItems: number = 0;
+  cartItemCountSubscription: Subscription;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
@@ -33,7 +37,19 @@ export class HeaderComponent implements OnInit{
   }
   ngOnInit() {
     this.getCategory();
+    this.cartItemCountSubscription = this.cartService.cartItemCount.subscribe((count: number) => {
+      this.totalItems = count;
+    });
+    this.cartService.cartItemsSubject.subscribe((cartItems: any[]) => {
+      console.log('cartItems', cartItems);
+      this.cartItems = cartItems;
+    });
     this.getCartItems();
+  }
+  ngOnDestroy() {
+    if (this.cartItemCountSubscription) {
+      this.cartItemCountSubscription.unsubscribe();
+    }
   }
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
@@ -52,12 +68,7 @@ export class HeaderComponent implements OnInit{
     const customerId = Number(localStorage.getItem('user_id'));
     this.cartService.getCartItems(customerId).subscribe((data:any)=>{
       this.cartItems = data.arrayCart;
-      this.getTotalItems();
+      this.cartService.updateCartItemCount();
     })
-  }
-  getTotalItems() {
-    return this.totalItems = this.cartItems.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0)
   }
 }

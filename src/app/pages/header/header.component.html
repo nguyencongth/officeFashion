@@ -18,7 +18,7 @@
           <div class="grid grid_flex">
             <div class="grid__item size-one">
               <h1>
-                <a href="">
+                <a [routerLink]="['/home']">
                   <img src="./assets/img/logo-2T.png" alt="logo" width="102px">
                 </a>
               </h1>
@@ -74,7 +74,7 @@
                         <div class="quickview-cart">
                           <ul class="no-bullets" *ngIf="cartItems.length > 0 else noCartItem">
                             <li *ngFor="let item of cartItems">
-                              <img class="product-image-class" src="{{item.anhsp}}" alt="">
+                              <img class="product-image-class" [src]="item.anhsp" alt="">
                               <span>{{item.tensp}}</span>
                             </li>
                           </ul>

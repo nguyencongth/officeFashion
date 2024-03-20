@@ -35,5 +35,12 @@ export class CartComponent implements OnInit {
       return acc + item.giaban * item.quantity;
     }, 0)
   }
-
+  removeCartItem(productId: number) {
+    const customerId = Number(localStorage.getItem('user_id'));
+    this.cartService.removeCartItem(customerId, productId).subscribe((data:any)=>{
+      if(data) {
+        this.getCartItems();
+      }
+    })
+  }
 }
