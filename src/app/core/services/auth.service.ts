@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, map } from "rxjs";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
 export class AuthService {
 
   private loggedIn = false;
-  private apiUrl = "https://localhost:7249/api/Customers/Login";
+  private apiUrl = environment.api.urlLogin;
   private email: string | null = null;
   constructor(private http: HttpClient, private router: Router) { }
 

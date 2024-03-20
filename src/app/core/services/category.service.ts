@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private urlApi = 'https://localhost:7249/api/ProductType';
+  private urlApi = environment.api.urlCategory;
   constructor(private http: HttpClient) { }
 
   getCategory():Observable<any> {
