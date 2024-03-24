@@ -4,7 +4,6 @@ import {CategoryService} from "../../core/services/category.service";
 import { NgFor, NgIf } from "@angular/common";
 import {AuthService} from "../../core/services/auth.service";
 import {CartService} from "../../core/services/cart.service";
-import {CartComponent} from "../cart/cart.component";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -15,7 +14,6 @@ import {Subscription} from "rxjs";
     RouterOutlet,
     NgFor,
     NgIf,
-    CartComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -62,6 +60,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.cartService.cartItemCount.next(0);
+    this.cartService.cartItemsSubject.next([]);
   }
   getCartItems() {
     const customerId = Number(localStorage.getItem('user_id'));

@@ -46,6 +46,7 @@ export class AuthService {
     this.loggedIn = false;
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('email');
+    localStorage.removeItem('user_id');
     this.router.navigate(['/login']);
   }
 }

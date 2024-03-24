@@ -58,7 +58,7 @@ export class CartService {
       this.cartItemCount.next(totalItems);
     })
   }
-  private updateCart() {
+  updateCart() {
     const customerId = Number(localStorage.getItem('user_id'));
     this.getCartItems(customerId).subscribe((data: any) => {
       const cartItems = data.arrayCart;
