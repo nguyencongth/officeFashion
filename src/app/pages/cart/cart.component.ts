@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {NgFor, NgIf} from "@angular/common";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [
     RouterModule,
+    FormsModule,
     NgFor,
     NgIf
   ],
@@ -15,32 +17,55 @@ import {NgFor, NgIf} from "@angular/common";
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
+  @ViewChildren('quantityInput') quantityInputs: QueryList<ElementRef>;
   cartItems: any[] = [];
   totalAmount: number = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) {
+  }
+
   ngOnInit() {
     this.getCartItems();
   }
 
   getCartItems() {
     const customerId = Number(localStorage.getItem('user_id'));
-    this.cartService.getCartItems(customerId).subscribe((data:any)=>{
+    this.cartService.getCartItems(customerId).subscribe((data: any) => {
       this.cartItems = data.arrayCart;
       this.calculateTotalAmount();
     })
   }
+
   calculateTotalAmount() {
     this.totalAmount = this.cartItems.reduce((acc, item) => {
       return acc + item.giaban * item.quantity;
     }, 0)
   }
+
   removeCartItem(productId: number) {
     const customerId = Number(localStorage.getItem('user_id'));
-    this.cartService.removeCartItem(customerId, productId).subscribe((data:any)=>{
-      if(data) {
+    this.cartService.removeCartItem(customerId, productId).subscribe((data: any) => {
+      if (data) {
         this.getCartItems();
       }
     })
+  }
+
+  updateCartItemQuantity() {
+    const customerId = Number(localStorage.getItem('user_id'));
+    const data: any[] = [];
+    const quantityInputs = this.quantityInputs.toArray();
+    quantityInputs.forEach((input, index) => {
+      const newQuantity = Number(input.nativeElement.value);
+      const productId = this.cartItems[index].idsp;
+      data.push({idsp: productId, newQuantity: newQuantity});
+    });
+    data.map(item => {
+      this.cartService.updateQuantity(customerId, item.idsp, item.newQuantity).subscribe(data => {
+        if (data) {
+          this.getCartItems();
+        }
+      });
+    });
   }
 }

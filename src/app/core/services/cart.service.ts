@@ -66,4 +66,15 @@ export class CartService {
       this.updateCartItemCount();
     });
   }
+  updateQuantity(customerId: number, productId: number, newQuantity: number):Observable<any> {
+    const url = `${this.apiUrl}/updateCartQuantity?id_customer=${customerId}&idsp=${productId}&newQuantity=${newQuantity}`;
+    return this.http.patch(url, {}).pipe(
+      map((data: any) => {
+        if(data.statusCode === 200) {
+          this.updateCart();
+        }
+        return data.statusCode === 200;
+      })
+    );
+  }
 }

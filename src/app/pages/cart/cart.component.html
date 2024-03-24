@@ -17,7 +17,7 @@
     <div class="wrapper">
       <div class="inner">
         <h1>Giỏ Hàng</h1>
-        <form id="form-cart" action="" method="post" class="cart table-wrap">
+        <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()">
           <table class="cart-table full">
             <thead class="cart_row">
             <tr>
@@ -27,7 +27,7 @@
               <th class="text-right">Tổng tiền</th>
             </tr>
             </thead>
-            <tbody id="table_cartItems" *ngFor="let item of cartItems">
+            <tbody id="table_cartItems" *ngFor="let item of cartItems;">
             <tr class="cart_row">
               <td>
                 <a href="" class="cart_image">
@@ -46,7 +46,7 @@
                 <span class="h3">{{item.giaban}}</span>
               </td>
               <td>
-                <input type="number" name="quantity" id="quantity" class="quantity-input" value="{{item.quantity}}" min="0">
+                <input type="number" name="quantity" id="quantity-{{item.idsp}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
               </td>
               <td class="cart-product-price text-right">
                 <span class="h3">{{item.giaban * item.quantity}}</span>
@@ -67,7 +67,7 @@
               <button type="submit" id="btnUpdateCartItem" name="update"
                       class="btnCart update-cart">Cập nhật
               </button>
-              <button type="submit" id="btnPayment" name="checkout" class="btnCart">Thanh
+              <button type="button" id="btnPayment" name="checkout" class="btnCart">Thanh
                 toán
               </button>
             </div>
