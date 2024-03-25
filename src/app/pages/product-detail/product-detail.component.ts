@@ -5,6 +5,7 @@ import {NgFor} from "@angular/common";
 import {RouterModule, Router } from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {ReactiveFormsModule, FormsModule, FormBuilder} from '@angular/forms';
+import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 
 @Component({
   selector: 'app-product-detail',
@@ -13,6 +14,7 @@ import {ReactiveFormsModule, FormsModule, FormBuilder} from '@angular/forms';
     NgFor,
     RouterModule,
     FormsModule,
+    CurrencyFormatPipe,
     ReactiveFormsModule
   ],
   templateUrl: './product-detail.component.html',

@@ -3,6 +3,7 @@ import { RouterModule } from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {NgFor, NgIf} from "@angular/common";
 import { FormsModule } from '@angular/forms';
+import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     RouterModule,
     FormsModule,
+    CurrencyFormatPipe,
     NgFor,
     NgIf
   ],

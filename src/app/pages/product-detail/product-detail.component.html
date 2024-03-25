@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="product-price">
-              <span class="current-price">{{p.giaban}}</span>
+              <span class="current-price">{{p.giaban | currencyFormat}}</span>
             </div>
             <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical" enctype="multipart/form-data" (ngSubmit)="addToCart(p.idsp, Number(selectedQuantity))">
               <div class="product-variants-wrapper">

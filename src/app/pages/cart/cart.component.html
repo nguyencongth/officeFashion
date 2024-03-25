@@ -43,13 +43,13 @@
                 </a>
               </td>
               <td class="cart-product-price">
-                <span class="h3">{{item.giaban}}</span>
+                <span class="h3">{{item.giaban | currencyFormat}}</span>
               </td>
               <td>
                 <input type="number" name="quantity" id="quantity-{{item.idsp}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
               </td>
               <td class="cart-product-price text-right">
-                <span class="h3">{{item.giaban * item.quantity}}</span>
+                <span class="h3">{{item.giaban * item.quantity | currencyFormat}}</span>
               </td>
             </tr>
             </tbody>
@@ -62,7 +62,7 @@
             <div class="flex-box-item text-right one-third">
               <p>
                 <span class="cart_subtotal-title">Tổng tiền:</span>
-                <span id="totalAmount" class="h3 cart-subtotal">{{totalAmount}}</span>
+                <span id="totalAmount" class="h3 cart-subtotal">{{totalAmount | currencyFormat}}</span>
               </p>
               <button type="submit" id="btnUpdateCartItem" name="update"
                       class="btnCart update-cart">Cập nhật
