@@ -3,6 +3,7 @@ import { Router, RouterModule } from "@angular/router";
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from "@angular/common";
 import { AuthService } from "../../core/services/auth.service";
+import { CartService } from "../../core/services/cart.service";
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,12 @@ import { AuthService } from "../../core/services/auth.service";
 })
 export class LoginComponent {
   errorMessage: string = '';
+  cartItems: any[] = [];
   constructor(
     private router: Router,
     private authService: AuthService,
     private fb: FormBuilder,
+    private cartService: CartService,
   ) {}
 
   loginForm = this.fb.group({
@@ -36,11 +39,20 @@ export class LoginComponent {
         .subscribe((res) => {
           if (res) {
             this.router.navigate(['/home']);
+            this.getCartItems();
           }
           else {
             this.errorMessage = 'Tài khoản hoặc mật khẩu không chính xác.';
           }
         })
     }
+  }
+  getCartItems() {
+    const customerId = Number(localStorage.getItem('user_id'));
+    this.cartService.getCartItems(customerId).subscribe((data:any)=>{
+      this.cartItems = data.arrayCart;
+      this.cartService.updateCartItemCount();
+      this.cartService.updateCart();
+    })
   }
 }
