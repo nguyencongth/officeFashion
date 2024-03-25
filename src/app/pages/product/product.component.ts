@@ -3,6 +3,7 @@ import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
 import {ActivatedRoute, RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
+import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 
 @Component({
   selector: 'app-product',
@@ -11,7 +12,8 @@ import {CategoryService} from "../../core/services/category.service";
     NgFor,
     NgClass,
     NgIf,
-    RouterModule
+    RouterModule,
+    CurrencyFormatPipe
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
