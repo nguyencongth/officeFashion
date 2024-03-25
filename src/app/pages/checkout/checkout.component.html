@@ -1,0 +1,197 @@
+<div class="content">
+  <div class="wrap">
+    <div class="main">
+      <div class="main-header">
+        <a href="/" class="logo">
+          <h1 class="logo-text">2T-STORE</h1>
+        </a>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/cart']">Giỏ hàng</a>
+          </li>
+          <li class="breadcrumb-item breadcrumb-item-curent">
+            Thông tin vận chuyển và thanh toán
+          </li>
+        </ul>
+      </div>
+      <div class="main-content">
+        <div class="step">
+          <div class="step-sections">
+            <div class="section">
+              <div class="section-header">
+                <h2 class="section-title">Thông tin thanh toán</h2>
+              </div>
+              <div class="section-content">
+                <form action="" method="post">
+                  <div class="fieldset">
+                    <div class="field">
+                      <div class="field-input-wrapper">
+                        <label class="field-label" for="fullName">Họ và tên</label>
+                        <input size="30" type="text" placeholder="Họ và tên"
+                               id="fullName" name="fullName" class="field-input">
+                      </div>
+                    </div>
+                    <div style="display: flex;">
+                      <div class="field field-two-thirds">
+                        <div class="field-input-wrapper">
+                          <label class="field-label" for="email">Email</label>
+                          <input size="30" type="email" placeholder="Email" id="email"
+                                 name="field-email" class="field-input">
+                        </div>
+                      </div>
+                      <div class="field field-third">
+                        <div class="field-input-wrapper">
+                          <label class="field-label" for="phoneNumber">Điện thoại</label>
+                          <input size="30" type="tel" placeholder="Điện thoại"
+                                 id="phoneNumber" name="field-phoneNumber"
+                                 class="field-input">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="field-input-wrapper">
+                        <label class="field-label" for="Address">Địa chỉ</label>
+                        <input size="30" type="text" placeholder="Địa chỉ" id="Address"
+                               name="address" class="field-input">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+            <div class="section" style="margin-top: 24px;">
+              <div class="section-header">
+                <h2 class="section-title">Phương thức thanh toán</h2>
+              </div>
+              <div class="section-content">
+                <div class="content-box">
+                  <div class="radio-wrapper content-box-row">
+                    <label class="two-page" for="payment_1">
+                      <div class="radio-input payment-method-radio">
+                        <input type="radio" id="payment_1" class="input-radio"
+                               name="payment-method" value="Thanh toán khi nhận hàng" checked>
+                      </div>
+                      <div class="radio-content-input">
+                        <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6"
+                             alt="" class="main-img">
+                        <div class="content-wrapper">
+                          <span>Thanh toán khi nhận hàng</span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="radio-wrapper content-box-row">
+                    <label class="two-page" for="payment_2">
+                      <div class="radio-input payment-method-radio">
+                        <input type="radio" id="payment_2" class="input-radio"
+                               name="payment-method" value="Ví MoMo">
+                      </div>
+                      <div class="radio-content-input">
+                        <img src="https://hstatic.net/0/0/global/design/seller/image/payment/momo.svg?v=6"
+                             alt="" class="main-img">
+                        <div class="content-wrapper">
+                          <span>Ví MoMo</span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="step-footer">
+            <a [routerLink]="['/cart']">Giỏ hàng</a>
+            <form method="post">
+              <button id="btnOrder" type="submit" class="btn">Đặt hàng</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <div class="order-summary order-summary-is-collapsed">
+          <h2 class="visually-hidden">Thông tin đơn hàng</h2>
+          <div class="order-summary-sections">
+            <div class="order-summary-section order-summary-section-product-list">
+              <table class="product-table">
+                <thead>
+                <tr>
+                  <th scope="col">
+                    <span class="visually-hidden">Hình ảnh</span>
+                  </th>
+                  <th scope="col">
+                    <span class="visually-hidden">Mô tả</span>
+                  </th>
+                  <th scope="col">
+                    <span class="visually-hidden">Số lượng</span>
+                  </th>
+                  <th scope="col">
+                    <span class="visually-hidden">Giá</span>
+                  </th>
+                </tr>
+                </thead>
+                <tbody id="list-product" *ngFor="let item of cartItems">
+                  <tr class="product">
+                    <td class="product-image">
+                      <div class="product-thumbnail">
+                        <div class="product-thumbnail-wrapper">
+                          <img class="product-thumbnail-image"
+                               [src]="item.anhsp" alt="">
+                        </div>
+                        <span class="product-thumbnail-quantity">{{item.quantity}}</span>
+                      </div>
+                    </td>
+                    <td class="product-description">
+                      <span class="product-description-name order-summary-emphasis">{{item.tensp}}</span>
+                      <span class="product-description-variant order-summary-small-text">Size</span>
+                    </td>
+                    <td class="product-quantity visually-hidden">{{item.quantity}}</td>
+                    <td class="product-price">
+                      <span class="order-summary-emphasis">{{item.giaban * item.quantity | currencyFormat}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="order-summary-section order-summary-section-total-lines payment-lines">
+              <table class="total-line-table">
+                <thead>
+                <tr>
+                  <th scope="col">
+                    <span class="visually-hidden">Mô tả</span>
+                  </th>
+                  <th scope="col">
+                    <span class="visually-hidden">Giá</span>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="total-line total-line-subtotal">
+                  <td class="total-line-name">Tạm tính</td>
+                  <td class="total-line-price">
+                    <span id="moneyTemp" class="order-summary-emphasis">{{ totalAmount | currencyFormat }}</span>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot class="total-line-table-footer">
+                <tr class="total-line">
+                  <td class="total-line-name payment-due-label">
+                    <span class="payment-due-label-total">Tổng tiền</span>
+                  </td>
+                  <td class="total-line-name payment-due">
+                    <span id="totalPrice" class="payment-due-price">{{ totalAmount | currencyFormat }}</span>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

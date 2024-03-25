@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
-import { RouterModule } from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {NgFor, NgIf} from "@angular/common";
 import { FormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   totalAmount: number = 0;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
   }
 
   ngOnInit() {
@@ -69,5 +69,8 @@ export class CartComponent implements OnInit {
         }
       });
     });
+  }
+  checkoutBtn() {
+    this.router.navigate(['/checkout']);
   }
 }
