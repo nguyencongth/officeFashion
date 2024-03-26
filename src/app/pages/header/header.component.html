@@ -74,8 +74,10 @@
                         <div class="quickview-cart">
                           <ul class="no-bullets" *ngIf="cartItems.length > 0 else noCartItem">
                             <li *ngFor="let item of cartItems">
-                              <img class="product-image-class" [src]="item.anhsp" alt="">
-                              <span>{{item.tensp}}</span>
+                              <a [routerLink]="['product/detail/', item.idsp]">
+                                <img class="product-image-class" [src]="item.anhsp" alt="">
+                                <span>{{item.tensp}}</span>
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -112,5 +114,5 @@
 </header>
 
 <ng-template #noCartItem>
-  <li>Bạn chưa có sản phẩm nào trong giỏ hàng!</li>
+  <li style="margin-bottom: 0">Bạn chưa có sản phẩm nào trong giỏ hàng!</li>
 </ng-template>
