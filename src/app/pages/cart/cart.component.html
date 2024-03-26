@@ -18,7 +18,7 @@
       <div class="inner">
         <h1>Giỏ Hàng</h1>
         <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()">
-          <table class="cart-table full">
+          <table class="cart-table full" *ngIf="cartItems.length > 0 else noItem">
             <thead class="cart_row">
             <tr>
               <th colspan="2" class="text-center">Sản phẩm</th>
@@ -30,12 +30,12 @@
             <tbody id="table_cartItems" *ngFor="let item of cartItems;">
             <tr class="cart_row">
               <td>
-                <a href="" class="cart_image">
+                <a class="cart_image" (click)="cartDetail(item.idsp)">
                   <img src="{{item.anhsp}}}" alt="">
                 </a>
               </td>
               <td class="cart-product-title">
-                <a href="" class="h4">{{item.tensp}}</a>
+                <a class="h4" (click)="cartDetail(item.idsp)">{{item.tensp}}</a>
                 <p>Phiên bản: Size 4</p>
                 <p>Thương hiệu: 2T</p>
                 <a class="cart_remove" (click)="removeCartItem(item.idsp)">
@@ -77,3 +77,8 @@
     </div>
   </div>
 </div>
+
+<ng-template #noItem>
+  <p>Bạn chưa có sản phẩm nào trong giỏ hàng!</p>
+  <p>Tiếp tục mua sắm <a [routerLink]="['/product']" style="color: #007AFF">tại đây</a></p>
+</ng-template>

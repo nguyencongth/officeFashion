@@ -70,6 +70,9 @@ export class CartComponent implements OnInit {
       });
     });
   }
+  cartDetail(id: number) {
+    this.router.navigate(['/product/detail', id]);
+  }
   checkoutBtn() {
     this.router.navigate(['/checkout']);
   }
