@@ -59,7 +59,14 @@ export class ProductComponent implements OnInit {
 
   onPageChange(pageNumber: number) {
     this.page = pageNumber;
-    this.getProducts();
+    this.route.queryParams.subscribe(params => {
+      this.categoryId = params['categoryId'];
+      if (this.categoryId) {
+        this.getProductsByCategory(this.categoryId);
+      } else {
+        this.getProducts();
+      }
+    });
   }
 
   getTotalPages(): number {
@@ -74,7 +81,14 @@ export class ProductComponent implements OnInit {
   filterProductsByPrice(priceRange: number) {
     this.selectedPriceRange = priceRange;
     this.page = 1;
-    this.getProducts();
+    this.route.queryParams.subscribe(params => {
+      this.categoryId = params['categoryId'];
+      if (this.categoryId) {
+        this.getProductsByCategory(this.categoryId);
+      } else {
+        this.getProducts();
+      }
+    });
   }
 
   togglePanel(): void {

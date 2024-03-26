@@ -145,7 +145,7 @@
                 <div *ngFor="let product of products" class="gird-uniform__item large--one--third pd-left5">
                   <div class="product-item">
                     <div class="product-image">
-                      <img src="{{product.anhsp}}" alt="imageProduct">
+                      <img [src]="product.anhsp" alt="imageProduct">
                       <div class="product-action">
                         <div>
                           <a [routerLink]="['detail/', product.idsp]" class="btn-tv">XEM THÊM</a>
