@@ -31,7 +31,7 @@
             <tr class="cart_row">
               <td>
                 <a class="cart_image" (click)="cartDetail(item.idsp)">
-                  <img src="{{item.anhsp}}}" alt="">
+                  <img [src]="item.anhsp" alt="">
                 </a>
               </td>
               <td class="cart-product-title">
