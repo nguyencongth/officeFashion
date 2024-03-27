@@ -48,6 +48,17 @@ export class CartService {
       })
     );
   }
+  removeCart(customerId: number):Observable<any> {
+    const url = `${this.apiUrl}/deleteCart?customerID=${customerId}`;
+    return this.http.delete(url).pipe(
+      map((data: any) => {
+        if(data.statusCode === 200) {
+          this.updateCart();
+        }
+        return data.statusCode === 200;
+      })
+    );
+  }
   updateCartItemCount() {
     const customerId = Number(localStorage.getItem('user_id'));
     this.getCartItems(customerId).subscribe((data:any)=>{
