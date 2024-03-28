@@ -22,4 +22,8 @@ export class OrderService {
     }
     return this.http.post(url, data);
   }
+  getOrderList(customerId: number):Observable<any> {
+    const url = `${this.apiUrl}/getOrder?customerID=${customerId}`;
+    return this.http.get(url);
+  }
 }
