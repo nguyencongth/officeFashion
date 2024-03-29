@@ -43,7 +43,7 @@ export class OrderComponent implements OnInit{
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
   customDiameter = 50;
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private router: Router) {}
   ngOnInit() {
     this.getOrderList();
   }
@@ -95,5 +95,8 @@ export class OrderComponent implements OnInit{
     this.orderService.confirmOrder(orderId, status).subscribe(() => {
       this.getOrderList();
     });
+  }
+  orderItemDetailNav(id: number){
+    this.router.navigate(['/product/detail', id]);
   }
 }

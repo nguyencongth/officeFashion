@@ -17,6 +17,9 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-row td {
   border-bottom-width: 0;
 }
+.example-element-detail {
+  cursor: pointer;
+}
 .order-detail {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
