@@ -14,7 +14,17 @@
 <div class="wrapper">
   <div class="inner">
     <h1>Lịch sử đơn hàng</h1>
-    <cdk-virtual-scroll-viewport class="table-wrapper" itemSize="50">
+    <div class="spinner-container" *ngIf="isLoading">
+      <mat-spinner
+        class="spinner"
+        [color]="color"
+        [mode]="mode"
+        [value]="value"
+        [diameter]="customDiameter"
+      >
+      </mat-spinner>
+    </div>
+    <cdk-virtual-scroll-viewport class="table-wrapper" itemSize="50" *ngIf="!isLoading">
       <table mat-table
              [dataSource]="dataSource" multiTemplateDataRows
              class="mat-elevation-z8"

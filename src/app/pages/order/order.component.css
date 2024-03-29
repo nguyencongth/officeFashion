@@ -50,7 +50,15 @@ tr.example-element-row:not(.example-expanded-row):active {
 table {
   width: 100%;
 }
-
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.spinner {
+  font-size: 3rem;
+}
 
 
 

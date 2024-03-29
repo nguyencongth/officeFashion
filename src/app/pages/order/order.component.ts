@@ -8,6 +8,8 @@ import {OrderService} from "../../core/services/order.service";
 import { NgFor, NgIf} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: 'app-order',
@@ -25,6 +27,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatButtonModule,
     MatIconModule,
     ScrollingModule,
+    MatProgressSpinnerModule,
     CurrencyFormatPipe,
     NgFor,
     NgIf
@@ -35,6 +38,11 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 export class OrderComponent implements OnInit{
   dataSource: any[] = [];
   display = false;
+  isLoading = true;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+  customDiameter = 50;
   constructor(private orderService: OrderService) {}
   ngOnInit() {
     this.getOrderList();
@@ -56,6 +64,7 @@ export class OrderComponent implements OnInit{
         }
       });
       this.display = true;
+      this.isLoading = false;
     });
   }
   columnsToDisplay = ['order_id', 'paymentMethod', 'orderStatus', 'order_date', 'total_amount'];
