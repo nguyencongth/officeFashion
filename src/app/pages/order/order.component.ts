@@ -7,6 +7,7 @@ import {MatTableModule} from '@angular/material/table';
 import {OrderService} from "../../core/services/order.service";
 import { NgFor, NgIf} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-order',
@@ -23,6 +24,7 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    ScrollingModule,
     CurrencyFormatPipe,
     NgFor,
     NgIf
@@ -42,6 +44,7 @@ export class OrderComponent implements OnInit{
     this.orderService.getOrderList(customerId).subscribe((data: any) => {
       this.dataSource = data.arrayOrders;
       this.dataSource.forEach((order: any   ) => {
+        order.total_amount = new CurrencyFormatPipe().transform(order.total_amount);
         if(order.orderStatus === 0) {
           order.orderStatus = 'Đang chờ xử lý';
         }

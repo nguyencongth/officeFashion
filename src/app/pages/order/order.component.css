@@ -41,8 +41,16 @@ tr.example-element-row:not(.example-expanded-row):active {
   max-height: 100%;
   margin: auto;
 }
-
 .wrapper .inner {
   padding: 24px 0;
 }
+.table-wrapper {
+  height: 300px;
+}
+table {
+  width: 100%;
+}
+
+
+
 
