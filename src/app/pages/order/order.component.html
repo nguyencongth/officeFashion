@@ -33,7 +33,9 @@
         @for (column of columnsToDisplay; track column) {
           <ng-container matColumnDef="{{column}}">
             <th mat-header-cell *matHeaderCellDef> {{getColumnLabel(column)}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+            <td mat-cell *matCellDef="let element">
+              {{element[column]}}
+            </td>
           </ng-container>
         }
         <ng-container matColumnDef="expand">
@@ -52,14 +54,23 @@
         <ng-container matColumnDef="cancel">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="warn">Hủy</button>
+            <button mat-raised-button color="warn"
+                    (click)="cancelOrder(element.order_id)"
+                    [disabled]="element.orderStatus == 'Đã xác nhận' || element.orderStatus === 'Hoàn thành'"
+            >
+              Hủy
+            </button>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="confirm">
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary">Xác nhận</button>
+            <button mat-raised-button color="primary"
+                    [disabled]="element.orderStatus === 'Đang chờ xử lý' || element.orderStatus === 'Hoàn thành'"
+            >
+              Xác nhận
+            </button>
           </td>
         </ng-container>
 

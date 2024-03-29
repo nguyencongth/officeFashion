@@ -26,4 +26,8 @@ export class OrderService {
     const url = `${this.apiUrl}/getOrder?customerID=${customerId}`;
     return this.http.get(url);
   }
+  cancelOrder(orderId: number):Observable<any> {
+    const url = `${this.apiUrl}/deleteOrder?orderID=${orderId}`;
+    return this.http.delete(url);
+  }
 }
