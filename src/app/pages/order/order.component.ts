@@ -30,7 +30,7 @@ import {ThemePalette} from '@angular/material/core';
     MatProgressSpinnerModule,
     CurrencyFormatPipe,
     NgFor,
-    NgIf
+    NgIf,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
@@ -72,7 +72,7 @@ export class OrderComponent implements OnInit{
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'cancel', 'confirm'];
   getColumnLabel(columnKey: string): string {
     switch (columnKey) {
-      case 'order_id':  ``
+      case 'order_id':
         return 'Mã đơn hàng';
       case 'total_amount':
         return 'Tổng tiền';
@@ -85,5 +85,10 @@ export class OrderComponent implements OnInit{
       default:
         return columnKey;
     }
+  }
+  cancelOrder(orderId: number) {
+    this.orderService.cancelOrder(orderId).subscribe(() => {
+      this.getOrderList();
+    });
   }
 }
