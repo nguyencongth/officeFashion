@@ -30,4 +30,8 @@ export class OrderService {
     const url = `${this.apiUrl}/deleteOrder?orderID=${orderId}`;
     return this.http.delete(url);
   }
+  confirmOrder(orderId: number, status: number):Observable<any> {
+    const url = `${this.apiUrl}/updateOrderStatus?orderId=${orderId}&newOrderStatus=${status}`;
+    return this.http.patch(url, {});
+  }
 }

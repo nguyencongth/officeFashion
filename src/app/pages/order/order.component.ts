@@ -91,4 +91,9 @@ export class OrderComponent implements OnInit{
       this.getOrderList();
     });
   }
+  confirmOrder(orderId: number, status: number) {
+    this.orderService.confirmOrder(orderId, status).subscribe(() => {
+      this.getOrderList();
+    });
+  }
 }
