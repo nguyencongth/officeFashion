@@ -5,6 +5,7 @@ import {CartComponent} from "./pages/cart/cart.component";
 import {CheckoutComponent} from "./pages/checkout/checkout.component";
 import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
 import {CheckoutLayoutComponent} from "./layout/checkout-layout/checkout-layout.component";
+import {OrderComponent} from "./pages/order/order.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Trang chủ' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
       },
       { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
       { path: 'cart', component: CartComponent, title: 'Giỏ hàng' },
+      { path: 'order', component: OrderComponent, title: 'Lịch sử đặt hàng' },
     ]
   },
   {

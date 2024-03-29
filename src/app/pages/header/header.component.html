@@ -17,7 +17,7 @@
         <div class="inner">
           <div class="grid grid_flex">
             <div class="grid__item size-one">
-              <h1>
+              <h1 style="margin: 0">
                 <a [routerLink]="['/home']">
                   <img src="./assets/img/logo-2T.png" alt="logo" width="102px">
                 </a>
@@ -98,7 +98,7 @@
                       Xin chào, <span id="user-name">{{authService.getInfo()}}</span>
                       <ul class="no-bullets" style="max-height: 161px;">
                         <li><a>Thông tin tài khoản</a></li>
-                        <li><a>Lịch sử đơn hàng</a></li>
+                        <li><a [routerLink]="['/order']">Lịch sử đơn hàng</a></li>
                         <li><a id="logout" (click)="logout()">Đăng xuất</a></li>
                       </ul>
                     </li>

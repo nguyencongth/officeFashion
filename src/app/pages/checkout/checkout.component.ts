@@ -75,6 +75,8 @@ export class CheckoutComponent implements OnInit {
     for(let item of this.cartItems) {
       const orderItem = {
         idsp: item.idsp,
+        tensp: item.tensp,
+        anhsp: item.anhsp,
         quantity: item.quantity,
         subtotal: 0
       };

@@ -91,7 +91,7 @@ td,
 th {
   text-align: left;
   padding: 15px;
-  border: 1px solid #e7e7e7;
+  /*border: 1px solid #e7e7e7;*/
 }
 
 .product-image-class {
@@ -151,3 +151,6 @@ th {
 #breadcrumb-wrapper .breadcrumb-content .breadcrumb-small {
   text-transform: uppercase;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
