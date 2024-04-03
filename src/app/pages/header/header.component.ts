@@ -1,10 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { RouterModule, RouterOutlet} from "@angular/router";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router, RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import { NgFor, NgIf } from "@angular/common";
 import {AuthService} from "../../core/services/auth.service";
 import {CartService} from "../../core/services/cart.service";
 import {Subscription} from "rxjs";
+import {ProductService} from "../../core/services/product.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-header',
@@ -14,6 +16,7 @@ import {Subscription} from "rxjs";
     RouterOutlet,
     NgFor,
     NgIf,
+    FormsModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -23,10 +26,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   cartItems: any[] = [];
   totalItems: number = 0;
   cartItemCountSubscription: Subscription;
+  @ViewChild('inputSearch') inputSearch: ElementRef;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
     private cartService: CartService,
+    private productService: ProductService,
+    private router: Router
   ) {
     const loggedIn = localStorage.getItem('loggedIn');
     if (loggedIn === 'true') {
@@ -51,13 +57,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
-
   getCategory() {
     this.category.getCategory().subscribe((data: any) => {
         this.categories = data.arrayProductType;
     })
   }
-
   logout() {
     this.authService.logout();
     this.cartService.cartItemCount.next(0);
@@ -68,6 +72,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.cartService.getCartItems(customerId).subscribe((data:any)=>{
       this.cartItems = data.arrayCart;
       this.cartService.updateCartItemCount();
+    })
+  }
+  searchProduct() {
+    this.router.navigate(['/product'], {queryParams: {keyword: this.inputSearch.nativeElement.value}});
+    const keyword = this.inputSearch.nativeElement.value;
+    this.productService.searchProducts(keyword, null, 1, 6).subscribe((data: any) => {
+      this.productService.productsSubject.next(data.arrayProduct);
     })
   }
 }
