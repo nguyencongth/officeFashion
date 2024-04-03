@@ -8,7 +8,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {UserService} from "../../core/services/user.service";
 import {FormBuilder, Validators, ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {Observable, map} from "rxjs";
 
 @Component({
   selector: 'app-user-info',
