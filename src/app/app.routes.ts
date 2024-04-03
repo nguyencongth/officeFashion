@@ -7,6 +7,8 @@ import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
 import {CheckoutLayoutComponent} from "./layout/checkout-layout/checkout-layout.component";
 import {OrderComponent} from "./pages/order/order.component";
 import {UserInfoComponent} from "./pages/user-info/user-info.component";
+import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Trang chủ' },
@@ -21,6 +23,8 @@ export const routes: Routes = [
           .then(mod => mod.PRODUCT_ROUTER)
       },
       { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
+      { path: 'forgot-password', component: ForgotPasswordComponent, title: 'Quên mật khẩu' },
+      { path: 'reset-password', component: ResetPasswordComponent, title: 'Đặt lại mật khẩu' },
       { path: 'cart', component: CartComponent, title: 'Giỏ hàng' },
       { path: 'order', component: OrderComponent, title: 'Lịch sử đặt hàng' },
       { path: 'user-info', component: UserInfoComponent, title: 'Thông tin tài khoản' },

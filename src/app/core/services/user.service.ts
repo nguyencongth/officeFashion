@@ -21,4 +21,17 @@ export class UserService {
     const url = `${this.urlApi}/changePassword?customerID=${customerId}&currentPassword=${currentPassword}&newPassword=${newPassword}&confirmNewPassword=${confirmNewPassword}`;
     return this.http.patch(url, {});
   }
+  sendOtpEmail(email: string) {
+    const url = `${this.urlApi}/SendPasswordResetOTP?email=${email}`;
+    return this.http.post(url, {});
+  }
+  resetPassword(email: any, otp: any, newPassword: any) {
+    const url = `${this.urlApi}/ResetPassword`;
+    const data = {
+      email,
+      otp,
+      newPassword
+    }
+    return this.http.post(url, data);
+  }
 }
