@@ -97,7 +97,7 @@
                     <li id="user-info" class="dropdown float-pc" *ngIf="isLoggedIn()">
                       Xin chào, <span id="user-name">{{authService.getInfo()}}</span>
                       <ul class="no-bullets" style="max-height: 161px;">
-                        <li><a>Thông tin tài khoản</a></li>
+                        <li><a [routerLink]="['/user-info']">Thông tin tài khoản</a></li>
                         <li><a [routerLink]="['/order']">Lịch sử đơn hàng</a></li>
                         <li><a id="logout" (click)="logout()">Đăng xuất</a></li>
                       </ul>

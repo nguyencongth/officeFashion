@@ -13,4 +13,12 @@ export class UserService {
     const url = `${this.urlApi}/getCustomerById?CustomerID=${userId}`;
     return this.http.get(url);
   }
+  updateUserInfo(data: any) {
+    const url = `${this.urlApi}/updateInfo?customerID=${data.id_customer}`;
+    return this.http.patch(url, data);
+  }
+  changePassword(customerId: number, currentPassword: any, newPassword: any, confirmNewPassword: any) {
+    const url = `${this.urlApi}/changePassword?customerID=${customerId}&currentPassword=${currentPassword}&newPassword=${newPassword}&confirmNewPassword=${confirmNewPassword}`;
+    return this.http.patch(url, {});
+  }
 }
