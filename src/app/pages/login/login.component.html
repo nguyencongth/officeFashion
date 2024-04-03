@@ -38,7 +38,7 @@
       <span class="form-message invalid" *ngIf="errorMessage">{{ errorMessage }}</span>
     </div>
     <div class="forgot-password">
-      <a href="/">
+      <a [routerLink]="['/forgot-password']">
         <span>Quên mật khẩu</span>
       </a>
 
