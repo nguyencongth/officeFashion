@@ -206,7 +206,7 @@
   z-index: 1;
   top: 0;
   right: 0;
-  background: transparent;
+  /*background: transparent;*/
   color: #ffffff;
   padding: 0;
   height: 39px;

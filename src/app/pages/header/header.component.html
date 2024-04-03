@@ -55,9 +55,9 @@
                         <img src="./assets/img/search.png" alt="search">
                       </a>
                       <ul class="no-bullets">
-                        <form action="" method="get" class="search-bar">
+                        <form action="" method="get" class="search-bar" (ngSubmit)="searchProduct()">
                           <input id="inputSearch" type="search" name="search" value="" placeholder="Tìm kiếm..."
-                                 class="input-group-filed">
+                                 class="input-group-filed" #inputSearch>
                           <button id="btnSearch" type="submit" class="btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                           </button>

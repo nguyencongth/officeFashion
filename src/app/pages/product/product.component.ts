@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
-import {ActivatedRoute, RouterModule, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, RouterModule} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product',
@@ -18,7 +19,7 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   panelVisible = false;
   selectedPriceRange: number | null = null;
   products: any[] = [];
@@ -27,6 +28,8 @@ export class ProductComponent implements OnInit {
   totalItem = 0;
   categoryName: any;
   categoryId: any;
+  productSubscription: Subscription;
+  queryParamsSubscription: Subscription;
   constructor(private productService: ProductService, private route: ActivatedRoute, private categoryService: CategoryService) { }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -40,7 +43,25 @@ export class ProductComponent implements OnInit {
         this.getProducts();
       }
     });
+    this.productSubscription = this.productService.productsSubject.subscribe((products: any[])=>{
+      this.products = products;
+    })
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      const keyword = params['keyword'];
+      if (keyword) {
+        this.searchProduct(keyword);
+      }
+    });
   }
+  ngOnDestroy() {
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
+    }
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
+    }
+  }
+
   getProducts() {
     this.productService.getProducts(this.selectedPriceRange, this.page, this.pageSize)
       .subscribe((data: any) => {
@@ -93,5 +114,11 @@ export class ProductComponent implements OnInit {
 
   togglePanel(): void {
     this.panelVisible = !this.panelVisible;
+  }
+  searchProduct(keyword: string) {
+    this.productService.searchProducts(keyword, this.selectedPriceRange, this.page, this.pageSize).subscribe((data: any) => {
+      this.products = data.arrayProduct;
+      this.totalItem = data.pagination.totalItems;
+    });
   }
 }
