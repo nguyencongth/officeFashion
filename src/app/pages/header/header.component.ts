@@ -75,10 +75,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
   searchProduct() {
-    this.router.navigate(['/product'], {queryParams: {keyword: this.inputSearch.nativeElement.value}});
     const keyword = this.inputSearch.nativeElement.value;
     this.productService.searchProducts(keyword, null, 1, 6).subscribe((data: any) => {
       this.productService.productsSubject.next(data.arrayProduct);
     })
+    this.router.navigate(['/product'], {queryParams: {keyword: this.inputSearch.nativeElement.value}});
   }
 }
