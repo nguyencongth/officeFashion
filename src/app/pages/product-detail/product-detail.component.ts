@@ -45,7 +45,6 @@ export class ProductDetailComponent implements OnInit {
     this.getProductDetail();
   }
 
-
   getProductDetail() {
     this.route.params.subscribe(params => {
       const productId = params['id'];
@@ -60,18 +59,27 @@ export class ProductDetailComponent implements OnInit {
   }
   addToCart(productId: number, quantity: number): void {
     const customerId = Number(localStorage.getItem('user_id'));
-    this.productService.getProductById(productId).subscribe(() => {
-      this.cartService.addCartItem(customerId, productId, quantity).subscribe((response: any) => {
-        if (response) {
-          this.router.navigate(['/cart']);
-        } else {
-          console.log('Failed to add item to cart');
-        }
+    if(!customerId) {
+      alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
+    } else {
+      this.productService.getProductById(productId).subscribe(() => {
+        this.cartService.addCartItem(customerId, productId, quantity).subscribe((response: any) => {
+          if (response) {
+            this.router.navigate(['/cart']);
+          } else {
+            console.log('Failed to add item to cart');
+          }
+        });
       });
-    });
+    }
   }
   buyNow(productId: number, quantity: number): void {
-    this.router.navigate(['/checkout'], { queryParams: { productId: productId, quantity: quantity } });
+    const loggedIn = localStorage.getItem('loggedIn');
+    if(!loggedIn) {
+      alert('Vui lòng đăng nhập để mua hàng');
+    }else {
+      this.router.navigate(['/checkout'], { queryParams: { productId: productId, quantity: quantity } });
+    }
   }
 
   protected readonly Number = Number;
