@@ -120,7 +120,15 @@ export class CheckoutComponent implements OnInit {
     })
   }
   removeCart(){
-    const customerId = Number(localStorage.getItem('user_id'));
-    this.cartService.removeCart(customerId).subscribe();
+    this.route.queryParams.subscribe((params) => {
+      this.productId = params['productId'];
+      this.quantitySell = params['quantity'];
+      if(this.productId && this.quantitySell) {
+        return;
+      } else {
+        const customerId = Number(localStorage.getItem('user_id'));
+        this.cartService.removeCart(customerId).subscribe();
+      }
+    });
   }
 }
