@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {SlickCarouselDirective} from "./slick-carousel.directive";
 import {ProductService} from "../../core/services/product.service";
 import {NgFor, NgIf} from "@angular/common";
+import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     SlickCarouselDirective,
     NgFor,
-    NgIf
+    NgIf,
+    CurrencyFormatPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
