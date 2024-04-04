@@ -50,7 +50,7 @@
                   <img [src]="product.anhsp" alt="{{product.tensp}}" />
                   <div class="product-action">
                     <div>
-                      <a href="" class="btn-tv">XEM THÊM</a>
+                      <a (click)="productDetail(product.idsp)" class="btn-tv">XEM THÊM</a>
                     </div>
                   </div>
                 </div>
@@ -70,78 +70,24 @@
           <div class="section-title">
             <h2>Độc quyền online</h2>
           </div>
-          <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/bo1.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
+          <ng-container *ngIf="display">
+            <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
+              <div class="image-item" *ngFor="let product of products">
+                <div class="image">
+                  <img [src]="product.anhsp" alt="{{product.tensp}}" />
+                  <div class="product-action">
+                    <div>
+                      <a (click)="productDetail(product.idsp)" class="btn-tv">XEM THÊM</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">SET BỘ REN HW40492</h4>
-                <span class="current-price">599,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/damtrevai.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
+                <div class="product-item-info">
+                  <h4 class="image-title">{{product.tensp}}</h4>
+                  <span class="current-price">{{product.giaban | currencyFormat}}</span>
                 </div>
               </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ĐẦM TRỄ VAI HOA NHÍ D43302</h4>
-                <span class="current-price">599,000₫</span>
-              </div>
             </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/damduoica.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ĐẦM ĐUÔI CÁ D40652</h4>
-                <span class="current-price">599,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/damhoa.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ĐẦM HOA CỔ LƯỢN SÓNG D40512</h4>
-                <span class="current-price">599,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/somitrang.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">SƠ MI TRẮNG SM40712</h4>
-                <span class="current-price">399,000₫</span>
-              </div>
-            </div>
-          </div>
+          </ng-container>
         </div>
       </div>
     </div>

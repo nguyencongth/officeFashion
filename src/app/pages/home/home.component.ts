@@ -3,6 +3,7 @@ import {SlickCarouselDirective} from "./slick-carousel.directive";
 import {ProductService} from "../../core/services/product.service";
 import {NgFor, NgIf} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
+import {Router, RouterModule} from "@angular/router";
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -10,14 +11,15 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
     SlickCarouselDirective,
     NgFor,
     NgIf,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
   constructor(
-    private productService: ProductService) {}
+    private productService: ProductService, private router: Router) {}
   products: any[] = [];
   slickConfig1 = {
     slidesToShow: 4,
@@ -85,5 +87,8 @@ export class HomeComponent implements OnInit{
       this.display = true;
       this.products = data.arrayProduct;
     });
+  }
+  productDetail(id: number) {
+    this.router.navigate(['/product/detail', id]);
   }
 }
