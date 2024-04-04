@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Router, RouterModule, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {NgFor} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import {OrderService} from "../../core/services/order.service";
 import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserService} from "../../core/services/user.service";
+import {ProductService} from "../../core/services/product.service";
 
 @Component({
   selector: 'app-checkout',
@@ -25,6 +26,8 @@ export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   totalAmount: number = 0;
   isDisabled: boolean = true;
+  productId: number;
+  quantitySell: number;
   userInfo = this.fb.group({
     name: {value: '', disabled: this.isDisabled},
     phone: {value: '', disabled: this.isDisabled},
@@ -36,11 +39,32 @@ export class CheckoutComponent implements OnInit {
     private orderService: OrderService,
     private userService: UserService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private productService: ProductService
   ) {}
 
   ngOnInit() {
-    this.getCartItems();
+    this.route.queryParams.subscribe((params) => {
+      this.productId = params['productId'];
+      this.quantitySell = params['quantity'];
+      if(this.productId && this.quantitySell) {
+        this.productService.getProductById(this.productId).subscribe((data: any) => {
+          const product = data.arrayProduct[0];
+          const cartItem = {
+            idsp: product.idsp,
+            tensp: product.tensp,
+            anhsp: product.anhsp,
+            giaban: product.giaban,
+            quantity: this.quantitySell
+          }
+          this.cartItems = [cartItem];
+          this.calculateTotalAmount();
+        });
+      } else {
+        this.getCartItems();
+      }
+    });
     this.getUserInfo();
   }
 

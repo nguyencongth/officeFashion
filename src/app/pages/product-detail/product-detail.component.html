@@ -106,7 +106,7 @@
                 <div class="product-actions">
                   <button type="submit" name="add" id="AddToCart" class="btnAddToCart">Thêm vào
                     giỏ hàng</button>
-                  <button type="button" name="buy" id="buy-now" class="btnBuyNow">Mua
+                  <button type="button" name="buy" id="buy-now" class="btnBuyNow" (click)="buyNow(p.idsp, Number(selectedQuantity))">Mua
                     ngay</button>
                 </div>
               </div>

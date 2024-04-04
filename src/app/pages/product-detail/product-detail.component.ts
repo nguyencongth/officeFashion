@@ -70,6 +70,10 @@ export class ProductDetailComponent implements OnInit {
       });
     });
   }
+  buyNow(productId: number, quantity: number): void {
+    this.router.navigate(['/checkout'], { queryParams: { productId: productId, quantity: quantity } });
+  }
 
   protected readonly Number = Number;
+
 }
