@@ -1,4 +1,4 @@
-import { Directive, ElementRef, AfterViewInit, Input } from '@angular/core';
+import {Directive, ElementRef, AfterViewInit, Input} from '@angular/core';
 declare var $: any;
 @Directive({
   selector: '[appSlickCarousel]',
@@ -10,6 +10,6 @@ export class SlickCarouselDirective implements AfterViewInit{
   constructor(private el: ElementRef) { }
 
   ngAfterViewInit() {
-    $(this.el.nativeElement).slick(this.slickConfig)
+    $(this.el.nativeElement).slick(this.slickConfig);
   }
 }

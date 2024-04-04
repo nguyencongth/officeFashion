@@ -1,15 +1,22 @@
-import { Component  } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SlickCarouselDirective} from "./slick-carousel.directive";
+import {ProductService} from "../../core/services/product.service";
+import {NgFor, NgIf} from "@angular/common";
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    SlickCarouselDirective
+    SlickCarouselDirective,
+    NgFor,
+    NgIf
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  constructor(
+    private productService: ProductService) {}
+  products: any[] = [];
   slickConfig1 = {
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -67,4 +74,14 @@ export class HomeComponent {
     autoplay: true,
     autoplaySpeed: 2000,
   };
+  display = false;
+  ngOnInit() {
+    this.getProductsNew();
+  }
+  getProductsNew(){
+    this.productService.getProductNew().subscribe((data: any) => {
+      this.display = true;
+      this.products = data.arrayProduct;
+    });
+  }
 }

@@ -43,78 +43,24 @@
           <div class="section-title">
             <h2>Sản phẩm mới</h2>
           </div>
-          <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/dam.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
+          <ng-container *ngIf="display">
+            <div  class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
+              <div class="image-item" *ngFor="let product of products">
+                <div class="image">
+                  <img [src]="product.anhsp" alt="{{product.tensp}}" />
+                  <div class="product-action">
+                    <div>
+                      <a href="" class="btn-tv">XEM THÊM</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">Đầm thiết kế peplum D19832</h4>
-                <span class="current-price">1,599,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/dam2.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
+                <div class="product-item-info">
+                  <h4 class="image-title">{{product.tensp}}</h4>
+                  <span class="current-price">{{product.giaban}}</span>
                 </div>
               </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ĐẦM ÔM TÍM ĐÍNH HOA 3D D03622</h4>
-                <span class="current-price">1,399,000₫</span>
-              </div>
             </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/dam3.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ĐẦM THÊU HOA D03762</h4>
-                <span class="current-price">1,399,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/vest1.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ÁO VEST TRẮNG AK01242</h4>
-                <span class="current-price">999,000₫</span>
-              </div>
-            </div>
-            <div class="image-item">
-              <div class="image">
-                <img src="./assets/img/vest2.png" alt="" />
-                <div class="product-action">
-                  <div>
-                    <a href="" class="btn-tv">XEM THÊM</a>
-                  </div>
-                </div>
-              </div>
-              <div class="product-item-info">
-                <h4 class="image-title">ÁO VEST NGẮN TAY AK00482</h4>
-                <span class="current-price">999,000₫</span>
-              </div>
-            </div>
-          </div>
+          </ng-container>
         </div>
       </div>
     </div>
