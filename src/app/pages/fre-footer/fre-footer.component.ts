@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './fre-footer.component.css'
 })
 export class FreFooterComponent {
-
+  email: string = localStorage.getItem('email') || '';
 }
