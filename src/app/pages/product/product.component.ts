@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   totalItem = 0;
   categoryName: any;
   categoryId: any;
-  // productSubscription: Subscription;
+  productSubscription: Subscription;
   queryParamsSubscription: Subscription;
   constructor(
     private productService: ProductService,
@@ -39,6 +39,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.categoryId = params['categoryId'];
+      const keyword = params['keyword'];
       if (this.categoryId) {
         this.categoryService.getCategoryById(this.categoryId).subscribe((data:any)=>{
           this.categoryName = data.arrayProductType[0].tenloaisp;
@@ -51,12 +52,12 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.products = this.productsNew;
         }
       }
+      if(keyword){
+        this.productSubscription = this.productService.productsSubject.subscribe((products: any[])=>{
+          this.products = products;
+        })
+      }
     });
-
-    // this.productSubscription = this.productService.productsSubject.subscribe((products: any[])=>{
-    //   console.log(products)
-    //   this.products = products;
-    // })
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       const keyword = params['keyword'];
@@ -66,9 +67,9 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    // if (this.productSubscription) {
-    //   this.productSubscription.unsubscribe();
-    // }
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
+    }
     if (this.queryParamsSubscription) {
       this.queryParamsSubscription.unsubscribe();
     }
