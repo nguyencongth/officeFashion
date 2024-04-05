@@ -9,6 +9,7 @@ import {OrderComponent} from "./pages/order/order.component";
 import {UserInfoComponent} from "./pages/user-info/user-info.component";
 import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
+import {ProductNewComponent} from "./pages/product-new/product-new.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Trang chủ' },
@@ -22,6 +23,7 @@ export const routes: Routes = [
         loadChildren: () => import('./core/router/product-router.routes')
           .then(mod => mod.PRODUCT_ROUTER)
       },
+      { path: 'product-new', component: ProductNewComponent, title: 'Sản phẩm mới' },
       { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
       { path: 'forgot-password', component: ForgotPasswordComponent, title: 'Quên mật khẩu' },
       { path: 'reset-password', component: ResetPasswordComponent, title: 'Đặt lại mật khẩu' },

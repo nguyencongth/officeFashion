@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
@@ -22,15 +22,20 @@ import {Subscription} from "rxjs";
 export class ProductComponent implements OnInit, OnDestroy {
   panelVisible = false;
   selectedPriceRange: number | null = null;
+  @Input() productsNew: any[] = [];
   products: any[] = [];
   page = 1;
   pageSize = 6;
   totalItem = 0;
   categoryName: any;
   categoryId: any;
-  productSubscription: Subscription;
+  // productSubscription: Subscription;
   queryParamsSubscription: Subscription;
-  constructor(private productService: ProductService, private route: ActivatedRoute, private categoryService: CategoryService) { }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private categoryService: CategoryService
+  ) { }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.categoryId = params['categoryId'];
@@ -40,12 +45,19 @@ export class ProductComponent implements OnInit, OnDestroy {
         });
         this.getProductsByCategory(this.categoryId);
       } else {
-        this.getProducts();
+        if (this.productsNew.length === 0){
+          this.getProducts();
+        } else {
+          this.products = this.productsNew;
+        }
       }
     });
-    this.productSubscription = this.productService.productsSubject.subscribe((products: any[])=>{
-      this.products = products;
-    })
+
+    // this.productSubscription = this.productService.productsSubject.subscribe((products: any[])=>{
+    //   console.log(products)
+    //   this.products = products;
+    // })
+
     this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       const keyword = params['keyword'];
       if (keyword) {
@@ -54,14 +66,13 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    if (this.productSubscription) {
-      this.productSubscription.unsubscribe();
-    }
+    // if (this.productSubscription) {
+    //   this.productSubscription.unsubscribe();
+    // }
     if (this.queryParamsSubscription) {
       this.queryParamsSubscription.unsubscribe();
     }
   }
-
   getProducts() {
     this.productService.getProducts(this.selectedPriceRange, this.page, this.pageSize)
       .subscribe((data: any) => {
@@ -69,7 +80,6 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.totalItem = data.pagination.totalItems;
       })
   }
-
   getProductsByCategory(categoryId: number) {
     this.productService.getProductsByCategoryId(categoryId, this.selectedPriceRange, this.page, this.pageSize)
       .subscribe((data: any) => {
@@ -77,7 +87,6 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.totalItem = data.pagination.totalItems;
       })
   }
-
   onPageChange(pageNumber: number) {
     this.page = pageNumber;
     this.route.queryParams.subscribe(params => {
@@ -89,16 +98,13 @@ export class ProductComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   getTotalPages(): number {
     return Math.ceil(this.totalItem / this.pageSize);
   }
-
   getPageNumbers(): number[] {
     const totalPages = this.getTotalPages();
     return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-
   filterProductsByPrice(priceRange: number) {
     this.selectedPriceRange = priceRange;
     this.page = 1;
@@ -111,7 +117,6 @@ export class ProductComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   togglePanel(): void {
     this.panelVisible = !this.panelVisible;
   }
