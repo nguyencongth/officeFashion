@@ -10,6 +10,7 @@ import {UserInfoComponent} from "./pages/user-info/user-info.component";
 import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
 import {ProductNewComponent} from "./pages/product-new/product-new.component";
+import {authGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', title: 'Trang chủ' },
@@ -35,6 +36,7 @@ export const routes: Routes = [
   {
     path: '',
     component: CheckoutLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'checkout', component: CheckoutComponent, title: 'Thanh toán' },
     ]
