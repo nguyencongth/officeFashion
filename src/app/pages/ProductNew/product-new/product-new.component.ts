@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductComponent} from "../product/product.component";
-import {ProductService} from "../../core/services/product.service";
+import {ProductComponent} from "../../product/product.component";
+import {ProductService} from "../../../core/services/product.service";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -21,4 +21,5 @@ export class ProductNewComponent implements OnInit{
           this.productsNew = data.arrayProduct;
       });
     }
+
 }

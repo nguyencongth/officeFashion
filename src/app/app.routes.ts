@@ -9,7 +9,6 @@ import {OrderComponent} from "./pages/order/order.component";
 import {UserInfoComponent} from "./pages/user-info/user-info.component";
 import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
-import {ProductNewComponent} from "./pages/product-new/product-new.component";
 import {authGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
@@ -24,7 +23,11 @@ export const routes: Routes = [
         loadChildren: () => import('./core/router/product-router.routes')
           .then(mod => mod.PRODUCT_ROUTER)
       },
-      { path: 'product-new', component: ProductNewComponent, title: 'Sản phẩm mới' },
+      {
+        path: 'product-new',
+        loadChildren: () => import('./core/router/product-new-router.routes')
+          .then(mod => mod.PRODUCT_NEW_ROUTER)
+      },
       { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
       { path: 'forgot-password', component: ForgotPasswordComponent, title: 'Quên mật khẩu' },
       { path: 'reset-password', component: ResetPasswordComponent, title: 'Đặt lại mật khẩu' },

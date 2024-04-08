@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../core/services/product.service";
 import {NgFor} from "@angular/common";
@@ -21,6 +21,7 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
+  @Input() productDetail: any[] = [];
   product: any[] = [];
   selectedSize: string = '';
   addToCartForm = this.fb.group({
@@ -42,7 +43,11 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getProductDetail();
+    if(this.productDetail.length === 0) {
+      this.getProductDetail();
+    } else {
+      this.product = this.productDetail;
+    }
   }
 
   getProductDetail() {
