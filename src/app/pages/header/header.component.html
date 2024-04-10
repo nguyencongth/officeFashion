@@ -40,6 +40,9 @@
       <li>
         <a href="/">Liên hệ</a>
       </li>
+      <li>
+        <a [routerLink]="['/cart']" (click)="toggleBar()">Giỏ hàng</a>
+      </li>
       <div id="mobile-account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
           <li><a [routerLink]="['/login']" (click)="toggleBar()">Đăng nhập</a></li>
           <li><a href="">Đăng ký</a></li>
@@ -120,10 +123,10 @@
                       <a href="/">Liên hệ</a>
                     </li>
                     <li class="dropdown icon-item search-li float-pc">
-                      <a href="/">
+                      <a (click)="toggleSearch()">
                         <img src="./assets/img/search.png" alt="search">
                       </a>
-                      <ul class="no-bullets">
+                      <ul class="no-bullets" *ngIf="isDisplaySearch">
                         <form action="" method="get" class="search-bar" (ngSubmit)="searchProduct()">
                           <input id="inputSearch" type="search" name="search" value="" placeholder="Tìm kiếm..."
                                  class="input-group-filed" #inputSearch>

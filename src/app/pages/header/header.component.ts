@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isDisplayBar = false;
   isDisplayNavItem = false;
   isDisplayInfo = false;
+  isDisplaySearch = false;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
@@ -69,6 +70,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.cartService.cartItemCount.next(0);
     this.cartService.cartItemsSubject.next([]);
+    this.isDisplayBar = false;
   }
   getCartItems() {
     const customerId = Number(localStorage.getItem('user_id'));
@@ -94,5 +96,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   toggleInfo() {
     this.isDisplayInfo = !this.isDisplayInfo;
+  }
+  toggleSearch() {
+    this.isDisplaySearch = !this.isDisplaySearch;
   }
 }
