@@ -27,6 +27,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   totalItems: number = 0;
   cartItemCountSubscription: Subscription;
   @ViewChild('inputSearch') inputSearch: ElementRef;
+  isDisplayBar = false;
+  isDisplayNavItem = false;
+  isDisplayInfo = false;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
@@ -80,5 +83,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.productService.productsSubject.next(data.arrayProduct);
     })
     this.router.navigate(['/product'], {queryParams: {keyword: this.inputSearch.nativeElement.value}});
+  }
+  toggleBar() {
+    this.isDisplayBar = !this.isDisplayBar;
+    this.isDisplayNavItem = false;
+    this.isDisplayInfo = false;
+  }
+  toggleNavItem() {
+    this.isDisplayNavItem = !this.isDisplayNavItem;
+  }
+  toggleInfo() {
+    this.isDisplayInfo = !this.isDisplayInfo;
   }
 }

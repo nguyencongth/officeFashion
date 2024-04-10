@@ -1,3 +1,72 @@
+<ng-container *ngIf="isDisplayBar">
+  <div id="navDrawer" class="drawer drawer--right">
+    <div class="drawer__header">
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text" (click)="toggleBar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <ul class="mobile-nav">
+      <li>
+        <div class="mobile-nav__item">
+          <div>
+            <a [routerLink]="['/product']" (click)="toggleBar()">
+              Sản phẩm
+            </a>
+          </div>
+          <div>
+            <button (click)="toggleNavItem()">
+              <i *ngIf="!isDisplayNavItem" class="fa-solid fa-chevron-down"></i>
+              <i *ngIf="isDisplayNavItem" class="fa-solid fa-chevron-up"></i>
+            </button>
+          </div>
+        </div>
+        <ul *ngIf="isDisplayNavItem">
+          <li *ngFor="let category of categories">
+            <a [routerLink]="['product']" [queryParams]="{ categoryId: category.idloaisp }" (click)="toggleBar()">{{category.tenloaisp}}</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a [routerLink]="['/product-new']" (click)="toggleBar()">Sản phẩm mới</a>
+      </li>
+      <li>
+        <a href="/">Xu hướng</a>
+      </li>
+      <li>
+        <a href="/">Về chúng tôi</a>
+      </li>
+      <li>
+        <a href="/">Liên hệ</a>
+      </li>
+      <div id="mobile-account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
+          <li><a [routerLink]="['/login']" (click)="toggleBar()">Đăng nhập</a></li>
+          <li><a href="">Đăng ký</a></li>
+      </div>
+
+      <li id="mobile-user-info" *ngIf="isLoggedIn()">
+        <div class="mobile-nav__item">
+          <div>
+            Hi, <span id="mobile-user-name">{{authService.getInfo()}}</span>
+          </div>
+          <div>
+            <button (click)="toggleInfo()">
+              <i *ngIf="!isDisplayInfo" class="fa-solid fa-chevron-down"></i>
+              <i *ngIf="isDisplayInfo" class="fa-solid fa-chevron-up"></i>
+            </button>
+          </div>
+        </div>
+        <ul *ngIf="isDisplayInfo">
+          <li><a [routerLink]="['/user-info']" (click)="toggleBar()">Thông tin tài khoản</a></li>
+          <li><a [routerLink]="['/order']" (click)="toggleBar()">Lịch sử đơn hàng</a></li>
+          <li><a id="mobile-logout" (click)="logout()">Đăng xuất</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+
 <header id="header">
   <div class="desktop-header">
     <div class="desktop-header-top">
@@ -27,7 +96,7 @@
               <div class="desktop-header-navbar">
                 <div class="inner">
                   <ul class="ul-navbar">
-                    <li class="dropdown">
+                    <li class="dropdown flex-column">
                       <a [routerLink]="['/product']">
                         Sản phẩm
                         <i class="fa-solid fa-chevron-down"></i>
@@ -38,16 +107,16 @@
                         </li>
                       </ul>
                     </li>
-                    <li>
+                    <li class="flex-column">
                       <a [routerLink]="['/product-new']">Sản phẩm mới</a>
                     </li>
-                    <li>
+                    <li class="flex-column">
                       <a href="/">Xu hướng</a>
                     </li>
-                    <li>
+                    <li class="flex-column">
                       <a href="/">Về chúng tôi</a>
                     </li>
-                    <li>
+                    <li class="flex-column">
                       <a href="/">Liên hệ</a>
                     </li>
                     <li class="dropdown icon-item search-li float-pc">
@@ -68,7 +137,7 @@
                       <div class="desktop-cart-wrapper">
                         <a [routerLink]="['/cart']" style="padding: 0;">
                           <img src="./assets/img/cart.png" alt="cart">
-                          Giỏ hàng
+                          <span class="text-cart">Giỏ hàng</span>
                           <span id="quantityCartItem" class="hd-cart-count">{{totalItems}}</span>
                         </a>
                         <div class="quickview-cart">
@@ -83,7 +152,7 @@
                         </div>
                       </div>
                     </li>
-                    <li id="account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
+                    <li id="account" class="dropdown icon-item search-li float-pc flex-column" *ngIf="!isLoggedIn()">
                       <a href="#">
                         <img src="./assets/img/account.png" alt="account">
                         Tài khoản
@@ -94,7 +163,7 @@
                       </ul>
                     </li>
 
-                    <li id="user-info" class="dropdown float-pc" *ngIf="isLoggedIn()">
+                    <li id="user-info" class="dropdown float-pc flex-column" *ngIf="isLoggedIn()">
                       Xin chào, <span id="user-name">{{authService.getInfo()}}</span>
                       <ul class="no-bullets" style="max-height: 161px;">
                         <li><a [routerLink]="['/user-info']">Thông tin tài khoản</a></li>
@@ -105,6 +174,11 @@
                   </ul>
                 </div>
               </div>
+            </div>
+            <div class="bar" style="display: none">
+              <a (click)="toggleBar()">
+                <i class="fa-solid fa-bars"></i>
+              </a>
             </div>
           </div>
         </div>
