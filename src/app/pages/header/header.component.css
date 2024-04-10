@@ -18,12 +18,12 @@
   padding-left: 4px;
   margin-bottom: 0;
 }
-/*.sticky {*/
-/*  position: fixed;*/
-/*  top: 0;*/
-/*  width: 100%;*/
-/*  z-index: 999;*/
-/*}*/
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
 #header .desktop-header .desktop-header-center {
   padding: 20px 0;
   background-color: #fff;

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import { NgFor, NgIf } from "@angular/common";
@@ -21,7 +21,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   categories: any[] = [];
   cartItems: any[] = [];
   totalItems: number = 0;
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isDisplayNavItem = false;
   isDisplayInfo = false;
   isDisplaySearch = false;
+  @ViewChild('desktopHeaderCenter') desktopHeaderCenter: ElementRef;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
@@ -58,6 +59,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.cartItemCountSubscription.unsubscribe();
     }
   }
+  ngAfterViewInit() {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 0) {
+        this.desktopHeaderCenter.nativeElement.classList.add('sticky');
+      } else {
+        this.desktopHeaderCenter.nativeElement.classList.remove('sticky');
+      }
+    });
+  }
+
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
