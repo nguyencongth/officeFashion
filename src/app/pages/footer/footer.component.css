@@ -53,3 +53,17 @@
     font-size: 14px;
   }
 }
+#footer .footer-content .wrapper .inner {
+  display: grid;
+  grid-gap: 20px;
+}
+@media only screen and (max-width: 767px) {
+  #footer .footer-content .wrapper .inner {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #footer .footer-content .wrapper .inner {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
