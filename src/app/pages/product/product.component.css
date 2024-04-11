@@ -148,6 +148,7 @@
 .collection-body .gird-uniform {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .pd-left5 {
   padding-left: 5px;
@@ -197,3 +198,27 @@
   background: #fff;
   color: #070707;
 }
+@media only screen and (max-width: 768px) {
+  .large--one {
+    display: none;
+  }
+  .large--three {
+    width: 100% !important;
+  }
+}
+.product-image img {
+  width: 100%;
+  max-width: 415px;
+  height: auto;
+}
+@media (max-width: 640px) {
+  .gird-uniform .gird-uniform__item {
+    flex: 50% !important;
+  }
+}
+@media (max-width: 480px) {
+  .gird-uniform .gird-uniform__item {
+    flex: 100% !important;
+  }
+}
+
