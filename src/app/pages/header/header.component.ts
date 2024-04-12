@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Router, RouterModule, RouterOutlet} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import { NgFor, NgIf } from "@angular/common";
@@ -32,12 +32,14 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   isDisplayInfo = false;
   isDisplaySearch = false;
   @ViewChild('desktopHeaderCenter') desktopHeaderCenter: ElementRef;
+  @ViewChild('scrollTop') scrollTop: ElementRef;
   constructor(
     private category: CategoryService,
     public authService: AuthService,
     private cartService: CartService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {
     const loggedIn = localStorage.getItem('loggedIn');
     if (loggedIn === 'true') {
@@ -67,6 +69,16 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
         this.desktopHeaderCenter.nativeElement.classList.remove('sticky');
       }
     });
+    this.renderer.listen('window', 'scroll', () => {
+      if(window.pageYOffset > 20) {
+        this.renderer.setStyle(this.scrollTop.nativeElement, 'display', 'block');
+      } else {
+        this.renderer.setStyle(this.scrollTop.nativeElement, 'display', 'none');
+      }
+    });
+    this.renderer.listen(this.scrollTop.nativeElement, 'click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    })
   }
 
   isLoggedIn(): boolean {
