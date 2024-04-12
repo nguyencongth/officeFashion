@@ -112,6 +112,13 @@ export class CheckoutComponent implements OnInit {
         selectPaymentMethod = paymentMethod.nativeElement.value;
       }
     }
+    if(selectPaymentMethod === "Ví MoMo") {
+      this.orderService.checkoutMomo().subscribe((data: any) => {
+        const url = data.payUrl;
+        window.location.href = url;
+      });
+      return;
+    }
     this.orderService.createOrder(customerId, selectPaymentMethod, orderItems).subscribe((data: any) => {
       if(data.statusCode === 200) {
         this.removeCart();
