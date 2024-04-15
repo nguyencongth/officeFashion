@@ -34,8 +34,8 @@ export class OrderService {
     const url = `${this.apiUrl}/updateOrderStatus?orderId=${orderId}&newOrderStatus=${status}`;
     return this.http.patch(url, {});
   }
-  checkoutMomo():Observable<any> {
-    const url = 'https://localhost:7249/api/Momo/PaymentMomo';
+  checkoutMomo(totalAmount: number, desc: string):Observable<any> {
+    const url = `https://localhost:7249/api/Momo/PaymentMomo?totalAmount=${totalAmount}&desc=${desc}`;
     return this.http.get(url);
   }
 }
