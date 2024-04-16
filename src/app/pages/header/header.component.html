@@ -24,7 +24,7 @@
         </div>
         <ul *ngIf="isDisplayNavItem">
           <li *ngFor="let category of categories">
-            <a [routerLink]="['product']" [queryParams]="{ categoryId: category.idloaisp }" (click)="toggleBar()">{{category.tenloaisp}}</a>
+            <a [routerLink]="['product']" [queryParams]="{ categoryId: category.categoryId }" (click)="toggleBar()">{{category.categoryName}}</a>
           </li>
         </ul>
       </li>
@@ -106,7 +106,7 @@
                       </a>
                       <ul style="max-height: 374px;">
                         <li *ngFor="let category of categories">
-                          <a [routerLink]="['product']" [queryParams]="{ categoryId: category.idloaisp }">{{category.tenloaisp}}</a>
+                          <a [routerLink]="['product']" [queryParams]="{ categoryId: category.categoryId }">{{category.categoryName}}</a>
                         </li>
                       </ul>
                     </li>
@@ -146,9 +146,9 @@
                         <div class="quickview-cart">
                           <ul class="no-bullets" *ngIf="cartItems.length > 0 else noCartItem">
                             <li *ngFor="let item of cartItems">
-                              <a [routerLink]="['product/detail/', item.idsp]">
-                                <img class="product-image-class" [src]="item.anhsp" alt="">
-                                <span>{{item.tensp}}</span>
+                              <a [routerLink]="['product/detail/', item.productId]">
+                                <img class="product-image-class" [src]="item.imageProduct" alt="{{item.productName}}">
+                                <span>{{item.productName}}</span>
                               </a>
                             </li>
                           </ul>

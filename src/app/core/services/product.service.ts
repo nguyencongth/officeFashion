@@ -22,7 +22,7 @@ export class ProductService {
     return this.http.get(`${this.apiUrl}/productNew`);
   }
   getProductById(id: number): Observable<any> {
-    const url = `${this.apiUrl}/getProductId?idsp=${id}`;
+    const url = `${this.apiUrl}/getProductId?productID=${id}`;
     return this.http.get(url);
   }
 

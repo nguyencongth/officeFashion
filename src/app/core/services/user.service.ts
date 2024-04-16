@@ -14,7 +14,7 @@ export class UserService {
     return this.http.get(url);
   }
   updateUserInfo(data: any) {
-    const url = `${this.urlApi}/updateInfo?customerID=${data.id_customer}`;
+    const url = `${this.urlApi}/updateInfo?customerID=${data.customerId}`;
     return this.http.patch(url, data);
   }
   changePassword(customerId: number, currentPassword: any, newPassword: any, confirmNewPassword: any) {

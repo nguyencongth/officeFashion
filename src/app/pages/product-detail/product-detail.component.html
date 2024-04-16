@@ -5,7 +5,7 @@
         <div class="breadcrumb-small" *ngFor="let p of product">
           <a [routerLink]="['/']">Trang chủ</a>
           <span>/</span>
-          <span class="nameProduct_Bar">{{p.tensp}}</span>
+          <span class="nameProduct_Bar">{{p.productName}}</span>
         </div>
       </div>
     </div>
@@ -17,14 +17,14 @@
       <div class="product-single" *ngFor="let p of product">
         <div class="product-item large--left">
           <div class="product_image">
-            <img class="img" src="{{p.anhsp}}" alt="">
+            <img class="img" src="{{p.imageProduct}}" alt="">
           </div>
         </div>
         <div class="product-item large--right">
           <div class="product-content">
             <div class="product-content-head">
               <div class="name-title">
-                <h1 class="namePro">{{p.tensp}}</h1>
+                <h1 class="namePro">{{p.productName}}</h1>
               </div>
               <div class="product-brand">
                 <span class="title">Thương hiệu:</span>
@@ -32,9 +32,9 @@
               </div>
             </div>
             <div class="product-price">
-              <span class="current-price">{{p.giaban | currencyFormat}}</span>
+              <span class="current-price">{{p.price | currencyFormat}}</span>
             </div>
-            <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical" enctype="multipart/form-data" (ngSubmit)="addToCart(p.idsp, Number(selectedQuantity))">
+            <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical" enctype="multipart/form-data" (ngSubmit)="addToCart(p.productId, Number(selectedQuantity))">
               <div class="product-variants-wrapper">
                 <div id="product-select-swatch" class="select-swatch">
                   <div id="variant-swatch" class="swatch swatch-product-single">
@@ -106,14 +106,14 @@
                 <div class="product-actions">
                   <button type="submit" name="add" id="AddToCart" class="btnAddToCart">Thêm vào
                     giỏ hàng</button>
-                  <button type="button" name="buy" id="buy-now" class="btnBuyNow" (click)="buyNow(p.idsp, Number(selectedQuantity))">Mua
+                  <button type="button" name="buy" id="buy-now" class="btnBuyNow" (click)="buyNow(p.productId, Number(selectedQuantity))">Mua
                     ngay</button>
                 </div>
               </div>
 
             </form>
             <div class="product-short-detail">
-              {{p.thongtinsp}}
+              {{p.descProduct}}
             </div>
           </div>
         </div>

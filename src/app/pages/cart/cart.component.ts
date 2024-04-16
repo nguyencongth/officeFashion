@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
 
   calculateTotalAmount() {
     this.totalAmount = this.cartItems.reduce((acc, item) => {
-      return acc + item.giaban * item.quantity;
+      return acc + item.price * item.quantity;
     }, 0)
   }
 
@@ -59,11 +59,11 @@ export class CartComponent implements OnInit {
     const quantityInputs = this.quantityInputs.toArray();
     quantityInputs.forEach((input, index) => {
       const newQuantity = Number(input.nativeElement.value);
-      const productId = this.cartItems[index].idsp;
-      data.push({idsp: productId, newQuantity: newQuantity});
+      const productId = this.cartItems[index].productId;
+      data.push({productId: productId, newQuantity: newQuantity});
     });
     data.map(item => {
-      this.cartService.updateQuantity(customerId, item.idsp, item.newQuantity).subscribe(data => {
+      this.cartService.updateQuantity(customerId, item.productId, item.newQuantity).subscribe(data => {
         if (data) {
           this.getCartItems();
         }

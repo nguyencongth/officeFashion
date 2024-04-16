@@ -145,16 +145,16 @@
                 <div *ngFor="let product of products" class="gird-uniform__item large--one--third pd-left5">
                   <div class="product-item">
                     <div class="product-image">
-                      <img [src]="product.anhsp" alt="imageProduct">
+                      <img [src]="product.imageProduct" alt="imageProduct">
                       <div class="product-action">
                         <div>
-                          <a [routerLink]="['detail/', product.idsp]" class="btn-tv">XEM THÊM</a>
+                          <a [routerLink]="['detail/', product.productId]" class="btn-tv">XEM THÊM</a>
                         </div>
                       </div>
                     </div>
                     <div class="product-item-info">
-                      <h4 class="image-title">{{product.tensp}}</h4>
-                      <span class="current-price">{{product.giaban | currencyFormat}}</span>
+                      <h4 class="image-title">{{product.productName}}</h4>
+                      <span class="current-price">{{product.price | currencyFormat}}</span>
                     </div>
                   </div>
                 </div>

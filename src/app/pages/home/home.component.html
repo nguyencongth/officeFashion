@@ -47,16 +47,16 @@
             <div  class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
               <div class="image-item" *ngFor="let product of products">
                 <div class="image">
-                  <img [src]="product.anhsp" alt="{{product.tensp}}" />
+                  <img [src]="product.imageProduct" alt="{{product.productName}}" />
                   <div class="product-action">
                     <div>
-                      <a (click)="productDetail(product.idsp)" class="btn-tv">XEM THÊM</a>
+                      <a (click)="productDetail(product.productId)" class="btn-tv">XEM THÊM</a>
                     </div>
                   </div>
                 </div>
                 <div class="product-item-info">
-                  <h4 class="image-title">{{product.tensp}}</h4>
-                  <span class="current-price">{{product.giaban | currencyFormat}}</span>
+                  <h4 class="image-title">{{product.productName}}</h4>
+                  <span class="current-price">{{product.price | currencyFormat}}</span>
                 </div>
               </div>
             </div>
@@ -74,16 +74,16 @@
             <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
               <div class="image-item" *ngFor="let product of products">
                 <div class="image">
-                  <img [src]="product.anhsp" alt="{{product.tensp}}" />
+                  <img [src]="product.imageProduct" alt="{{product.productName}}" />
                   <div class="product-action">
                     <div>
-                      <a (click)="productDetail(product.idsp)" class="btn-tv">XEM THÊM</a>
+                      <a (click)="productDetail(product.productId)" class="btn-tv">XEM THÊM</a>
                     </div>
                   </div>
                 </div>
                 <div class="product-item-info">
-                  <h4 class="image-title">{{product.tensp}}</h4>
-                  <span class="current-price">{{product.giaban | currencyFormat}}</span>
+                  <h4 class="image-title">{{product.productName}}</h4>
+                  <span class="current-price">{{product.price | currencyFormat}}</span>
                 </div>
               </div>
             </div>

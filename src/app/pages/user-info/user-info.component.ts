@@ -33,8 +33,8 @@ export class UserInfoComponent implements OnInit {
     private fb: FormBuilder,
   ) {}
   userInfoForm = this.fb.group({
-    id_customer: [Number(localStorage.getItem('user_id'))],
-    fullname: ['', Validators.required],
+    customerId: [Number(localStorage.getItem('user_id'))],
+    fullName: ['', Validators.required],
     email: ['', Validators.required],
     phonenumber: ['', Validators.required],
     password: ['', Validators.required],
@@ -54,7 +54,7 @@ export class UserInfoComponent implements OnInit {
       const info = data.arrayCustomer[0];
       console.log(info);
       this.userInfoForm.patchValue({
-        fullname: info.fullname,
+        fullName: info.fullName,
         phonenumber: info.phonenumber,
         address: info.address,
         email: info.email

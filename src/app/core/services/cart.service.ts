@@ -15,12 +15,12 @@ export class CartService {
   addCartItem(customerId: number, productId: number, quantity: number):Observable<any> {
     const url = `${this.apiUrl}/addToCart`;
     const data = {
-      id_customer: customerId,
-      idsp: productId,
-      idloaisp: 0,
-      anhsp: "string",
-      tensp: "string",
-      giaban: 0,
+      customerId: customerId,
+      productId: productId,
+      categoryId: 0,
+      imageProduct: "string",
+      productName: "string",
+      price: 0,
       quantity: quantity,
       dateAdded: "2023-10-20T17:01:46.598Z",
     }
@@ -78,7 +78,7 @@ export class CartService {
     });
   }
   updateQuantity(customerId: number, productId: number, newQuantity: number):Observable<any> {
-    const url = `${this.apiUrl}/updateCartQuantity?id_customer=${customerId}&idsp=${productId}&newQuantity=${newQuantity}`;
+    const url = `${this.apiUrl}/updateCartQuantity?customerID=${customerId}&productID=${productId}&newQuantity=${newQuantity}`;
     return this.http.patch(url, {}).pipe(
       map((data: any) => {
         if(data.statusCode === 200) {

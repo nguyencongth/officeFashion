@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       const keyword = params['keyword'];
       if (this.categoryId) {
         this.categoryService.getCategoryById(this.categoryId).subscribe((data:any)=>{
-          this.categoryName = data.arrayProductType[0].tenloaisp;
+          this.categoryName = data.arrayProductType[0].categoryName;
         });
         this.getProductsByCategory(this.categoryId);
       } else {
