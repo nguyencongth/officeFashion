@@ -1,0 +1,81 @@
+<div id="breadcrumb-wrapper">
+  <div class="breadcrumb-content">
+    <div class="wrapper">
+      <div class="inner text-left">
+        <div class="breadcrumb-small">
+          <a [routerLink]="['/home']">Trang chủ</a>
+          <span>/</span>
+          <span>Đăng ký tài khoản</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main">
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()" action="" method="POST" class="form1" id="form-register">
+    <h3 class="heading">Đăng ký tài khoản</h3>
+
+    <div class="spacer"></div>
+
+    <div class="form-group">
+      <label for="fullname" class="form-label">Tên đầy đủ</label>
+      <input id="fullname" name="fullname" type="text" placeholder="VD: Nguyễn Công Thành"
+             class="form-control" formControlName="fullName">
+      <span
+        class="form-message"
+        *ngIf="registerForm.controls.fullName.invalid && (registerForm.controls.fullName.dirty || registerForm.controls.fullName.touched)"
+      >
+        <span *ngIf="registerForm.controls.fullName.hasError('required')">Vui lòng nhập họ tên</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control" formControlName="email">
+      <span class="form-message" *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
+        <span *ngIf="registerForm.controls.email.hasError('required')">Vui lòng nhập email</span>
+        <span *ngIf="registerForm.controls.email.hasError('email')">Email không hợp lệ</span>
+        <span *ngIf="registerForm.controls.email.hasError('incorrect')">{{errorMessage}}</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="phone_number" class="form-label">Số điện thoại</label>
+      <input id="phone_number" name="phone_number" type="text" placeholder="VD: 0123456789"
+             class="form-control" formControlName="phonenumber">
+      <span
+        class="form-message"
+        *ngIf="registerForm.controls.phonenumber.invalid && (registerForm.controls.phonenumber.dirty || registerForm.controls.phonenumber.touched)"
+      >
+        <span *ngIf="registerForm.controls.phonenumber.hasError('required')">Vui lòng nhập số điện thoại</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Mật khẩu</label>
+      <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control" formControlName="password">
+      <span
+        class="form-message"
+        *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+      >
+        <span *ngIf="registerForm.controls.password.hasError('required')">Vui lòng nhập mật khẩu</span>
+        <span *ngIf="registerForm.controls.password.hasError('minlength')">Mật khẩu phải có ít nhất 6 ký tự</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="address" class="form-label">Địa chỉ</label>
+      <input id="address" name="address" type="text" placeholder="Nhập địa chỉ" class="form-control" formControlName="address">
+      <span
+        class="form-message"
+        *ngIf="registerForm.controls.address.invalid && (registerForm.controls.address.dirty || registerForm.controls.address.touched)"
+      >
+        <span *ngIf="registerForm.controls.address.hasError('required')">Vui lòng nhập địa chỉ</span>
+      </span>
+    </div>
+
+    <button type="submit" class="form-submit">Đăng ký</button>
+  </form>
+
+</div>

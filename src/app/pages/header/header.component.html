@@ -45,7 +45,7 @@
       </li>
       <div id="mobile-account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
           <li><a [routerLink]="['/login']" (click)="toggleBar()">Đăng nhập</a></li>
-          <li><a href="">Đăng ký</a></li>
+          <li><a [routerLink]="['/register']" (click)="toggleBar()">Đăng ký</a></li>
       </div>
 
       <li id="mobile-user-info" *ngIf="isLoggedIn()">
@@ -162,7 +162,7 @@
                       </a>
                       <ul class="no-bullets" style="max-height: 106px;">
                         <li><a [routerLink]="['/login']">Đăng nhập</a></li>
-                        <li><a href="">Đăng ký</a></li>
+                        <li><a [routerLink]="['/register']">Đăng ký</a></li>
                       </ul>
                     </li>
 
