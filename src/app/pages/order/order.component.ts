@@ -52,7 +52,7 @@ export class OrderComponent implements OnInit{
     this.orderService.getOrderList(customerId).subscribe((data: any) => {
       this.dataSource = data.arrayOrders;
       this.dataSource.forEach((order: any   ) => {
-        order.total_amount = new CurrencyFormatPipe().transform(order.total_amount);
+        order.totalAmount = new CurrencyFormatPipe().transform(order.totalAmount);
         if(order.orderStatus === 0) {
           order.orderStatus = 'Đang chờ xử lý';
         }
@@ -67,20 +67,20 @@ export class OrderComponent implements OnInit{
       this.isLoading = false;
     });
   }
-  columnsToDisplay = ['order_id', 'paymentMethod', 'orderStatus', 'order_date', 'total_amount'];
+  columnsToDisplay = ['orderId', 'paymentMethod', 'orderStatus', 'orderDate', 'totalAmount'];
   expandedElement: any;
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'cancel', 'confirm'];
   getColumnLabel(columnKey: string): string {
     switch (columnKey) {
-      case 'order_id':
+      case 'orderId':
         return 'Mã đơn hàng';
-      case 'total_amount':
+      case 'totalAmount':
         return 'Tổng tiền';
       case 'paymentMethod':
         return 'Phương thức thanh toán';
       case 'orderStatus':
         return 'Trạng thái';
-      case 'order_date':
+      case 'orderDate':
         return 'Ngày đặt';
       default:
         return columnKey;

@@ -52,10 +52,10 @@ export class CheckoutComponent implements OnInit {
         this.productService.getProductById(this.productId).subscribe((data: any) => {
           const product = data.arrayProduct[0];
           const cartItem = {
-            idsp: product.idsp,
-            tensp: product.tensp,
-            anhsp: product.anhsp,
-            giaban: product.giaban,
+            productId: product.productId,
+            productName: product.productName,
+            imageProduct: product.imageProduct,
+            price: product.price,
             quantity: this.quantitySell
           }
           this.cartItems = [cartItem];
@@ -77,7 +77,7 @@ export class CheckoutComponent implements OnInit {
   }
   calculateTotalAmount() {
     this.totalAmount = this.cartItems.reduce((acc, item) => {
-      return acc + item.giaban * item.quantity;
+      return acc + item.price * item.quantity;
     }, 0)
   }
   getUserInfo() {
@@ -85,7 +85,7 @@ export class CheckoutComponent implements OnInit {
     this.userService.getUserInfo(userId).subscribe((data: any) => {
       const info = data.arrayCustomer[0];
       this.userInfo.patchValue({
-        name: info.fullname,
+        name: info.fullName,
         phone: info.phonenumber,
         address: info.address,
         email: info.email
@@ -98,9 +98,9 @@ export class CheckoutComponent implements OnInit {
     let selectPaymentMethod = "";
     for(let item of this.cartItems) {
       const orderItem = {
-        idsp: item.idsp,
-        tensp: item.tensp,
-        anhsp: item.anhsp,
+        productId: item.productId,
+        productName: item.productName,
+        imageProduct: item.imageProduct,
         quantity: item.quantity,
         subtotal: 0
       };

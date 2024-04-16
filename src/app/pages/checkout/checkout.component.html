@@ -140,18 +140,18 @@
                       <div class="product-thumbnail">
                         <div class="product-thumbnail-wrapper">
                           <img class="product-thumbnail-image"
-                               [src]="item.anhsp" alt="">
+                               [src]="item.imageProduct" alt="{{item.productName}}">
                         </div>
                         <span class="product-thumbnail-quantity">{{item.quantity}}</span>
                       </div>
                     </td>
                     <td class="product-description">
-                      <span class="product-description-name order-summary-emphasis">{{item.tensp}}</span>
+                      <span class="product-description-name order-summary-emphasis">{{item.productName}}</span>
                       <span class="product-description-variant order-summary-small-text">Size</span>
                     </td>
                     <td class="product-quantity visually-hidden">{{item.quantity}}</td>
                     <td class="product-price">
-                      <span class="order-summary-emphasis">{{item.giaban * item.quantity | currencyFormat}}</span>
+                      <span class="order-summary-emphasis">{{item.price * item.quantity | currencyFormat}}</span>
                     </td>
                   </tr>
                 </tbody>

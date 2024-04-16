@@ -55,7 +55,7 @@
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
           <td mat-cell *matCellDef="let element">
             <button mat-raised-button color="warn"
-                    (click)="cancelOrder(element.order_id)"
+                    (click)="cancelOrder(element.orderId)"
                     [disabled]="element.orderStatus == 'Đã xác nhận' || element.orderStatus === 'Hoàn thành'"
             >
               Hủy
@@ -67,7 +67,7 @@
           <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
           <td mat-cell *matCellDef="let element">
             <button mat-raised-button color="primary"
-                    (click)="confirmOrder(element.order_id,2)"
+                    (click)="confirmOrder(element.orderId,2)"
                     [disabled]="element.orderStatus === 'Đang chờ xử lý' || element.orderStatus === 'Hoàn thành'"
             >
               Xác nhận
@@ -80,11 +80,11 @@
           <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
             <div class="example-element-detail" *ngFor="let item of element.orderItems"
                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-              <div class="order-detail" (click)="orderItemDetailNav(item.idsp)">
+              <div class="order-detail" (click)="orderItemDetailNav(item.productId)">
                 <div class="order-detail-image">
-                  <img [src]="item.anhsp" alt="{{item.tensp}}">
+                  <img [src]="item.imageProduct" alt="{{item.productName}}">
                 </div>
-                <div class="order-detail-name"> {{item.tensp}} </div>
+                <div class="order-detail-name"> {{item.productName}} </div>
                 <div class="order-detail-quantity"> x{{item.quantity}} </div>
                 <div class="order-detail-subtotal"> {{item.subtotal | currencyFormat}} </div>
               </div>
@@ -101,7 +101,5 @@
       </table>
     </cdk-virtual-scroll-viewport>
   </div>
-
-
 </div>
 
