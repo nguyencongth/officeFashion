@@ -40,7 +40,13 @@
                 <p>Phiên bản: Size 4</p>
                 <p>Thương hiệu: 2T-STORE</p>
                 <div class="cart-quantity-mobile">
-                  <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
+                  <button class="quantity__adjust quantity__minus" (click)="decreaseQuantity(item)">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input quantity-input__mobile" value="{{item.quantity}}" min="0" #quantityInput>
+                  <button class="quantity__adjust quantity__plus" (click)="increaseQuantity(item)">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
                 </div>
                 <span class="h3">{{item.price | currencyFormat}}</span>
                 <a class="cart_remove" (click)="removeCartItem(item.productId)">

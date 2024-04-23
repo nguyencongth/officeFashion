@@ -209,6 +209,36 @@ textarea.input-full {
     width: 100%;
   }
 }
+.cart-quantity-mobile {
+  position: relative;
+  max-width: 110px;
+}
+.cart-quantity-mobile .quantity__adjust {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  border: 0 none;
+  padding: 0 8px;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+}
+.quantity__minus {
+  left: 0;
+}
+.quantity__plus {
+  right: 0;
+}
+.quantity-input__mobile {
+  display: block;
+  background: none;
+  text-align: center;
+  width: 100%;
+  padding: 5px 25px;
+  margin: 0;
+}
 .spinner-container {
   display: flex;
   justify-content: center;

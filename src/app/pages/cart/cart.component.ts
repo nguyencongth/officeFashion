@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import {Component, OnInit, ViewChildren, ElementRef, QueryList} from '@angular/core';
 import {Router, RouterModule} from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {NgFor, NgIf} from "@angular/common";
@@ -95,10 +95,25 @@ export class CartComponent implements OnInit {
       });
     });
   }
+
   cartDetail(id: number) {
     this.router.navigate(['/product/detail', id]);
   }
+
   checkoutBtn() {
     this.router.navigate(['/checkout']);
+  }
+
+  increaseQuantity(item: any) {
+    item.quantity += 1;
+  }
+
+  decreaseQuantity(item: any) {
+    if (item.quantity > 0) {
+      item.quantity -= 1;
+    }
+    if(item.quantity === 0){
+      this.removeCartItem(item.productId);
+    }
   }
 }
