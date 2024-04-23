@@ -17,3 +17,12 @@ input.example-right-align {
 .mat-mdc-form-field {
   width: 50%;
 }
+
+@media screen and (max-width: 768px) {
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}
