@@ -22,12 +22,18 @@ export class CartComponent implements OnInit {
   @ViewChildren('quantityInput') quantityInputs: QueryList<ElementRef>;
   cartItems: any[] = [];
   totalAmount: number = 0;
+  isDisplayPC = true;
+  isDisplayMobile = false;
 
   constructor(private cartService: CartService, private router: Router) {
   }
 
   ngOnInit() {
     this.getCartItems();
+    if(window.innerWidth < 769){
+      this.isDisplayPC = false;
+      this.isDisplayMobile = true;
+    }
   }
 
   getCartItems() {

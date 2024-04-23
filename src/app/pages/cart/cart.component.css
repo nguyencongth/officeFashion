@@ -166,13 +166,7 @@ textarea.input-full {
 .update-cart {
   margin-right: 4px;
 }
-.mobile-view {
-  display: none;
-}
 @media screen and (max-width: 768px) {
-  table {
-    display: none;
-  }
   .flex-container {
     display: flex;
     margin-bottom: 14px;
