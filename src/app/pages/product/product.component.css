@@ -220,4 +220,13 @@
     flex: 100% !important;
   }
 }
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.spinner {
+  font-size: 3rem;
+}
 

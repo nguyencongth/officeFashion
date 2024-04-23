@@ -5,16 +5,27 @@ import {ActivatedRoute, RouterModule} from "@angular/router";
 import {CategoryService} from "../../core/services/category.service";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import {Subscription} from "rxjs";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-product',
   standalone: true,
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   imports: [
     NgFor,
     NgClass,
     NgIf,
     RouterModule,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
@@ -31,6 +42,12 @@ export class ProductComponent implements OnInit, OnDestroy {
   categoryId: any;
   productSubscription: Subscription;
   queryParamsSubscription: Subscription;
+  isDisplay = false;
+  isLoading = true;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+  customDiameter = 50;
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -50,6 +67,8 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.getProducts();
         } else {
           this.products = this.productsNew;
+          this.isDisplay = true;
+          this.isLoading = false;
         }
       }
       if(keyword){
@@ -79,6 +98,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.products = data.arrayProduct;
         this.totalItem = data.pagination.totalItems;
+        this.isDisplay = true;
+        this.isLoading = false;
       })
   }
   getProductsByCategory(categoryId: number) {
@@ -86,6 +107,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.products = data.arrayProduct;
         this.totalItem = data.pagination.totalItems;
+        this.isDisplay = true;
+        this.isLoading = false;
       })
   }
   onPageChange(pageNumber: number) {

@@ -140,7 +140,17 @@
                 </div>
               </div>
             </div>
-            <div class="collection-body">
+            <div class="spinner-container" *ngIf="isLoading">
+              <mat-spinner
+                class="spinner"
+                [color]="color"
+                [mode]="mode"
+                [value]="value"
+                [diameter]="customDiameter"
+              >
+              </mat-spinner>
+            </div>
+            <div class="collection-body" *ngIf="isDisplay">
               <div class="gird-uniform product-list">
                 <div *ngFor="let product of products" class="gird-uniform__item large--one--third pd-left5">
                   <div class="product-item">
