@@ -15,7 +15,17 @@
   <mat-tab-group animationDuration="0ms">
     <mat-tab label="Thông tin tài khoản">
       <h1>Thông tin tài khoản</h1>
-      <form [formGroup]="userInfoForm" (ngSubmit)="updateUserInfo()">
+      <div class="spinner-container" *ngIf="isLoading">
+        <mat-spinner
+          class="spinner"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [diameter]="customDiameter"
+        >
+        </mat-spinner>
+      </div>
+      <form [formGroup]="userInfoForm" (ngSubmit)="updateUserInfo()" *ngIf="isDisplay">
         <mat-form-field>
           <mat-label>Họ và tên</mat-label>
           <input matInput formControlName="fullName">
@@ -42,7 +52,17 @@
     <mat-tab label="Đổi mật khẩu">
       <div class="example-container">
         <h1>Đổi mật khẩu</h1>
-        <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+        <div class="spinner-container" *ngIf="isLoading">
+          <mat-spinner
+            class="spinner"
+            [color]="color"
+            [mode]="mode"
+            [value]="value"
+            [diameter]="customDiameter"
+          >
+          </mat-spinner>
+        </div>
+        <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()" *ngIf="isDisplay">
           <mat-form-field>
             <mat-label>Nhập mật khẩu cũ</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="currentPassword">

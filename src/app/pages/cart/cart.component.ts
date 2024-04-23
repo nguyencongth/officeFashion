@@ -4,14 +4,25 @@ import {CartService} from "../../core/services/cart.service";
 import {NgFor, NgIf} from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   imports: [
     RouterModule,
     FormsModule,
     CurrencyFormatPipe,
+    MatProgressSpinnerModule,
     NgFor,
     NgIf
   ],
@@ -24,6 +35,12 @@ export class CartComponent implements OnInit {
   totalAmount: number = 0;
   isDisplayPC = true;
   isDisplayMobile = false;
+  isDisplay = false;
+  isLoading = true;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+  customDiameter = 50;
 
   constructor(private cartService: CartService, private router: Router) {
   }
@@ -41,6 +58,8 @@ export class CartComponent implements OnInit {
     this.cartService.getCartItems(customerId).subscribe((data: any) => {
       this.cartItems = data.arrayCart;
       this.calculateTotalAmount();
+      this.isDisplay = true;
+      this.isLoading = false;
     })
   }
 

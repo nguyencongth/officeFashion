@@ -26,3 +26,12 @@ input.example-right-align {
     width: 100%;
   }
 }
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.spinner {
+  font-size: 3rem;
+}

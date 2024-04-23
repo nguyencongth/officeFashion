@@ -8,10 +8,20 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {UserService} from "../../core/services/user.service";
 import {FormBuilder, Validators, ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-user-info',
   standalone: true,
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   imports: [
     RouterModule,
     MatFormFieldModule,
@@ -19,6 +29,7 @@ import {NgIf} from "@angular/common";
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     NgIf
   ],
@@ -28,6 +39,12 @@ import {NgIf} from "@angular/common";
 export class UserInfoComponent implements OnInit {
   hide = true;
   errorMessage = '';
+  isDisplay = false;
+  isLoading = true;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+  customDiameter = 50;
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -59,6 +76,8 @@ export class UserInfoComponent implements OnInit {
         address: info.address,
         email: info.email
       });
+      this.isDisplay = true;
+      this.isLoading = false;
     });
   }
   updateUserInfo() {
