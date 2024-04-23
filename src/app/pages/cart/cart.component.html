@@ -29,29 +29,31 @@
         </div>
         <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()" *ngIf="isDisplay">
           <ng-container *ngIf="isDisplayMobile">
-            <div class="flex-container mobile-view" *ngFor="let item of cartItems;">
-              <div class="cart-image-mobile">
-                <a class="cart_image" (click)="cartDetail(item.productId)">
-                  <img [src]="item.imageProduct" alt="item.productName">
-                </a>
-              </div>
-              <div class="cart-info-mobile">
-                <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
-                <p>Phiên bản: Size 4</p>
-                <p>Thương hiệu: 2T-STORE</p>
-                <div class="cart-quantity-mobile">
-                  <button class="quantity__adjust quantity__minus" (click)="decreaseQuantity(item)">
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input quantity-input__mobile" value="{{item.quantity}}" min="0" #quantityInput>
-                  <button class="quantity__adjust quantity__plus" (click)="increaseQuantity(item)">
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
+            <div *ngIf="cartItems.length > 0 else noItem">
+              <div class="flex-container mobile-view" *ngFor="let item of cartItems;">
+                <div class="cart-image-mobile">
+                  <a class="cart_image" (click)="cartDetail(item.productId)">
+                    <img [src]="item.imageProduct" alt="item.productName">
+                  </a>
                 </div>
-                <span class="h3">{{item.price | currencyFormat}}</span>
-                <a class="cart_remove" (click)="removeCartItem(item.productId)">
-                  <small>Xóa</small>
-                </a>
+                <div class="cart-info-mobile">
+                  <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
+                  <p>Phiên bản: Size 4</p>
+                  <p>Thương hiệu: 2T-STORE</p>
+                  <div class="cart-quantity-mobile">
+                    <button class="quantity__adjust quantity__minus" (click)="decreaseQuantity(item)">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input quantity-input__mobile" value="{{item.quantity}}" min="0" #quantityInput>
+                    <button class="quantity__adjust quantity__plus" (click)="increaseQuantity(item)">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                  <span class="h3">{{item.price | currencyFormat}}</span>
+                  <a class="cart_remove" (click)="removeCartItem(item.productId)">
+                    <small>Xóa</small>
+                  </a>
+                </div>
               </div>
             </div>
           </ng-container>
