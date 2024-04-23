@@ -173,6 +173,7 @@ textarea.input-full {
   .flex-container {
     display: flex;
     margin-bottom: 14px;
+    border-bottom: 1px solid #e7e7e7;
   }
   .cart-image-mobile {
     width: 33.333%;
