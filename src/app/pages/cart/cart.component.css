@@ -160,7 +160,58 @@ textarea.input-full {
   text-transform: uppercase;
   font-weight: bold;
 }
-
 .cart_remove:hover {
   cursor: pointer;
+}
+.update-cart {
+  margin-right: 4px;
+}
+.mobile-view {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  table {
+    display: none;
+  }
+  .flex-container {
+    display: flex;
+    margin-bottom: 14px;
+  }
+  .cart-image-mobile {
+    width: 33.333%;
+  }
+  .cart-image-mobile .cart_image img {
+    max-width: 100%;
+  }
+  .cart-info-mobile {
+    width: 66.666%;
+    padding-left: 15px;
+  }
+  .cart-info-mobile p {
+    margin: 0;
+  }
+  .cart-quantity-mobile {
+    margin: 8px 0;
+  }
+  .cart-info-mobile a.h4 {
+    font-size: 14px;
+  }
+  .cart_remove {
+    margin-left: 12px;
+  }
+  .h3 {
+    font-size: 16px;
+  }
+  .flex-box {
+    flex-wrap: wrap;
+  }
+  .flex-box-item {
+    width: 100%;
+  }
+  .flex-box-item.two-thirds {
+    width: 100%;
+  }
+  .flex-box-item.one-third {
+    width: 100%;
+  }
 }

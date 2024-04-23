@@ -18,6 +18,27 @@
       <div class="inner">
         <h1>Giỏ Hàng</h1>
         <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()">
+          <ng-container>
+            <div class="flex-container mobile-view" *ngFor="let item of cartItems;">
+              <div class="cart-image-mobile">
+                <a class="cart_image" (click)="cartDetail(item.productId)">
+                  <img [src]="item.imageProduct" alt="item.productName">
+                </a>
+              </div>
+              <div class="cart-info-mobile">
+                <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
+                <p>Phiên bản: Size 4</p>
+                <p>Thương hiệu: 2T-STORE</p>
+                <div class="cart-quantity-mobile">
+                  <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
+                </div>
+                <span class="h3">{{item.price | currencyFormat}}</span>
+                <a class="cart_remove" (click)="removeCartItem(item.productId)">
+                  <small>Xóa</small>
+                </a>
+              </div>
+            </div>
+          </ng-container>
           <table class="cart-table full" *ngIf="cartItems.length > 0 else noItem">
             <thead class="cart_row">
             <tr>
@@ -37,7 +58,7 @@
               <td class="cart-product-title">
                 <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
                 <p>Phiên bản: Size 4</p>
-                <p>Thương hiệu: 2T</p>
+                <p>Thương hiệu: 2T-STORE</p>
                 <a class="cart_remove" (click)="removeCartItem(item.productId)">
                   <small>Xóa</small>
                 </a>
