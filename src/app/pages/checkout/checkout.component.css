@@ -342,3 +342,14 @@ th {
 .section-title {
   text-align: left;
 }
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 24px;
+  }
+  .wrap {
+    flex-direction: column-reverse;
+  }
+  .flex-input {
+    flex-direction: column;
+  }
+}
