@@ -34,7 +34,11 @@
           <ng-container matColumnDef="{{column}}">
             <th mat-header-cell *matHeaderCellDef> {{getColumnLabel(column)}} </th>
             <td mat-cell *matCellDef="let element">
-              {{element[column]}}
+              @if (column === 'orderStatus') {
+                <span [ngStyle]="{'color': getOrderStatusColor(element[column])}">{{element[column]}}</span>
+              } @else {
+                {{element[column]}}
+              }
             </td>
           </ng-container>
         }

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterModule, RouterOutlet} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {OrderService} from "../../core/services/order.service";
-import { NgFor, NgIf} from "@angular/common";
+import {NgFor, NgIf, NgStyle} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -31,11 +31,12 @@ import {ThemePalette} from '@angular/material/core';
     CurrencyFormatPipe,
     NgFor,
     NgIf,
+    NgStyle,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
-export class OrderComponent implements OnInit{
+export class OrderComponent implements OnInit {
   dataSource: any[] = [];
   display = false;
   isLoading = true;
@@ -66,6 +67,18 @@ export class OrderComponent implements OnInit{
       this.display = true;
       this.isLoading = false;
     });
+  }
+  getOrderStatusColor(orderStatus: string): string {
+    switch (orderStatus) {
+      case 'Đang chờ xử lý':
+        return 'red';
+      case 'Đã xác nhận':
+        return 'blue';
+      case 'Hoàn thành':
+        return 'green';
+      default:
+        return '';
+    }
   }
   columnsToDisplay = ['orderId', 'paymentMethod', 'orderStatus', 'orderDate', 'totalAmount'];
   expandedElement: any;
