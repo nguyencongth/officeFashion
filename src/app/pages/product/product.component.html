@@ -171,9 +171,29 @@
               </div>
               <ul class="pagination">
                 <!-- Phân trang -->
-                <button class="page-link" (click)="onPageChange(page - 1)" [disabled]="page === 1">Previous</button>
-                <button *ngFor="let pageNumber of getPageNumbers()" class="page-link" (click)="onPageChange(pageNumber)" [ngClass]=" {'active-pagination': pageNumber === page} ">{{pageNumber}}</button>
-                <button class="page-link" (click)="onPageChange(page + 1)" [disabled]="page === getTotalPages()">Next</button>
+                <button
+                  class="page-link"
+                  (click)="onPageChange(page - 1)"
+                  [disabled]="page === 1"
+                >
+                  Previous
+                </button>
+                <button
+                  class="page-link"
+                  *ngFor="let pageNumber of getPageNumbers()"
+                  (click)="pageNumber !== '...' ? onPageChange(parseInt(pageNumber)) : null"
+                  [disabled]="pageNumber === '...'"
+                  [ngClass]=" {'active-pagination': pageNumber === page.toString()}"
+                >
+                  {{pageNumber}}
+                </button>
+                <button
+                  class="page-link"
+                  (click)="onPageChange(page + 1)"
+                  [disabled]="page === getTotalPages()"
+                >
+                  Next
+                </button>
               </ul>
             </div>
           </div>

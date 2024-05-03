@@ -125,9 +125,38 @@ export class ProductComponent implements OnInit, OnDestroy {
   getTotalPages(): number {
     return Math.ceil(this.totalItem / this.pageSize);
   }
-  getPageNumbers(): number[] {
+  getPageNumbers(): string[] {
     const totalPages = this.getTotalPages();
-    return Array.from({ length: totalPages }, (_, index) => index + 1);
+    const maxPagesToShow = 3;
+    const pages: string[] = [];
+
+    if (this.page <= maxPagesToShow) {
+      for (let i = 1; i <= Math.min(maxPagesToShow, totalPages); i++) {
+        pages.push(i.toString());
+      }
+      if (totalPages > maxPagesToShow) {
+        pages.push('...');
+      }
+    } else if (this.page > totalPages - maxPagesToShow) {
+        if (this.page >= maxPagesToShow + 1) {
+          pages.push('...');
+        }
+        for (let i = totalPages - maxPagesToShow + 1; i <= totalPages; i++) {
+          pages.push(i.toString());
+        }
+    } else {
+      pages.push('...');
+      for (let i = this.page - 1; i <= this.page + 1; i++) {
+        pages.push(i.toString());
+      }
+      pages.push('...');
+    }
+
+    if (!pages.includes(totalPages.toString())) {
+      pages.push(totalPages.toString());
+    }
+
+    return pages;
   }
   filterProductsByPrice(priceRange: number) {
     this.selectedPriceRange = priceRange;
@@ -149,5 +178,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.products = data.arrayProduct;
       this.totalItem = data.pagination.totalItems;
     });
+  }
+  parseInt(value: string): number {
+    return parseInt(value);
   }
 }
