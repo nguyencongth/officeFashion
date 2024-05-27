@@ -130,30 +130,33 @@ export class ProductComponent implements OnInit, OnDestroy {
     const maxPagesToShow = 3;
     const pages: string[] = [];
 
-    if (this.page <= maxPagesToShow) {
+    if (this.page <= 2) {
+      // Hiển thị từ trang 1 đến trang 3 hoặc ít hơn nếu totalPages nhỏ hơn 3
       for (let i = 1; i <= Math.min(maxPagesToShow, totalPages); i++) {
         pages.push(i.toString());
       }
       if (totalPages > maxPagesToShow) {
         pages.push('...');
+        pages.push(totalPages.toString());
       }
-    } else if (this.page > totalPages - maxPagesToShow) {
-        if (this.page >= maxPagesToShow + 1) {
-          pages.push('...');
-        }
-        for (let i = totalPages - maxPagesToShow + 1; i <= totalPages; i++) {
-          pages.push(i.toString());
-        }
+    } else if (this.page >= totalPages - 1) {
+      // Hiển thị các trang cuối cùng
+      if (totalPages > maxPagesToShow) {
+        pages.push('...');
+      }
+      for (let i = totalPages - maxPagesToShow + 1; i <= totalPages; i++) {
+        pages.push(i.toString());
+      }
     } else {
+      // Hiển thị trang hiện tại và các trang xung quanh
       pages.push('...');
       for (let i = this.page - 1; i <= this.page + 1; i++) {
         pages.push(i.toString());
       }
-      pages.push('...');
-    }
-
-    if (!pages.includes(totalPages.toString())) {
-      pages.push(totalPages.toString());
+      if (this.page + 1 < totalPages) {
+        //pages.push('...');
+        pages.push(totalPages.toString());
+      }
     }
 
     return pages;
