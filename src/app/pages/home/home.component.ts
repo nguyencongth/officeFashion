@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit{
   ngOnInit() {
     this.getProductsNew();
     this.toastr.info("Chào mừng bạn đến với 2T-STORE Thời trang công sở", "Thông báo", {
-      timeOut: 100000,
+      timeOut: 4000,
       progressBar: true,
       progressAnimation: 'increasing',
       positionClass: 'toast-top-right'
