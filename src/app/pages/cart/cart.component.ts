@@ -7,6 +7,7 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ThemePalette} from "@angular/material/core";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -42,7 +43,11 @@ export class CartComponent implements OnInit {
   value = 50;
   customDiameter = 50;
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
   }
 
   ngOnInit() {
@@ -73,6 +78,7 @@ export class CartComponent implements OnInit {
     const customerId = Number(localStorage.getItem('user_id'));
     this.cartService.removeCartItem(customerId, productId).subscribe((data: any) => {
       if (data) {
+        this.toastr.success("Đã xóa sản phẩm khỏi giỏ hàng", "Thành công");
         this.getCartItems();
       }
     })
@@ -90,6 +96,7 @@ export class CartComponent implements OnInit {
     data.map(item => {
       this.cartService.updateQuantity(customerId, item.productId, item.newQuantity).subscribe(data => {
         if (data) {
+          this.toastr.success("Cập nhật giỏ hàng thành công", "Thành công");
           this.getCartItems();
         }
       });

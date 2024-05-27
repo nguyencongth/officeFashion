@@ -6,6 +6,7 @@ import {RouterModule, Router } from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {ReactiveFormsModule, FormsModule, FormBuilder} from '@angular/forms';
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,7 @@ import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
     RouterModule,
     FormsModule,
     CurrencyFormatPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
@@ -33,7 +34,8 @@ export class ProductDetailComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private cartService: CartService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ){
     const quantityControl = this.addToCartForm.controls.quantity;
     if(quantityControl) {
@@ -70,6 +72,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getProductById(productId).subscribe(() => {
         this.cartService.addCartItem(customerId, productId, quantity).subscribe((response: any) => {
           if (response) {
+            this.toastr.success('Đã thêm sản phẩm vào giỏ hàng', 'Thành công');
             this.router.navigate(['/cart']);
           } else {
             console.log('Failed to add item to cart');

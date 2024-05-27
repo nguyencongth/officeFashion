@@ -4,6 +4,7 @@ import {ProductService} from "../../core/services/product.service";
 import {NgFor, NgIf} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import {Router, RouterModule} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -19,7 +20,10 @@ import {Router, RouterModule} from "@angular/router";
 })
 export class HomeComponent implements OnInit{
   constructor(
-    private productService: ProductService, private router: Router) {}
+    private productService: ProductService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   products: any[] = [];
   slickConfig1 = {
     slidesToShow: 4,
@@ -81,6 +85,12 @@ export class HomeComponent implements OnInit{
   display = false;
   ngOnInit() {
     this.getProductsNew();
+    this.toastr.info("Chào mừng bạn đến với 2T-STORE Thời trang công sở", "Thông báo", {
+      timeOut: 100000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      positionClass: 'toast-top-right'
+    });
   }
   getProductsNew(){
     this.productService.getProductNew().subscribe((data: any) => {

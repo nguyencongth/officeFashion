@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angu
 import { NgIf } from "@angular/common";
 import { AuthService } from "../../core/services/auth.service";
 import { CartService } from "../../core/services/cart.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   loginForm = this.fb.group({
@@ -38,10 +40,14 @@ export class LoginComponent {
       this.authService.login(email, password)
         .subscribe((res) => {
           if (res) {
-            this.router.navigate(['/home']);
+            this.toastr.success('Đăng nhập thành công!');
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 1000)
             this.getCartItems();
           }
           else {
+            this.toastr.error('Đăng nhập thất bại!');
             this.errorMessage = 'Tài khoản hoặc mật khẩu không chính xác.';
           }
         })
