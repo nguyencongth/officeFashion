@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit{
     });
   }
   getProductsNew(){
-    this.productService.getProductNew().subscribe((data: any) => {
+    this.productService.getProductNewHome().subscribe((data: any) => {
       this.display = true;
       this.products = data.arrayProduct;
     });

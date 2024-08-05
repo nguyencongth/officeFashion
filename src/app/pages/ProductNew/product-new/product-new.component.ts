@@ -12,13 +12,19 @@ import {NgIf} from "@angular/common";
 })
 export class ProductNewComponent implements OnInit{
   productsNew = null;
+  page = 1;
+  pageSize = 6;
+  totalItem = 0;
+  selectedPriceRange: number | null = null;
+  title = "SẢN PHẨM MỚI";
   constructor(private productService: ProductService) { }
   ngOnInit() {
       this.getProductsNew();
   }
   getProductsNew(){
-      this.productService.getProductNew().subscribe((data:any)=> {
-          this.productsNew = data.arrayProduct;
+      this.productService.getProductNew(this.selectedPriceRange, this.page, this.pageSize).subscribe((data:any)=> {
+          this.productsNew = data.arrayProductNew;
+          this.totalItem = data.pagination.totalItems;
       });
     }
 

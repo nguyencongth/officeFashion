@@ -18,8 +18,16 @@ export class ProductService {
     }
     return this.http.get(url);
   }
-  getProductNew():Observable<any> {
-    return this.http.get(`${this.apiUrl}/productNew`);
+  getProductNew(priceRange: number | null, page: number, pageSize: number):Observable<any> {
+    let url = `${this.apiUrl}/productNew?page=${page}&pageSize=${pageSize}`;
+    if (priceRange !== null) {
+      url += `&priceRange=${priceRange}`;
+    }
+    return this.http.get(url);
+  }
+
+  getProductNewHome():Observable<any> {
+    return this.http.get(`${this.apiUrl}/productNewHome`);
   }
   getProductById(id: number): Observable<any> {
     const url = `${this.apiUrl}/getProductId?productID=${id}`;

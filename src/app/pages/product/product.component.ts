@@ -31,9 +31,15 @@ import {ThemePalette} from "@angular/material/core";
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit, OnDestroy {
+  @Input() productsNew: any[] = [];
+  @Input() pageNew: number = 0;
+  @Input() pageSizeNew: number = 0;
+  @Input() totalItemNew: number = 0;
+  @Input() selectedPriceRangeNew: number | null = null;
+  @Input() titleNew: string;
+  title = "TẤT CẢ SẢN PHẨM"
   panelVisible = false;
   selectedPriceRange: number | null = null;
-  @Input() productsNew: any[] = [];
   products: any[] = [];
   page = 1;
   pageSize = 6;
@@ -67,6 +73,11 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.getProducts();
         } else {
           this.products = this.productsNew;
+          this.totalItem = this.totalItemNew;
+          this.page = this.pageNew;
+          this.pageSize = this.pageSizeNew;
+          this.selectedPriceRange = this.selectedPriceRangeNew;
+          this.title = this.titleNew;
           this.isDisplay = true;
           this.isLoading = false;
         }
@@ -102,6 +113,15 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       })
   }
+  getProductsNew() {
+    this.productService.getProductNew(this.selectedPriceRange, this.page, this.pageSize)
+      .subscribe((data: any) => {
+        this.products = data.arrayProductNew;
+        this.totalItem = data.pagination.totalItems;
+        this.isDisplay = true;
+        this.isLoading = false;
+      })
+  }
   getProductsByCategory(categoryId: number) {
     this.productService.getProductsByCategoryId(categoryId, this.selectedPriceRange, this.page, this.pageSize)
       .subscribe((data: any) => {
@@ -117,8 +137,10 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.categoryId = params['categoryId'];
       if (this.categoryId) {
         this.getProductsByCategory(this.categoryId);
-      } else {
+      } else if (this.productsNew.length === 0) {
         this.getProducts();
+      } else {
+        this.getProductsNew();
       }
     });
   }
@@ -168,8 +190,10 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.categoryId = params['categoryId'];
       if (this.categoryId) {
         this.getProductsByCategory(this.categoryId);
-      } else {
+      } else if (this.productsNew.length === 0) {
         this.getProducts();
+      } else {
+        this.getProductsNew();
       }
     });
   }
