@@ -1,10 +1,10 @@
 export const environment = {
   api: {
-    urlCart: 'https://www.thanhncdeveloper.somee.com/api/Cart',
-    urlProduct: 'https://www.thanhncdeveloper.somee.com/api/Product',
-    urlCategory: 'https://www.thanhncdeveloper.somee.com/api/ProductType',
-    urlLogin: 'https://www.thanhncdeveloper.somee.com/api/Customers/Login',
-    urlOrder:'https://www.thanhncdeveloper.somee.com/api/Orders',
-    urlUser: 'https://www.thanhncdeveloper.somee.com/api/Customers'
+    urlCart: 'https://localhost:7249/api/Cart',
+    urlProduct: 'https://localhost:7249/api/Product',
+    urlCategory: 'https://localhost:7249/api/ProductType',
+    urlLogin: 'https://localhost:7249/api/Customers/Login',
+    urlOrder:'https://localhost:7249/api/Orders',
+    urlUser: 'https://localhost:7249/api/Customers'
   }
 }
