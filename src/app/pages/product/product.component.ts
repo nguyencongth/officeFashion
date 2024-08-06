@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import { ProductService } from "../../core/services/product.service";
 import { NgFor, NgIf, NgClass } from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
@@ -57,7 +57,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private el: ElementRef,
   ) { }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -118,8 +119,6 @@ export class ProductComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.products = data.arrayProductNew;
         this.totalItem = data.pagination.totalItems;
-        this.isDisplay = true;
-        this.isLoading = false;
       })
   }
   getProductsByCategory(categoryId: number) {
@@ -141,6 +140,10 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.getProducts();
       } else {
         this.getProductsNew();
+      }
+      const collectionTitleElement = this.el.nativeElement.querySelector('.collection-title');
+      if(collectionTitleElement) {
+        collectionTitleElement.scrollIntoView({behavior: 'smooth'});
       }
     });
   }
