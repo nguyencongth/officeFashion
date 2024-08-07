@@ -27,8 +27,13 @@
                 <h1 class="namePro">{{p.productName}}</h1>
               </div>
               <div class="product-brand">
-                <span class="title">Thương hiệu:</span>
+                <span class="title">Thương hiệu: </span>
                 <a href="#">2T-STORE</a>
+              </div>
+              <div style="margin-top: 15px">
+                <span class="title">Số lượng còn: </span>
+                <a *ngIf="p.quantityStock > 0; else outOfStock" href="#">{{p.quantityStock}}</a>
+                <ng-template #outOfStock>Hết hàng</ng-template>
               </div>
             </div>
             <div class="product-price">
@@ -104,10 +109,19 @@
                   </div>
                 </div>
                 <div class="product-actions">
-                  <button type="submit" name="add" id="AddToCart" class="btnAddToCart">Thêm vào
-                    giỏ hàng</button>
-                  <button type="button" name="buy" id="buy-now" class="btnBuyNow" (click)="buyNow(p.productId, Number(selectedQuantity))">Mua
-                    ngay</button>
+                  <button
+                    type="submit" name="add" id="AddToCart" class="btnAddToCart"
+                    [disabled]="p.quantityStock === 0"
+                  >
+                    Thêm vào giỏ hàng
+                  </button>
+                  <button
+                    type="button" name="buy" id="buy-now" class="btnBuyNow"
+                    (click)="buyNow(p.productId, Number(selectedQuantity))"
+                    [disabled]="p.quantityStock === 0"
+                  >
+                    Mua ngay
+                  </button>
                 </div>
               </div>
 

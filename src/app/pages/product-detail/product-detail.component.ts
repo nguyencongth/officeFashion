@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../core/services/product.service";
-import {NgFor} from "@angular/common";
+import {NgFor, NgIf} from "@angular/common";
 import {RouterModule, Router } from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
 import {ReactiveFormsModule, FormsModule, FormBuilder} from '@angular/forms';
@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
     FormsModule,
     CurrencyFormatPipe,
     ReactiveFormsModule,
+    NgIf,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
@@ -65,6 +66,13 @@ export class ProductDetailComponent implements OnInit {
     this.selectedSize = size;
   }
   addToCart(productId: number, quantity: number): void {
+    if(quantity > 10) {
+      alert('Số lượng sản phẩm không được vượt quá 10');
+      return;
+    } else if(quantity < 1) {
+      alert('Số lượng sản phẩm không được nhỏ hơn 1');
+      return;
+    }
     const customerId = Number(localStorage.getItem('user_id'));
     if(!customerId) {
       alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');

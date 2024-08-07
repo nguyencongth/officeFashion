@@ -35,6 +35,11 @@ export class LoginComponent {
   })
 
   login(){
+    if (this.loginForm.invalid) {
+      this.loginForm.controls.email.markAsTouched();
+      this.loginForm.controls.password.markAsTouched();
+      return;
+    }
     const { email , password } = this.loginForm.value;
     if(email && password) {
       this.authService.login(email, password)
