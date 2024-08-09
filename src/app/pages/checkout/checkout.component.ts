@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {CartService} from "../../core/services/cart.service";
-import {NgFor} from "@angular/common";
+import {NgFor, NgIf} from "@angular/common";
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import {OrderService} from "../../core/services/order.service";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UserService} from "../../core/services/user.service";
 import {ProductService} from "../../core/services/product.service";
 
@@ -16,7 +16,8 @@ import {ProductService} from "../../core/services/product.service";
     FormsModule,
     ReactiveFormsModule,
     CurrencyFormatPipe,
-    NgFor
+    NgFor,
+    NgIf
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -25,14 +26,14 @@ export class CheckoutComponent implements OnInit {
   @ViewChildren('paymentMethods') paymentMethodInputs: QueryList<ElementRef>;
   cartItems: any[] = [];
   totalAmount: number = 0;
-  isDisabled: boolean = true;
+  // isDisabled: boolean = false;
   productId: number;
   quantitySell: number;
   userInfo = this.fb.group({
-    name: {value: '', disabled: this.isDisabled},
-    phone: {value: '', disabled: this.isDisabled},
-    address: {value: '', disabled: this.isDisabled},
-    email: {value: '', disabled: this.isDisabled},
+    name: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'), Validators.maxLength(10)]],
+    address: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
   })
   constructor(
     private cartService: CartService,
@@ -93,6 +94,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
   createOrder() {
+    if (this.userInfo.invalid) {
+      this.userInfo.markAllAsTouched();
+      return;
+    }
     const customerId = Number(localStorage.getItem('user_id'));
     const orderItems: any[] = [];
     let selectPaymentMethod = "";
@@ -106,13 +111,17 @@ export class CheckoutComponent implements OnInit {
       };
       orderItems.push(orderItem);
     }
+    const userName = this.userInfo.controls.name.value;
+    const email = this.userInfo.controls.email.value;
+    const phoneNumber = this.userInfo.controls.phone.value;
+    const shippingAddress = this.userInfo.controls.address.value;
     const paymentMethodInputs = this.paymentMethodInputs.toArray();
     for(const paymentMethod of paymentMethodInputs) {
       if(paymentMethod.nativeElement.checked) {
         selectPaymentMethod = paymentMethod.nativeElement.value;
       }
     }
-    this.orderService.createOrder(customerId, selectPaymentMethod, orderItems).subscribe((data: any) => {
+    this.orderService.createOrder(customerId, userName, email, phoneNumber, shippingAddress, selectPaymentMethod, orderItems).subscribe((data: any) => {
       if(data.statusCode === 200) {
         this.removeCart();
         if(selectPaymentMethod !== "Ví MoMo") {

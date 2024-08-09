@@ -353,3 +353,20 @@ th {
     flex-direction: column;
   }
 }
+
+.field-input.ng-invalid.ng-touched {
+  border-color: #ff0000;
+}
+
+.field-input.ng-invalid.ng-touched::placeholder {
+  color: #ff0000;
+}
+
+.form-message span {
+  color: #ff0000;
+  font-size: 12px;
+}
+
+.form-message.invalid {
+  color: #ff0000;
+}

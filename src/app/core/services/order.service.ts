@@ -10,12 +10,18 @@ export class OrderService {
   private apiUrl = environment.api.urlOrder;
   constructor(private http: HttpClient) { }
 
-  createOrder(customerId: number, paymentMethod: string, orderItems: any[]):Observable<any> {
+  createOrder(
+    customerId: number, userName: any, email: any, phoneNumber: any, shippingAddress: any,  paymentMethod: string, orderItems: any[]
+  ):Observable<any> {
     const url = `${this.apiUrl}/order`;
     const data = {
       customerId: customerId,
       orderDate: "2023-10-24T16:47:06.563Z",
       totalAmount: 0,
+      userName: userName,
+      email: email,
+      phoneNumber: phoneNumber,
+      shippingAddress: shippingAddress,
       paymentMethod: paymentMethod,
       orderStatus: 0,
       orderItems: orderItems,
