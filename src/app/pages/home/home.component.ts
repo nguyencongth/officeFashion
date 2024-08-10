@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit{
     private toastr: ToastrService
   ) {}
   products: any[] = [];
+  productsSale: any[] = [];
   slickConfig1 = {
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -83,8 +84,10 @@ export class HomeComponent implements OnInit{
     autoplaySpeed: 2000,
   };
   display = false;
+  displaySale = false;
   ngOnInit() {
     this.getProductsNew();
+    this.getProductsSale();
     this.toastr.info("Chào mừng bạn đến với 2T-STORE Thời trang công sở", "Thông báo", {
       timeOut: 4000,
       progressBar: true,
@@ -96,6 +99,12 @@ export class HomeComponent implements OnInit{
     this.productService.getProductNewHome().subscribe((data: any) => {
       this.display = true;
       this.products = data.arrayProduct;
+    });
+  }
+  getProductsSale(){
+    this.productService.getProductSaleHome().subscribe((data: any) => {
+      this.displaySale = true;
+      this.productsSale = data.arrayProduct;
     });
   }
   productDetail(id: number) {

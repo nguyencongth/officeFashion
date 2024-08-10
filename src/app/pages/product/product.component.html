@@ -161,10 +161,14 @@
                           <a [routerLink]="['detail/', product.productId]" class="btn-tv">XEM THÊM</a>
                         </div>
                       </div>
+                      <div class="product-discount" *ngIf="product.discountPercentage != 0">
+                        <span>-{{product.discountPercentage}}%</span>
+                      </div>
                     </div>
                     <div class="product-item-info">
                       <h4 class="image-title">{{product.productName}}</h4>
-                      <span class="current-price">{{product.price | currencyFormat}}</span>
+                      <span class="current-price current-price-new">{{product.discountedPrice | currencyFormat}}</span>
+                      <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price | currencyFormat}}</span>
                     </div>
                   </div>
                 </div>

@@ -29,6 +29,11 @@ export class ProductService {
   getProductNewHome():Observable<any> {
     return this.http.get(`${this.apiUrl}/productNewHome`);
   }
+
+  getProductSaleHome():Observable<any> {
+    return this.http.get(`${this.apiUrl}/productSaleHome`);
+  }
+
   getProductById(id: number): Observable<any> {
     const url = `${this.apiUrl}/getProductId?productID=${id}`;
     return this.http.get(url);

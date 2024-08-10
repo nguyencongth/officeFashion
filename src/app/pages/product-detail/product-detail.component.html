@@ -37,7 +37,11 @@
               </div>
             </div>
             <div class="product-price">
-              <span class="current-price">{{p.price | currencyFormat}}</span>
+              <span class="current-price current-price-new">{{p.discountedPrice | currencyFormat}}</span>
+              <span class="current-price current-price-old" *ngIf="p.discountPercentage != 0">{{p.price | currencyFormat}}</span>
+              <span class="product-discount" *ngIf="p.discountPercentage != 0">
+                <span>-{{p.discountPercentage}}%</span>
+              </span>
             </div>
             <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical" enctype="multipart/form-data" (ngSubmit)="addToCart(p.productId, Number(selectedQuantity))">
               <div class="product-variants-wrapper">

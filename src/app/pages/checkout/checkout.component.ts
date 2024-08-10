@@ -78,7 +78,7 @@ export class CheckoutComponent implements OnInit {
   }
   calculateTotalAmount() {
     this.totalAmount = this.cartItems.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
+      return acc + item.discountedPrice * item.quantity;
     }, 0)
   }
   getUserInfo() {

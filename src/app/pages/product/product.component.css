@@ -197,6 +197,23 @@
   background: #fff;
   color: #070707;
 }
+
+.product-item .product-image .product-discount {
+  position: absolute;
+  background-color: #fff;
+  color: red;
+  top: 0;
+  right: 0;
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.current-price-old {
+  text-decoration: line-through;
+  color: red;
+  margin-left: 12px;
+}
 @media only screen and (max-width: 768px) {
   .large--one {
     display: none;

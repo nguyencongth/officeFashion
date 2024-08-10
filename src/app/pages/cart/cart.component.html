@@ -84,13 +84,13 @@
                     </a>
                   </td>
                   <td class="cart-product-price">
-                    <span class="h3">{{item.price | currencyFormat}}</span>
+                    <span class="h3">{{item.discountedPrice | currencyFormat}}</span>
                   </td>
                   <td>
                     <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
                   </td>
                   <td class="cart-product-price text-right">
-                    <span class="h3">{{item.price * item.quantity | currencyFormat}}</span>
+                    <span class="h3">{{item.discountedPrice * item.quantity | currencyFormat}}</span>
                   </td>
                 </tr>
                 </tbody>

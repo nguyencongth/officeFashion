@@ -53,10 +53,14 @@
                       <a (click)="productDetail(product.productId)" class="btn-tv">XEM THÊM</a>
                     </div>
                   </div>
+                  <div class="product-discount" *ngIf="product.discountPercentage != 0">
+                    <span>-{{product.discountPercentage}}%</span>
+                  </div>
                 </div>
                 <div class="product-item-info">
                   <h4 class="image-title">{{product.productName}}</h4>
-                  <span class="current-price">{{product.price | currencyFormat}}</span>
+                  <span class="current-price current-price-new">{{product.discountedPrice | currencyFormat}}</span>
+                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price | currencyFormat}}</span>
                 </div>
               </div>
             </div>
@@ -68,11 +72,11 @@
       <div class="wrapper">
         <div class="inner">
           <div class="section-title">
-            <h2>Độc quyền online</h2>
+            <h2>Sản phẩm ưu đãi</h2>
           </div>
-          <ng-container *ngIf="display">
+          <ng-container *ngIf="displaySale">
             <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
-              <div class="image-item" *ngFor="let product of products">
+              <div class="image-item" *ngFor="let product of productsSale">
                 <div class="image">
                   <img [src]="product.imageProduct" alt="{{product.productName}}" />
                   <div class="product-action">
@@ -80,10 +84,14 @@
                       <a (click)="productDetail(product.productId)" class="btn-tv">XEM THÊM</a>
                     </div>
                   </div>
+                  <div class="product-discount" *ngIf="product.discountPercentage != 0">
+                    <span>-{{product.discountPercentage}}%</span>
+                  </div>
                 </div>
                 <div class="product-item-info">
                   <h4 class="image-title">{{product.productName}}</h4>
-                  <span class="current-price">{{product.price | currencyFormat}}</span>
+                  <span class="current-price current-price-new">{{product.discountedPrice | currencyFormat}}</span>
+                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price | currencyFormat}}</span>
                 </div>
               </div>
             </div>
