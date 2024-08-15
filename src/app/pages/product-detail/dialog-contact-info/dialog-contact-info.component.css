@@ -1,0 +1,31 @@
+.ft-social > a.fb {
+  background: #007AFF;
+}
+
+.ft-social > a {
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  background: #545454;
+  color: #fff;
+  border-radius: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.ft-social > a i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.txt {
+  font-size: 14px;
+  color: #f33a58;
+}

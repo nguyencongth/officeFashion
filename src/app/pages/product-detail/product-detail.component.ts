@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../core/services/product.service";
 import {NgFor, NgIf} from "@angular/common";
@@ -7,6 +7,8 @@ import {CartService} from "../../core/services/cart.service";
 import {ReactiveFormsModule, FormsModule, FormBuilder} from '@angular/forms';
 import {CurrencyFormatPipe} from "../../core/Pipe/currency-format.pipe";
 import { ToastrService } from 'ngx-toastr';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogContactInfoComponent} from "./dialog-contact-info/dialog-contact-info.component";
 
 @Component({
   selector: 'app-product-detail',
@@ -35,7 +37,8 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog,
   ){
     const quantityControl = this.addToCartForm.controls.quantity;
     if(quantityControl) {
@@ -45,7 +48,8 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   ngOnInit() {
-      this.getProductDetail();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    this.getProductDetail();
   }
 
   getProductDetail() {
@@ -60,9 +64,15 @@ export class ProductDetailComponent implements OnInit {
   onSizeChange(size: string): void {
     this.selectedSize = size;
   }
+
+  openDialogContactInfo(): void {
+    this.dialog.open(DialogContactInfoComponent, {});
+  }
+
   addToCart(productId: number, quantity: number): void {
-    if(quantity > 10) {
-      alert('Số lượng sản phẩm không được vượt quá 10');
+    if(quantity > 10 || quantity > this.product[0].quantityStock) {
+      //alert('Số lượng sản phẩm không được vượt quá 10');
+      this.openDialogContactInfo();
       return;
     } else if(quantity < 1) {
       alert('Số lượng sản phẩm không được nhỏ hơn 1');
