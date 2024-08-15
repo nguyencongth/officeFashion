@@ -26,6 +26,15 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  getProductSale(priceRange: number | null, page: number, pageSize: number):Observable<any> {
+    let url = `${this.apiUrl}/productSale?page=${page}&pageSize=${pageSize}`;
+    if (priceRange !== null) {
+      url += `&priceRange=${priceRange}`;
+    }
+    return this.http.get(url);
+
+  }
+
   getProductNewHome():Observable<any> {
     return this.http.get(`${this.apiUrl}/productNewHome`);
   }

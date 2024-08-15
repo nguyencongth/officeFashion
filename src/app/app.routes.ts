@@ -29,6 +29,11 @@ export const routes: Routes = [
         loadChildren: () => import('./core/router/product-new-router.routes')
           .then(mod => mod.PRODUCT_NEW_ROUTER)
       },
+      {
+        path: 'product-sale',
+        loadChildren: () => import('./core/router/product-sale-router.routes')
+          .then(mod => mod.PRODUCT_SALE_ROUTER)
+      },
       { path: 'login', component: LoginComponent, title: 'Đăng nhập' },
       { path: 'register', component: RegisterComponent, title: 'Đăng ký tài khoản' },
       { path: 'forgot-password', component: ForgotPasswordComponent, title: 'Quên mật khẩu' },

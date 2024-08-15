@@ -23,7 +23,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
-  @Input() productDetail: any[] = [];
   product: any[] = [];
   selectedSize: string = '';
   addToCartForm = this.fb.group({
@@ -46,11 +45,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   ngOnInit() {
-    if(this.productDetail.length === 0) {
       this.getProductDetail();
-    } else {
-      this.product = this.productDetail;
-    }
   }
 
   getProductDetail() {

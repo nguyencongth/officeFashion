@@ -37,6 +37,12 @@ export class ProductComponent implements OnInit, OnDestroy {
   @Input() totalItemNew: number = 0;
   @Input() selectedPriceRangeNew: number | null = null;
   @Input() titleNew: string;
+  @Input() productSale: any[] = [];
+  @Input() pageSale: number = 0;
+  @Input() pageSizeSale: number = 0;
+  @Input() totalItemSale: number = 0;
+  @Input() selectedPriceRangeSale: number | null = null;
+  @Input() titleSale: string;
   title = "TẤT CẢ SẢN PHẨM"
   panelVisible = false;
   selectedPriceRange: number | null = null;
@@ -70,15 +76,24 @@ export class ProductComponent implements OnInit, OnDestroy {
         });
         this.getProductsByCategory(this.categoryId);
       } else {
-        if (this.productsNew.length === 0){
+        if (this.productsNew.length === 0 && this.productSale.length === 0) {
           this.getProducts();
-        } else {
+        } else if(this.productSale.length === 0) {
           this.products = this.productsNew;
           this.totalItem = this.totalItemNew;
           this.page = this.pageNew;
           this.pageSize = this.pageSizeNew;
           this.selectedPriceRange = this.selectedPriceRangeNew;
           this.title = this.titleNew;
+          this.isDisplay = true;
+          this.isLoading = false;
+        } else if (this.productsNew.length === 0) {
+          this.products = this.productSale;
+          this.totalItem = this.totalItemSale;
+          this.page = this.pageSale;
+          this.pageSize = this.pageSizeSale;
+          this.selectedPriceRange = this.selectedPriceRangeSale;
+          this.title = this.titleSale;
           this.isDisplay = true;
           this.isLoading = false;
         }
@@ -130,15 +145,25 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       })
   }
+
+  getProductsSale() {
+    this.productService.getProductSale(this.selectedPriceRange, this.page, this.pageSize)
+      .subscribe((data: any) => {
+        this.products = data.arrayProduct;
+        this.totalItem = data.pagination.totalItems;
+      })
+  }
   onPageChange(pageNumber: number) {
     this.page = pageNumber;
     this.route.queryParams.subscribe(params => {
       this.categoryId = params['categoryId'];
       if (this.categoryId) {
         this.getProductsByCategory(this.categoryId);
-      } else if (this.productsNew.length === 0) {
+      } else if (this.productsNew.length === 0 && this.productSale.length === 0) {
         this.getProducts();
-      } else {
+      } else if(this.productsNew.length === 0) {
+        this.getProductsSale();
+      } else if(this.productSale.length === 0) {
         this.getProductsNew();
       }
       const collectionTitleElement = this.el.nativeElement.querySelector('.collection-title');
@@ -193,10 +218,12 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.categoryId = params['categoryId'];
       if (this.categoryId) {
         this.getProductsByCategory(this.categoryId);
-      } else if (this.productsNew.length === 0) {
+      } else if (this.productsNew.length === 0 && this.productSale.length === 0) {
         this.getProducts();
-      } else {
+      } else if (this.productSale.length === 0) {
         this.getProductsNew();
+      } else if(this.productsNew.length === 0) {
+        this.getProductsSale();
       }
     });
   }
