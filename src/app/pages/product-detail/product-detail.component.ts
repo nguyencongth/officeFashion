@@ -95,7 +95,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   buyNow(productId: number, quantity: number): void {
-    const loggedIn = localStorage.getItem('loggedIn');
+    const loggedIn = localStorage.getItem('loggedInClient');
     if(!loggedIn) {
       alert('Vui lòng đăng nhập để mua hàng');
     }else {

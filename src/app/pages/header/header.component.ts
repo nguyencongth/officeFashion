@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private renderer: Renderer2
   ) {
-    const loggedIn = localStorage.getItem('loggedIn');
+    const loggedIn = localStorage.getItem('loggedInClient');
     if (loggedIn === 'true') {
       this.authService.setLoggedIn(true);
     }

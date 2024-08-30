@@ -12,7 +12,9 @@ export class AuthService {
   private loggedIn = false;
   private apiUrl = environment.api.urlLogin;
   private email: string | null = null;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.loggedIn == !!localStorage.getItem('loggedIn');
+  }
 
   login(email: string, password: string): Observable<any> {
     const loginData = {
@@ -23,7 +25,7 @@ export class AuthService {
       map((data: any) => {
         if(data.statusCode === 200) {
           this.loggedIn = true;
-          localStorage.setItem('loggedIn', 'true');
+          localStorage.setItem('loggedInClient', 'true');
           localStorage.setItem("email", email);
           localStorage.setItem('user_id', data.id_customer);
           return true;

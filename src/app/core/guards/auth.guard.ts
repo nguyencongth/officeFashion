@@ -8,7 +8,8 @@ import {AuthService} from "../services/auth.service";
 export class PermissionsService {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate() {
-    return this.authService.isLoggedIn() ? true : this.router.navigate(['/home']);
+    const isLoggedIn = !!localStorage.getItem('loggedInClient');
+    return isLoggedIn ? true : this.router.navigate(['/login']);
   }
 }
 export const authGuard: CanActivateFn = (route, state) => {
