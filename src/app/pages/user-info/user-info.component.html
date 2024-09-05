@@ -75,9 +75,9 @@
           <br>
           <mat-form-field>
             <mat-label>Nhập mật khẩu mới</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="newPassword">
-            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="newPassword">
+            <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+              <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="changePasswordForm.controls.newPassword.hasError('required')">Nhập mật khẩu mới</mat-error>
             <mat-error *ngIf="changePasswordForm.controls.newPassword.hasError('minlength')">Mật khẩu phải có ít nhất 6 ký tự</mat-error>
@@ -85,9 +85,9 @@
           <br>
           <mat-form-field>
             <mat-label>Xác nhận mật khẩu mới</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmNewPassword">
-            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmNewPassword">
+            <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+              <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="changePasswordForm.controls.confirmNewPassword.hasError('required')">Nhập xác mật khẩu mới</mat-error>
             <mat-error *ngIf="changePasswordForm.controls.confirmNewPassword.invalid">{{errorMessage}}</mat-error>

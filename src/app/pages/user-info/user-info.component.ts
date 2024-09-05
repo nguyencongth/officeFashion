@@ -38,6 +38,8 @@ import {ThemePalette} from "@angular/material/core";
 })
 export class UserInfoComponent implements OnInit {
   hide = true;
+  hide1 = true;
+  hide2 = true;
   errorMessage = '';
   isDisplay = false;
   isLoading = true;
