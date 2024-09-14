@@ -18,16 +18,11 @@
       <div class="inner">
         <h1>Giỏ Hàng</h1>
         <div class="spinner-container" *ngIf="isLoading">
-          <mat-spinner
-            class="spinner"
-            [color]="color"
-            [mode]="mode"
-            [value]="value"
-            [diameter]="customDiameter"
-          >
+          <mat-spinner class="spinner" [color]="color" [mode]="mode" [value]="value" [diameter]="customDiameter">
           </mat-spinner>
         </div>
-        <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()" *ngIf="isDisplay">
+        <form id="form-cart" action="" method="post" class="cart table-wrap" (ngSubmit)="updateCartItemQuantity()"
+          *ngIf="isDisplay">
           <ng-container *ngIf="isDisplayMobile">
             <div *ngIf="cartItems.length > 0 else noItem">
               <div class="flex-container mobile-view" *ngFor="let item of cartItems;">
@@ -39,12 +34,13 @@
                 <div class="cart-info-mobile">
                   <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
                   <p>Phiên bản: Size 4</p>
-                  <p>Thương hiệu: 2T-STORE</p>
+                  <p>Thương hiệu: NEM STORE</p>
                   <div class="cart-quantity-mobile">
                     <button class="quantity__adjust quantity__minus" (click)="decreaseQuantity(item)">
                       <i class="fa-solid fa-minus"></i>
                     </button>
-                    <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input quantity-input__mobile" value="{{item.quantity}}" min="0" #quantityInput>
+                    <input type="number" name="quantity" id="quantity-{{item.productId}}"
+                      class="quantity-input quantity-input__mobile" value="{{item.quantity}}" min="0" #quantityInput>
                     <button class="quantity__adjust quantity__plus" (click)="increaseQuantity(item)">
                       <i class="fa-solid fa-plus"></i>
                     </button>
@@ -61,38 +57,39 @@
             <div *ngIf="isDisplay">
               <table class="cart-table full" *ngIf="cartItems.length > 0 else noItem">
                 <thead class="cart_row">
-                <tr>
-                  <th colspan="2" class="text-center">Sản phẩm</th>
-                  <th class="text-center">Giá</th>
-                  <th class="text-center">Số lượng</th>
-                  <th class="text-right">Tổng tiền</th>
-                </tr>
+                  <tr>
+                    <th colspan="2" class="text-center">Sản phẩm</th>
+                    <th class="text-center">Giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-right">Tổng tiền</th>
+                  </tr>
                 </thead>
                 <tbody id="table_cartItems" *ngFor="let item of cartItems;">
-                <tr class="cart_row">
-                  <td>
-                    <a class="cart_image" (click)="cartDetail(item.productId)">
-                      <img [src]="item.imageProduct" alt="item.productName">
-                    </a>
-                  </td>
-                  <td class="cart-product-title">
-                    <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
-                    <p>Phiên bản: Size 4</p>
-                    <p>Thương hiệu: 2T-STORE</p>
-                    <a class="cart_remove" (click)="removeCartItem(item.productId)">
-                      <small>Xóa</small>
-                    </a>
-                  </td>
-                  <td class="cart-product-price">
-                    <span class="h3">{{item.discountedPrice | currencyFormat}}</span>
-                  </td>
-                  <td>
-                    <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input" value="{{item.quantity}}" min="0" #quantityInput>
-                  </td>
-                  <td class="cart-product-price text-right">
-                    <span class="h3">{{item.discountedPrice * item.quantity | currencyFormat}}</span>
-                  </td>
-                </tr>
+                  <tr class="cart_row">
+                    <td>
+                      <a class="cart_image" (click)="cartDetail(item.productId)">
+                        <img [src]="item.imageProduct" alt="item.productName">
+                      </a>
+                    </td>
+                    <td class="cart-product-title">
+                      <a class="h4" (click)="cartDetail(item.productId)">{{item.productName}}</a>
+                      <p>Phiên bản: Size 4</p>
+                      <p>Thương hiệu: NEM STORE</p>
+                      <a class="cart_remove" (click)="removeCartItem(item.productId)">
+                        <small>Xóa</small>
+                      </a>
+                    </td>
+                    <td class="cart-product-price">
+                      <span class="h3">{{item.discountedPrice | currencyFormat}}</span>
+                    </td>
+                    <td>
+                      <input type="number" name="quantity" id="quantity-{{item.productId}}" class="quantity-input"
+                        value="{{item.quantity}}" min="0" #quantityInput>
+                    </td>
+                    <td class="cart-product-price text-right">
+                      <span class="h3">{{item.discountedPrice * item.quantity | currencyFormat}}</span>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -107,8 +104,7 @@
                 <span class="cart_subtotal-title">Tổng tiền:</span>
                 <span id="totalAmount" class="h3 cart-subtotal">{{totalAmount | currencyFormat}}</span>
               </p>
-              <button type="submit" id="btnUpdateCartItem" name="update"
-                      class="btnCart update-cart">Cập nhật
+              <button type="submit" id="btnUpdateCartItem" name="update" class="btnCart update-cart">Cập nhật
               </button>
               <button type="button" id="btnPayment" name="checkout" class="btnCart" (click)="checkoutBtn()">Thanh
                 toán

@@ -3,7 +3,7 @@
     <div class="main">
       <div class="main-header">
         <a href="/" class="logo">
-          <h1 class="logo-text">2T-STORE</h1>
+          <h1 class="logo-text">NEM STORE</h1>
         </a>
         <ul class="breadcrumb">
           <li class="breadcrumb-item">
@@ -23,54 +23,62 @@
                   <h2 class="section-title">Thông tin vận chuyển</h2>
                 </div>
                 <div class="section-content">
-                    <div class="fieldset">
-                      <div class="field">
+                  <div class="fieldset">
+                    <div class="field">
+                      <div class="field-input-wrapper">
+                        <label class="field-label" for="fullName">Họ và tên</label>
+                        <input size="30" type="text" placeholder="Họ và tên" id="fullName" name="fullName"
+                          class="field-input" formControlName="name">
+                        <span class="form-message"
+                          *ngIf="userInfo.controls.name.invalid && (userInfo.controls.name.dirty || userInfo.controls.name.touched)">
+                          <span *ngIf="userInfo.controls.name.hasError('required')">Vui lòng nhập họ và tên</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="flex-input" style="display: flex;">
+                      <div class="field field-two-thirds">
                         <div class="field-input-wrapper">
-                          <label class="field-label" for="fullName">Họ và tên</label>
-                          <input size="30" type="text" placeholder="Họ và tên"
-                                 id="fullName" name="fullName" class="field-input" formControlName="name">
-                          <span class="form-message" *ngIf="userInfo.controls.name.invalid && (userInfo.controls.name.dirty || userInfo.controls.name.touched)">
-                              <span *ngIf="userInfo.controls.name.hasError('required')">Vui lòng nhập họ và tên</span>
+                          <label class="field-label" for="email">Email</label>
+                          <input size="30" type="email" placeholder="Email" id="email" name="field-email"
+                            class="field-input" formControlName="email">
+                          <span class="form-message"
+                            *ngIf="userInfo.controls.email.invalid && (userInfo.controls.email.dirty || userInfo.controls.email.touched)">
+                            <span *ngIf="userInfo.controls.email.hasError('required')">Vui lòng nhập email</span>
+                            <span
+                              *ngIf="userInfo.controls.email.hasError('email') && !userInfo.controls.email.hasError('required')">Email
+                              không hợp lệ</span>
                           </span>
                         </div>
                       </div>
-                      <div class="flex-input" style="display: flex;">
-                        <div class="field field-two-thirds">
-                          <div class="field-input-wrapper">
-                            <label class="field-label" for="email">Email</label>
-                            <input size="30" type="email" placeholder="Email" id="email"
-                                   name="field-email" class="field-input" formControlName="email">
-                            <span class="form-message" *ngIf="userInfo.controls.email.invalid && (userInfo.controls.email.dirty || userInfo.controls.email.touched)">
-                              <span *ngIf="userInfo.controls.email.hasError('required')">Vui lòng nhập email</span>
-                              <span *ngIf="userInfo.controls.email.hasError('email') && !userInfo.controls.email.hasError('required')">Email không hợp lệ</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="field field-third">
-                          <div class="field-input-wrapper">
-                            <label class="field-label" for="phoneNumber">Điện thoại</label>
-                            <input size="30" type="tel" placeholder="Điện thoại"
-                                   id="phoneNumber" name="field-phoneNumber"
-                                   class="field-input" formControlName="phone">
-                            <span class="form-message" *ngIf="userInfo.controls.phone.invalid && (userInfo.controls.phone.dirty || userInfo.controls.phone.touched)">
-                              <span *ngIf="userInfo.controls.phone.hasError('required')">Vui lòng nhập số điện thoại</span>
-                              <span *ngIf="userInfo.controls.phone.hasError('pattern')">Số điện thoại không hợp lệ</span>
-                              <span *ngIf="userInfo.controls.phone.hasError('maxlength')">Số điện thoại không được vượt quá 10 chữ số</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="field">
+                      <div class="field field-third">
                         <div class="field-input-wrapper">
-                          <label class="field-label" for="Address">Địa chỉ</label>
-                          <input size="30" type="text" placeholder="Địa chỉ" id="Address"
-                                 name="address" class="field-input" formControlName="address">
-                          <span class="form-message" *ngIf="userInfo.controls.address.invalid && (userInfo.controls.address.dirty || userInfo.controls.address.touched)">
-                              <span *ngIf="userInfo.controls.address.hasError('required')">Vui lòng nhập địa chỉ nhân hàng</span>
+                          <label class="field-label" for="phoneNumber">Điện thoại</label>
+                          <input size="30" type="tel" placeholder="Điện thoại" id="phoneNumber" name="field-phoneNumber"
+                            class="field-input" formControlName="phone">
+                          <span class="form-message"
+                            *ngIf="userInfo.controls.phone.invalid && (userInfo.controls.phone.dirty || userInfo.controls.phone.touched)">
+                            <span *ngIf="userInfo.controls.phone.hasError('required')">Vui lòng nhập số điện
+                              thoại</span>
+                            <span *ngIf="userInfo.controls.phone.hasError('pattern')">Số điện thoại không hợp lệ</span>
+                            <span *ngIf="userInfo.controls.phone.hasError('maxlength')">Số điện thoại không được vượt
+                              quá 10 chữ số</span>
                           </span>
                         </div>
                       </div>
                     </div>
+                    <div class="field">
+                      <div class="field-input-wrapper">
+                        <label class="field-label" for="Address">Địa chỉ</label>
+                        <input size="30" type="text" placeholder="Địa chỉ" id="Address" name="address"
+                          class="field-input" formControlName="address">
+                        <span class="form-message"
+                          *ngIf="userInfo.controls.address.invalid && (userInfo.controls.address.dirty || userInfo.controls.address.touched)">
+                          <span *ngIf="userInfo.controls.address.hasError('required')">Vui lòng nhập địa chỉ nhân
+                            hàng</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -83,12 +91,12 @@
                     <div class="radio-wrapper content-box-row">
                       <label class="two-page" for="payment_1">
                         <div class="radio-input payment-method-radio">
-                          <input type="radio" id="payment_1" class="input-radio"
-                                 name="payment-method" value="Thanh toán khi nhận hàng" #paymentMethods checked>
+                          <input type="radio" id="payment_1" class="input-radio" name="payment-method"
+                            value="Thanh toán khi nhận hàng" #paymentMethods checked>
                         </div>
                         <div class="radio-content-input">
-                          <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6"
-                               alt="" class="main-img">
+                          <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6" alt=""
+                            class="main-img">
                           <div class="content-wrapper">
                             <span>Thanh toán khi nhận hàng</span>
                           </div>
@@ -99,12 +107,12 @@
                     <div class="radio-wrapper content-box-row">
                       <label class="two-page" for="payment_2">
                         <div class="radio-input payment-method-radio">
-                          <input type="radio" id="payment_2" class="input-radio"
-                                 name="payment-method" value="Ví MoMo" #paymentMethods>
+                          <input type="radio" id="payment_2" class="input-radio" name="payment-method" value="Ví MoMo"
+                            #paymentMethods>
                         </div>
                         <div class="radio-content-input">
-                          <img src="https://hstatic.net/0/0/global/design/seller/image/payment/momo.svg?v=6"
-                               alt="" class="main-img">
+                          <img src="https://hstatic.net/0/0/global/design/seller/image/payment/momo.svg?v=6" alt=""
+                            class="main-img">
                           <div class="content-wrapper">
                             <span>Ví MoMo</span>
                           </div>
@@ -132,28 +140,27 @@
             <div class="order-summary-section order-summary-section-product-list">
               <table class="product-table">
                 <thead>
-                <tr>
-                  <th scope="col">
-                    <span class="visually-hidden">Hình ảnh</span>
-                  </th>
-                  <th scope="col">
-                    <span class="visually-hidden">Mô tả</span>
-                  </th>
-                  <th scope="col">
-                    <span class="visually-hidden">Số lượng</span>
-                  </th>
-                  <th scope="col">
-                    <span class="visually-hidden">Giá</span>
-                  </th>
-                </tr>
+                  <tr>
+                    <th scope="col">
+                      <span class="visually-hidden">Hình ảnh</span>
+                    </th>
+                    <th scope="col">
+                      <span class="visually-hidden">Mô tả</span>
+                    </th>
+                    <th scope="col">
+                      <span class="visually-hidden">Số lượng</span>
+                    </th>
+                    <th scope="col">
+                      <span class="visually-hidden">Giá</span>
+                    </th>
+                  </tr>
                 </thead>
                 <tbody id="list-product" *ngFor="let item of cartItems">
                   <tr class="product">
                     <td class="product-image">
                       <div class="product-thumbnail">
                         <div class="product-thumbnail-wrapper">
-                          <img class="product-thumbnail-image"
-                               [src]="item.imageProduct" alt="{{item.productName}}">
+                          <img class="product-thumbnail-image" [src]="item.imageProduct" alt="{{item.productName}}">
                         </div>
                         <span class="product-thumbnail-quantity">{{item.quantity}}</span>
                       </div>
@@ -164,7 +171,8 @@
                     </td>
                     <td class="product-quantity visually-hidden">{{item.quantity}}</td>
                     <td class="product-price">
-                      <span class="order-summary-emphasis">{{item.discountedPrice * item.quantity | currencyFormat}}</span>
+                      <span class="order-summary-emphasis">{{item.discountedPrice * item.quantity |
+                        currencyFormat}}</span>
                     </td>
                   </tr>
                 </tbody>
@@ -173,32 +181,32 @@
             <div class="order-summary-section order-summary-section-total-lines payment-lines">
               <table class="total-line-table">
                 <thead>
-                <tr>
-                  <th scope="col">
-                    <span class="visually-hidden">Mô tả</span>
-                  </th>
-                  <th scope="col">
-                    <span class="visually-hidden">Giá</span>
-                  </th>
-                </tr>
+                  <tr>
+                    <th scope="col">
+                      <span class="visually-hidden">Mô tả</span>
+                    </th>
+                    <th scope="col">
+                      <span class="visually-hidden">Giá</span>
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr class="total-line total-line-subtotal">
-                  <td class="total-line-name">Tạm tính</td>
-                  <td class="total-line-price">
-                    <span id="moneyTemp" class="order-summary-emphasis">{{ totalAmount | currencyFormat }}</span>
-                  </td>
-                </tr>
+                  <tr class="total-line total-line-subtotal">
+                    <td class="total-line-name">Tạm tính</td>
+                    <td class="total-line-price">
+                      <span id="moneyTemp" class="order-summary-emphasis">{{ totalAmount | currencyFormat }}</span>
+                    </td>
+                  </tr>
                 </tbody>
                 <tfoot class="total-line-table-footer">
-                <tr class="total-line">
-                  <td class="total-line-name payment-due-label">
-                    <span class="payment-due-label-total">Tổng tiền</span>
-                  </td>
-                  <td class="total-line-name payment-due">
-                    <span id="totalPrice" class="payment-due-price">{{ totalAmount | currencyFormat }}</span>
-                  </td>
-                </tr>
+                  <tr class="total-line">
+                    <td class="total-line-name payment-due-label">
+                      <span class="payment-due-label-total">Tổng tiền</span>
+                    </td>
+                    <td class="total-line-name payment-due">
+                      <span id="totalPrice" class="payment-due-price">{{ totalAmount | currencyFormat }}</span>
+                    </td>
+                  </tr>
                 </tfoot>
               </table>
             </div>

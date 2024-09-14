@@ -28,7 +28,7 @@
               </div>
               <div class="product-brand">
                 <span class="title">Thương hiệu: </span>
-                <a href="#">2T-STORE</a>
+                <a href="#">NEM STORE</a>
               </div>
               <div style="margin-top: 15px">
                 <span class="title">Số lượng còn: </span>
@@ -38,12 +38,14 @@
             </div>
             <div class="product-price">
               <span class="current-price current-price-new">{{p.discountedPrice | currencyFormat}}</span>
-              <span class="current-price current-price-old" *ngIf="p.discountPercentage != 0">{{p.price | currencyFormat}}</span>
+              <span class="current-price current-price-old" *ngIf="p.discountPercentage != 0">{{p.price |
+                currencyFormat}}</span>
               <span class="product-discount" *ngIf="p.discountPercentage != 0">
                 <span>-{{p.discountPercentage}}%</span>
               </span>
             </div>
-            <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical" enctype="multipart/form-data" (ngSubmit)="addToCart(p.productId, Number(selectedQuantity))">
+            <form [formGroup]="addToCartForm" action="" method="post" id="AddToCartForm" class="form-vertical"
+              enctype="multipart/form-data" (ngSubmit)="addToCart(p.productId, Number(selectedQuantity))">
               <div class="product-variants-wrapper">
                 <div id="product-select-swatch" class="select-swatch">
                   <div id="variant-swatch" class="swatch swatch-product-single">
@@ -52,48 +54,53 @@
                     </div>
                     <div class="select-swap">
                       <div class="swatch-element size-4">
-                        <input class="variant-0 input-product" id="swatch-0--size-4"
-                               type="radio" name="option1" value="Size 4" [checked]="selectedSize === 'Size 4'" (change)="onSizeChange('Size 4')">
+                        <input class="variant-0 input-product" id="swatch-0--size-4" type="radio" name="option1"
+                          value="Size 4" [checked]="selectedSize === 'Size 4'" (change)="onSizeChange('Size 4')">
                         <label for="swatch-0--size-4">
                           Size 4
                           <img class="img-check"
-                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 4' ? 'inline-block' : 'none'">
+                            src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884"
+                            [style.display]="selectedSize === 'Size 4' ? 'inline-block' : 'none'">
                         </label>
                       </div>
                       <div class="swatch-element size-6">
-                        <input class="variant-0 input-product" id="swatch-0--size-6"
-                               type="radio" name="option1" value="Size 6" [checked]="selectedSize === 'Size 6'" (change)="onSizeChange('Size 6')">
+                        <input class="variant-0 input-product" id="swatch-0--size-6" type="radio" name="option1"
+                          value="Size 6" [checked]="selectedSize === 'Size 6'" (change)="onSizeChange('Size 6')">
                         <label for="swatch-0--size-6">
                           Size 6
                           <img class="img-check"
-                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 6' ? 'inline-block' : 'none'">
+                            src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884"
+                            [style.display]="selectedSize === 'Size 6' ? 'inline-block' : 'none'">
                         </label>
                       </div>
                       <div class="swatch-element size-8">
-                        <input class="variant-0 input-product" id="swatch-0--size-8"
-                               type="radio" name="option1" value="Size 8" [checked]="selectedSize === 'Size 8'" (change)="onSizeChange('Size 8')">
+                        <input class="variant-0 input-product" id="swatch-0--size-8" type="radio" name="option1"
+                          value="Size 8" [checked]="selectedSize === 'Size 8'" (change)="onSizeChange('Size 8')">
                         <label for="swatch-0--size-8">
                           Size 8
                           <img class="img-check"
-                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 8' ? 'inline-block' : 'none'">
+                            src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884"
+                            [style.display]="selectedSize === 'Size 8' ? 'inline-block' : 'none'">
                         </label>
                       </div>
                       <div class="swatch-element size-10">
-                        <input class="variant-0 input-product" id="swatch-0--size-10"
-                               type="radio" name="option1" value="Size 10" [checked]="selectedSize === 'Size 10'" (change)="onSizeChange('Size 10')">
+                        <input class="variant-0 input-product" id="swatch-0--size-10" type="radio" name="option1"
+                          value="Size 10" [checked]="selectedSize === 'Size 10'" (change)="onSizeChange('Size 10')">
                         <label for="swatch-0--size-10">
                           Size 10
                           <img class="img-check"
-                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 10' ? 'inline-block' : 'none'">
+                            src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884"
+                            [style.display]="selectedSize === 'Size 10' ? 'inline-block' : 'none'">
                         </label>
                       </div>
                       <div class="swatch-element size-12">
-                        <input class="variant-0 input-product" id="swatch-0--size-12"
-                               type="radio" name="option1" value="Size 12" [checked]="selectedSize === 'Size 12'" (change)="onSizeChange('Size 12')">
+                        <input class="variant-0 input-product" id="swatch-0--size-12" type="radio" name="option1"
+                          value="Size 12" [checked]="selectedSize === 'Size 12'" (change)="onSizeChange('Size 12')">
                         <label for="swatch-0--size-12">
                           Size 12
                           <img class="img-check"
-                               src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884" [style.display]="selectedSize === 'Size 12' ? 'inline-block' : 'none'">
+                            src="https://theme.hstatic.net/200000182297/1000887316/14/select-pro1.png?v=884"
+                            [style.display]="selectedSize === 'Size 12' ? 'inline-block' : 'none'">
                         </label>
                       </div>
                     </div>
@@ -108,22 +115,17 @@
                 <div class="product-quantity">
                   <div class="qty-addcart">
                     <span>Số lượng</span>
-                    <input type="number" name="quantity" id="quantity" value="1" min="1"
-                           class="quantity-selector" formControlName="quantity">
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" class="quantity-selector"
+                      formControlName="quantity">
                   </div>
                 </div>
                 <div class="product-actions">
-                  <button
-                    type="submit" name="add" id="AddToCart" class="btnAddToCart"
-                    [disabled]="p.quantityStock === 0"
-                  >
+                  <button type="submit" name="add" id="AddToCart" class="btnAddToCart"
+                    [disabled]="p.quantityStock === 0">
                     Thêm vào giỏ hàng
                   </button>
-                  <button
-                    type="button" name="buy" id="buy-now" class="btnBuyNow"
-                    (click)="buyNow(p.productId, Number(selectedQuantity))"
-                    [disabled]="p.quantityStock === 0"
-                  >
+                  <button type="button" name="buy" id="buy-now" class="btnBuyNow"
+                    (click)="buyNow(p.productId, Number(selectedQuantity))" [disabled]="p.quantityStock === 0">
                     Mua ngay
                   </button>
                 </div>

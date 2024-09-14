@@ -24,7 +24,8 @@
         </div>
         <ul *ngIf="isDisplayNavItem">
           <li *ngFor="let category of categories">
-            <a [routerLink]="['product']" [queryParams]="{ categoryId: category.categoryId }" (click)="toggleBar()">{{category.categoryName}}</a>
+            <a [routerLink]="['product']" [queryParams]="{ categoryId: category.categoryId }"
+              (click)="toggleBar()">{{category.categoryName}}</a>
           </li>
         </ul>
       </li>
@@ -44,8 +45,8 @@
         <a [routerLink]="['/cart']" (click)="toggleBar()">Giỏ hàng</a>
       </li>
       <div id="mobile-account" class="dropdown icon-item search-li float-pc" *ngIf="!isLoggedIn()">
-          <li><a [routerLink]="['/login']" (click)="toggleBar()">Đăng nhập</a></li>
-          <li><a [routerLink]="['/register']" (click)="toggleBar()">Đăng ký</a></li>
+        <li><a [routerLink]="['/login']" (click)="toggleBar()">Đăng nhập</a></li>
+        <li><a [routerLink]="['/register']" (click)="toggleBar()">Đăng ký</a></li>
       </div>
 
       <li id="mobile-user-info" *ngIf="isLoggedIn()">
@@ -104,9 +105,10 @@
                         Sản phẩm
                         <i class="fa-solid fa-chevron-down"></i>
                       </a>
-                      <ul style="max-height: 374px;">
+                      <ul style="max-height: 500px;">
                         <li *ngFor="let category of categories">
-                          <a [routerLink]="['product']" [queryParams]="{ categoryId: category.categoryId }">{{category.categoryName}}</a>
+                          <a [routerLink]="['product']"
+                            [queryParams]="{ categoryId: category.categoryId }">{{category.categoryName}}</a>
                         </li>
                       </ul>
                     </li>
@@ -129,7 +131,7 @@
                       <ul class="no-bullets" *ngIf="isDisplaySearch">
                         <form action="" method="get" class="search-bar" (ngSubmit)="searchProduct()">
                           <input id="inputSearch" type="search" name="search" value="" placeholder="Tìm kiếm..."
-                                 class="input-group-filed" #inputSearch>
+                            class="input-group-filed" #inputSearch>
                           <button id="btnSearch" type="submit" class="btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                           </button>

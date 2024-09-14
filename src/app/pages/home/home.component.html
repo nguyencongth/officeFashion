@@ -44,7 +44,7 @@
             <h2>Sản phẩm mới</h2>
           </div>
           <ng-container *ngIf="display">
-            <div  class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
+            <div class="image-slider" appSlickCarousel [slickConfig]="slickConfig1">
               <div class="image-item" *ngFor="let product of products">
                 <div class="image">
                   <img [src]="product.imageProduct" alt="{{product.productName}}" />
@@ -60,7 +60,8 @@
                 <div class="product-item-info">
                   <h4 class="image-title">{{product.productName}}</h4>
                   <span class="current-price current-price-new">{{product.discountedPrice | currencyFormat}}</span>
-                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price | currencyFormat}}</span>
+                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price
+                    | currencyFormat}}</span>
                 </div>
               </div>
             </div>
@@ -91,7 +92,8 @@
                 <div class="product-item-info">
                   <h4 class="image-title">{{product.productName}}</h4>
                   <span class="current-price current-price-new">{{product.discountedPrice | currencyFormat}}</span>
-                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price | currencyFormat}}</span>
+                  <span class="current-price current-price-old" *ngIf="product.discountPercentage != 0">{{product.price
+                    | currencyFormat}}</span>
                 </div>
               </div>
             </div>
@@ -108,7 +110,7 @@
       <div class="wrapper">
         <div class="inner">
           <div class="section-title">
-            <h2>2T STORE'S BLOG</h2>
+            <h2>NEM'S BLOG</h2>
             <p>Đón đầu xu hướng, định hình phong cách</p>
           </div>
           <div class="image-slider2" appSlickCarousel [slickConfig]="slickConfig2">
