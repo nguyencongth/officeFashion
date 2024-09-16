@@ -41,7 +41,7 @@ export class OrderService {
     return this.http.patch(url, {});
   }
   checkoutMomo(totalAmount: number, desc: string):Observable<any> {
-    const url = `https://thanhncofficefashion.somee.com/api/Momo/PaymentMomo?totalAmount=${totalAmount}&desc=${desc}`;
+    const url = `https://thanhnc-officefashion.somee.com/api/Momo/PaymentMomo?totalAmount=${totalAmount}&desc=${desc}`;
     return this.http.get(url);
   }
 }
